@@ -1,0 +1,11 @@
+hall_id,as_of_date,machine_key,machine_name,units,baseline_days,baseline_avg_diff,special_selected_n,momentum_selected_n,composite_score,type_label,source_name,notes
+toyoko_oriental_jiyugaoka,2026-07-05,valvrave2,Lパチスロ 革命機ヴァルヴレイヴ2,5,180,89,0,0,,監視・貸玉混在,hall_navi_180d,"公開集計223/880台・平均2021G。DMM現行は20円3台+5円2台。率区分未分離のため20円本命へ直結させない。"
+toyoko_oriental_jiyugaoka,2026-07-05,hokuto_tensei2,スマスロ 北斗の拳 転生の章2,5,153,71,0,0,,平常プラス候補,hall_navi_180d,"公開集計253/765台・平均1706G。DMM現行は20円5台で、現行20円候補の中では最も率区分が明瞭。"
+toyoko_oriental_jiyugaoka,2026-07-05,tokyo_revengers,スマスロ 東京リベンジャーズ,3,180,15,0,0,,監視・貸玉混在,hall_navi_180d,"公開集計75/444台・平均1171G。DMM現行は20円1台+5円2台。"
+toyoko_oriental_jiyugaoka,2026-07-05,monkey_turn_v,スマスロモンキーターンV,5,180,12,0,0,,取材時塊候補,hall_navi_180d,"公開集計190/540台・平均833G。DMM現行は20円3台+5円2台。2026-05-14公開例は3台平均+3199枚。"
+toyoko_oriental_jiyugaoka,2026-07-05,hokuto,スマスロ北斗の拳,3,180,14,0,0,,5円専用・20円対象外,hall_navi_180d,"公開集計124/486台・平均742G。DMM現行は5円3台のみ。20円の狙い機種から除外。"
+toyoko_oriental_jiyugaoka,2026-07-05,tekken6,スマスロ鉄拳6,3,153,4,0,0,,取材時塊候補,hall_navi_180d,"公開集計117/459台・平均1628G。DMM現行は20円1台+5円2台。2026-05-05公開例は3台平均+6249枚。"
+toyoko_oriental_jiyugaoka,2026-07-05,kabaneri_kaimon,スマスロ 甲鉄城のカバネリ 海門決戦,3,97,,0,0,,高稼働・差枚欠損,hall_navi_180d,"公開集計124/291台・平均2946G、差枚平均は公開欄で欠損。DMM現行は20円3台。2026-05-06公開例は3台平均+5301枚。"
+toyoko_oriental_jiyugaoka,2026-07-05,enen2,Lパチスロ 炎炎ノ消防隊2,3,125,,0,0,,高稼働・差枚欠損,hall_navi_180d,"公開集計130/375台・平均2277G、差枚平均は公開欄で欠損。DMM現行は20円3台。"
+toyoko_oriental_jiyugaoka,2026-07-05,million_god,スマスロ ミリオンゴッド‐神々の軌跡‐,3,48,,0,0,,高稼働・差枚欠損,hall_navi_180d,"公開集計39/144台・平均3899G、差枚平均は公開欄で欠損。DMM現行は20円3台。"
+toyoko_oriental_jiyugaoka,2026-07-05,magia_record,スマスロ マギアレコード 魔法少女まどか☆マギカ外伝,3,180,,0,0,,監視・貸玉混在,hall_navi_180d,"公開集計112/540台・平均845G、差枚平均は公開欄で欠損。DMM現行は20円1台+5円2台。"

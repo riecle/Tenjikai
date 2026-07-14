@@ -1,0 +1,25 @@
+{
+  "hall_id": "ikegami_big_dipper_togoshi_ginza",
+  "data_start": "2025-12-01",
+  "data_through": "2026-07-13",
+  "days": 225,
+  "published_positive_days": 146,
+  "rate_reconstructed_negative_days": 79,
+  "machine_day_rows": 20229,
+  "tail_day_rows": 2475,
+  "machine_scores": 98,
+  "reconstruction_error_mean_on_published_positive_days": 0.018,
+  "reconstruction_error_mae_on_published_positive_days": 0.435,
+  "position_sign_test": {
+    "window_start": "2026-04-15",
+    "window_end": "2026-07-13",
+    "matched_positive_n": 46,
+    "matched_n": 90,
+    "control_positive_n": 426,
+    "control_n": 810,
+    "matched_positive_rate": 0.5111111111111111,
+    "control_positive_rate": 0.5259259259259259
+  },
+  "list_sha256": "31139622c437ccffdc0aaea99f255260f47b78ca708fa3191611afae1b74bf8c",
+  "negative_reconstruction_formula": "sum(machine_units * machine_games * 3 * (payout_rate/100 - 1)); positive machine means kept as displayed"
+}

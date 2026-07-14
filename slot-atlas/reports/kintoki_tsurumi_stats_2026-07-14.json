@@ -1,0 +1,61 @@
+{
+  "missing_dates": [
+    "2026-01-29"
+  ],
+  "all": {
+    "n": 193,
+    "mean": -95.5,
+    "pos": 43,
+    "positive_rate": 0.2228,
+    "games": 1865.3
+  },
+  "baseline": {
+    "n": 145,
+    "mean": -87.5,
+    "pos": 34,
+    "positive_rate": 0.2345,
+    "games": 1547.0
+  },
+  "day5_family_ex_anniv": {
+    "n": 18,
+    "mean": -90.2,
+    "pos": 4,
+    "positive_rate": 0.2222,
+    "games": 2946.1
+  },
+  "day15_ex_anniv": {
+    "n": 5,
+    "mean": -129.4,
+    "pos": 1,
+    "positive_rate": 0.2,
+    "games": 2945.4
+  },
+  "day25": {
+    "n": 6,
+    "mean": -154.3,
+    "pos": 0,
+    "positive_rate": 0.0,
+    "games": 2760.3
+  },
+  "sunday": {
+    "n": 28,
+    "mean": -146.5,
+    "pos": 5,
+    "positive_rate": 0.1786,
+    "games": 3043.6
+  },
+  "month_equals_day": {
+    "n": 7,
+    "mean": -69.3,
+    "pos": 2,
+    "positive_rate": 0.2857,
+    "games": 2453.6
+  },
+  "anniversary_0415_2026": {
+    "n": 1,
+    "mean": -7.0,
+    "pos": 0,
+    "positive_rate": 0.0,
+    "games": 5141.0
+  }
+}

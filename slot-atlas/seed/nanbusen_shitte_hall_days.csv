@@ -1,0 +1,7 @@
+﻿hall_id,result_date,avg_diff,total_diff,avg_games,machine_win_rate,winning_units,total_units,source_name
+tsurumi_nanbusen_shitte,2026-01-27,-267.8875,-21431,3424,0.25,20,80,minrepo_27th_full80_reconstructed
+tsurumi_nanbusen_shitte,2026-02-27,426,34110,4161,0.4125,33,80,minrepo_27th_summary
+tsurumi_nanbusen_shitte,2026-03-27,54,4320,4135,0.4,32,80,minrepo_27th_summary
+tsurumi_nanbusen_shitte,2026-04-27,201,16100,3840,0.4,32,80,minrepo_27th_summary
+tsurumi_nanbusen_shitte,2026-05-27,429,34300,3618,0.425,34,80,minrepo_27th_summary
+tsurumi_nanbusen_shitte,2026-06-27,151,12100,5664,0.45,36,80,minrepo_27th_summary
