@@ -1,0 +1,12 @@
+hall_id,result_date,event_name,machine_key,machine_name,unit_numbers,unit_count,winning_units,avg_diff,avg_games,rate_scope,source_name,notes
+fukutoshin_maruhan_shinjuku_toho,2026-07-09,日付末尾一致（90日集計）,tail_0,台番号末尾0,,67,,163,5103,20yen,slorepo_daiban_hiduke,"日付末尾0の日に同じ台番号末尾を選んだ平均。集計期間2026-04-10〜07-09。事後の優秀末尾表示ではなく全該当台集計。"
+fukutoshin_maruhan_shinjuku_toho,2026-07-09,日付末尾一致（90日集計）,tail_1,台番号末尾1,,70,,592,5724,20yen,slorepo_daiban_hiduke,"日付末尾1の日に同じ台番号末尾を選んだ平均。集計期間2026-04-10〜07-09。事後の優秀末尾表示ではなく全該当台集計。"
+fukutoshin_maruhan_shinjuku_toho,2026-07-09,日付末尾一致（90日集計）,tail_2,台番号末尾2,,70,,258,5169,20yen,slorepo_daiban_hiduke,"日付末尾2の日に同じ台番号末尾を選んだ平均。集計期間2026-04-10〜07-09。事後の優秀末尾表示ではなく全該当台集計。"
+fukutoshin_maruhan_shinjuku_toho,2026-07-09,日付末尾一致（90日集計）,tail_3,台番号末尾3,,73,,18,4993,20yen,slorepo_daiban_hiduke,"日付末尾3の日に同じ台番号末尾を選んだ平均。集計期間2026-04-10〜07-09。事後の優秀末尾表示ではなく全該当台集計。"
+fukutoshin_maruhan_shinjuku_toho,2026-07-09,日付末尾一致（90日集計）,tail_4,台番号末尾4,,71,,317,5356,20yen,slorepo_daiban_hiduke,"日付末尾4の日に同じ台番号末尾を選んだ平均。集計期間2026-04-10〜07-09。事後の優秀末尾表示ではなく全該当台集計。"
+fukutoshin_maruhan_shinjuku_toho,2026-07-09,日付末尾一致（90日集計）,tail_5,台番号末尾5,,71,,225,5364,20yen,slorepo_daiban_hiduke,"日付末尾5の日に同じ台番号末尾を選んだ平均。集計期間2026-04-10〜07-09。事後の優秀末尾表示ではなく全該当台集計。"
+fukutoshin_maruhan_shinjuku_toho,2026-07-09,日付末尾一致（90日集計）,tail_6,台番号末尾6,,70,,2913,7128,20yen,slorepo_daiban_hiduke,"日付末尾6の日に同じ台番号末尾を選んだ平均。集計期間2026-04-10〜07-09。事後の優秀末尾表示ではなく全該当台集計。"
+fukutoshin_maruhan_shinjuku_toho,2026-07-09,日付末尾一致（90日集計）,tail_7,台番号末尾7,,67,,847,6095,20yen,slorepo_daiban_hiduke,"日付末尾7の日に同じ台番号末尾を選んだ平均。集計期間2026-04-10〜07-09。事後の優秀末尾表示ではなく全該当台集計。"
+fukutoshin_maruhan_shinjuku_toho,2026-07-09,日付末尾一致（90日集計）,tail_8,台番号末尾8,,66,,343,5164,20yen,slorepo_daiban_hiduke,"日付末尾8の日に同じ台番号末尾を選んだ平均。集計期間2026-04-10〜07-09。事後の優秀末尾表示ではなく全該当台集計。"
+fukutoshin_maruhan_shinjuku_toho,2026-07-09,日付末尾一致（90日集計）,tail_9,台番号末尾9,,66,,37,5099,20yen,slorepo_daiban_hiduke,"日付末尾9の日に同じ台番号末尾を選んだ平均。集計期間2026-04-10〜07-09。事後の優秀末尾表示ではなく全該当台集計。"
+fukutoshin_maruhan_shinjuku_toho,2026-07-09,日付末尾一致（90日集計）,double_tail,下2桁ゾロ目,,59,,3018,7119,20yen,slorepo_daiban_hiduke,"11・22等のゾロ目日に下2桁ゾロ目を選んだ平均。集計期間2026-04-10〜07-09。事後の優秀末尾表示ではなく全該当台集計。"

@@ -1,0 +1,1159 @@
+[
+  {
+    "hall_id": "toyoko_hinomaru_nakameguro",
+    "source_name": "hinomaru_official",
+    "source_url": "https://www.hinomaru-pachinko.com/hall/nakameguro/",
+    "fetched_at": "2026-07-13T15:05:38Z",
+    "http_status": 200,
+    "parse_status": "metadata_ok",
+    "error_message": "公式店舗メタは173台表記だが、P-WORLD・Hall Navi・DMM現行機種台数合計は231台。台数メタ更新遅延として記録。"
+  },
+  {
+    "hall_id": "toyoko_hinomaru_nakameguro",
+    "source_name": "hall_navi",
+    "source_url": "https://hall-navi.com/hole_view?hid=153005100000011980",
+    "fetched_at": "2026-07-13T15:05:38Z",
+    "http_status": 200,
+    "parse_status": "metadata_only",
+    "error_message": "365日以内の出玉レポートなし。0のつく日の旧イベ表示のみ取得。"
+  },
+  {
+    "hall_id": "toyoko_hinomaru_nakameguro",
+    "source_name": "pscube",
+    "source_url": "https://www.pscube.jp/h/a704807/",
+    "fetched_at": "2026-07-13T15:05:38Z",
+    "http_status": 500,
+    "parse_status": "fetch_error",
+    "error_message": "公開画面がP'sCUBE 500内部サーバエラー。日次・台番データは取得せず、推測補完もしない。"
+  },
+  {
+    "hall_id": "toyoko_oriental_jiyugaoka",
+    "source_name": "hall_navi",
+    "source_url": "https://hall-navi.com/hole_view?hid=152003500000011470",
+    "fetched_at": "2026-07-14T14:00:00+09:00",
+    "http_status": 200,
+    "parse_status": "partial_aggregates_and_positions",
+    "error_message": "基準日6/8、機種台番表は6/6まで。180日内レポート23件、日タイプ集計、機種集計、3日分8ブロックを取得。通常日の日次表と20円/5円区分は未取得のため予測をブロック。"
+  },
+  {
+    "hall_id": "toyoko_oriental_jiyugaoka",
+    "source_name": "dmm_pachitown",
+    "source_url": "https://p-town.dmm.com/shops/tokyo/246",
+    "fetched_at": "2026-07-14T14:00:00+09:00",
+    "http_status": 200,
+    "parse_status": "metadata_and_machine_layout_ok",
+    "error_message": "店舗情報更新7/7、機種情報更新7/5。20円105台・5円47台、抽選9:50、周年9/14表記、現行機種の貸玉別台数を取得。"
+  },
+  {
+    "hall_id": "toyoko_oriental_jiyugaoka",
+    "source_name": "p_world",
+    "source_url": "https://www.p-world.co.jp/tokyo/cities/13051/halls",
+    "fetched_at": "2026-07-14T14:00:00+09:00",
+    "http_status": 200,
+    "parse_status": "active_and_rates_ok",
+    "error_message": "目黒区店舗一覧で営業中、1000円/46枚・1000円/200枚、住所を再確認。"
+  },
+  {
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "source_name": "slorepo_daily_public_table",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e696b0e5aebfe69db1e5ae9de38393e383abe5ba97code/",
+    "fetched_at": "2026-07-14T00:30:00+09:00",
+    "http_status": 200,
+    "payload_path": "seed/toho_hall_days.csv",
+    "parse_status": "daily_365_complete",
+    "error_message": "公開HTMLの日次ページを日付窓ごとに再構成。2025-07-13〜2026-07-12の365日、欠損0。平均差枚・平均G・公開期間のみ台勝率を保存。"
+  },
+  {
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "source_name": "slorepo_raw_xlsx",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e696b0e5aebfe69db1e5ae9de38393e383abe5ba97code/table_data.xlsx",
+    "fetched_at": "2026-07-14T00:30:00+09:00",
+    "http_status": 403,
+    "parse_status": "cloudflare_blocked",
+    "error_message": "RAW ExcelはCloudflare 403。取得できたHTML表だけを使用し、ブロック部分は推測補完しない。"
+  },
+  {
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "source_name": "slorepo_machine_tables",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e696b0e5aebfe69db1e5ae9de38393e383abe5ba97code/kishu_tokuteibi/",
+    "fetched_at": "2026-07-14T00:30:00+09:00",
+    "http_status": 200,
+    "payload_path": "seed/toho_machine_scores.csv",
+    "parse_status": "machine_84_scored",
+    "error_message": "現行84機種。A=2026-06-01〜07-12公開期間平均、B=直近90日の定義済み特定日30日での選抜回数、C=直近30日選抜回数。"
+  },
+  {
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "source_name": "slorepo_date_tail_matrix",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e696b0e5aebfe69db1e5ae9de38393e383abe5ba97code/daiban_hiduke/",
+    "fetched_at": "2026-07-14T00:30:00+09:00",
+    "http_status": 200,
+    "payload_path": "seed/toho_position_signals.csv",
+    "parse_status": "position_matrix_11_complete",
+    "error_message": "2026-04-10〜07-09の90日行列から日付末尾×台番末尾10本と下2桁ゾロ目1本を保存。店日予測ではなく位置レイヤー。"
+  },
+  {
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "source_name": "maruhan_official",
+    "source_url": "https://www.maruhan.co.jp/hall/3044/",
+    "fetched_at": "2026-07-14T00:30:00+09:00",
+    "http_status": 200,
+    "parse_status": "official_store_verified",
+    "error_message": "公式店舗ページと公式Xの営業中メタを確認。"
+  },
+  {
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "source_name": "p_world",
+    "source_url": "https://www.p-world.co.jp/tokyo/maruhan-shinjukutoho.htm",
+    "fetched_at": "2026-07-14T00:30:00+09:00",
+    "http_status": 200,
+    "parse_status": "metadata_ok",
+    "error_message": "スロット664台、住所、アクセスを現行ページで照合。"
+  },
+  {
+    "hall_id": "yokohama_slot_mm_tsunashima",
+    "source_name": "slorepo_daily_public_table",
+    "source_url": "https://www.slorepo.com/hole/534c4f54204d264de7b6b1e5b3b6e5ba97code/",
+    "fetched_at": "2026-07-14T18:00:00+09:00",
+    "http_status": 200,
+    "payload_path": "seed/mm_tsuna_hall_days.csv",
+    "parse_status": "daily_202_complete_mixed_rate",
+    "error_message": "2025-12-05〜2026-06-24の202日、欠損0。平均差枚・平均G、公開期間149日の台勝率を保存。公開分母140台は20円/5円別に分離されていない。"
+  },
+  {
+    "hall_id": "yokohama_slot_mm_tsunashima",
+    "source_name": "slorepo_machine_90d",
+    "source_url": "https://www.slorepo.com/hole/534c4f54204d264de7b6b1e5b3b6e5ba97code/kishu_tokuteibi/",
+    "fetched_at": "2026-07-14T18:00:00+09:00",
+    "http_status": 200,
+    "payload_path": "seed/mm_tsuna_machine_scores.csv",
+    "parse_status": "machine_64_scored_mixed_rate",
+    "error_message": "2026-03-04〜06-01の公開90日表64機種・合計140台。A/B/C/Sを計算したが貸玉区分は未公開、A表は日次最新より23日古い。"
+  },
+  {
+    "hall_id": "yokohama_slot_mm_tsunashima",
+    "source_name": "slorepo_daily_selected_list",
+    "source_url": "https://www.slorepo.com/hole/534c4f54204d264de7b6b1e5b3b6e5ba97code/",
+    "fetched_at": "2026-07-14T18:00:00+09:00",
+    "http_status": 200,
+    "payload_path": "seed/mm_tsuna_position_signals.csv",
+    "parse_status": "selected_machine_and_tail_markers",
+    "error_message": "優秀機種94件、優秀末尾40件を閾値選抜として保存。該当台数・末尾平均差枚は未公開のため予測値へ補完しない。"
+  },
+  {
+    "hall_id": "yokohama_slot_mm_tsunashima",
+    "source_name": "p_world_city_listing",
+    "source_url": "https://www.p-world.co.jp/kanagawa/cities/14038/halls",
+    "fetched_at": "2026-07-14T18:00:00+09:00",
+    "http_status": 200,
+    "parse_status": "active_and_mixed_rates_only",
+    "error_message": "営業中、綱島東1-6-23、20円・5円スロ併設を確認。店舗詳細の貸玉別台数は取得できず、予測ブロックを維持。"
+  },
+  {
+    "hall_id": "shibuya_espace_shinkan",
+    "source_name": "slorepo_daily_fresh_check",
+    "source_url": "https://www.slorepo.com/hole/e382a8e382b9e38391e382b9e697a5e68b93e6b88be8b0b7e9a785e5898de696b0e9a4a8code/",
+    "fetched_at": "2026-07-14T09:12:00+09:00",
+    "http_status": 200,
+    "parse_status": "no_2026_07_13_latest_visible_2026_07_11",
+    "error_message": "公開ページの先頭は7/11。既存レポートのdata_through=7/12より古いため巻き戻さず、7/13は欠損のまま保存。"
+  },
+  {
+    "hall_id": "shibuya_rakuen_dogenzaka",
+    "source_name": "slorepo_daily_fresh_check",
+    "source_url": "https://www.slorepo.com/hole/e6a5bde59c92e6b88be8b0b7e98193e78e84e59d82e5ba97code/",
+    "fetched_at": "2026-07-14T09:12:00+09:00",
+    "http_status": 200,
+    "parse_status": "no_2026_07_13_latest_visible_2026_05_15",
+    "error_message": "公開ページの先頭は5/15で、既存レポートのdata_through=6/26より古い。収集遅延として記録し、既存値を巻き戻さない。"
+  },
+  {
+    "hall_id": "shibuya_rakuen_ekimae",
+    "source_name": "slorepo_daily_public_table",
+    "source_url": "https://www.slorepo.com/hole/e6a5bde59c92e6b88be8b0b7e9a785e5898de5ba97code/",
+    "fetched_at": "2026-07-14T09:13:00+09:00",
+    "http_status": 200,
+    "payload_path": "seed/daily_update_20260714_hall_days.csv",
+    "parse_status": "raw_41_rows_through_2026_07_11_advance_22_days_no_2026_07_13",
+    "error_message": "6/1〜7/11の41日を生データ化し、従来の6/19から22日進めた。新規22日平均+73.7、勝ち日率63.6%、7/1〜11は+142.8(n=11)。6/7の319台から6/8の327台へ+8台。7/13は未掲載で補完しない。"
+  },
+  {
+    "hall_id": "mizonokuchi_rakuen",
+    "source_name": "slorepo_daily_fresh_check",
+    "source_url": "https://www.slorepo.com/hole/e6a5bde59c92e6ba9de381aee58fa3e5ba97code/",
+    "fetched_at": "2026-07-14T09:12:00+09:00",
+    "http_status": 200,
+    "parse_status": "no_2026_07_13_latest_2026_07_12",
+    "error_message": "7/12=-513枚、平均4917G、勝率34%(89/264)まで掲載。7/13は未掲載。"
+  },
+  {
+    "hall_id": "mizonokuchi_espace_shinkan",
+    "source_name": "slorepo_daily_fresh_check",
+    "source_url": "https://www.slorepo.com/hole/e382a8e382b9e38391e382b9e697a5e68b93e6ba9de381aee58fa3e9a785e5898de696b0e9a4a8code/",
+    "fetched_at": "2026-07-14T09:12:00+09:00",
+    "http_status": 200,
+    "parse_status": "no_2026_07_13_latest_visible_2026_07_05",
+    "error_message": "公開ページの先頭は7/5で、既存レポートのdata_through=7/12より古い。既存値を巻き戻さない。"
+  },
+  {
+    "hall_id": "mizonokuchi_espace_honkan",
+    "source_name": "slorepo_daily_fresh_check",
+    "source_url": "https://www.slorepo.com/hole/e382a8e382b9e38391e382b9e697a5e68b93e6ba9de381aee58fa3e9a785e5898de69cace9a4a8code/",
+    "fetched_at": "2026-07-14T09:12:00+09:00",
+    "http_status": null,
+    "parse_status": "http_or_url_error_no_update",
+    "error_message": "公開ページ取得に失敗。既存data_through=2026-06-24を維持し、値は補完しない。"
+  },
+  {
+    "hall_id": "mizonokuchi_slot_act",
+    "source_name": "slorepo_daily_fresh_check",
+    "source_url": "https://www.slorepo.com/hole/534c4f54e38080414354code/",
+    "fetched_at": "2026-07-14T09:12:00+09:00",
+    "http_status": 200,
+    "parse_status": "no_2026_07_13_latest_2026_07_12",
+    "error_message": "7/12=-206枚、平均2465G、勝率31%(88/284)まで掲載。7/13は未掲載。7/17/27は引き続き別ルールで追跡。"
+  },
+  {
+    "hall_id": "toyoko_redrock_gakugei",
+    "source_name": "slorepo_daily_fresh_check",
+    "source_url": "https://www.slorepo.com/hole/e383ace38383e38389e383ade38383e382afe5ada6e88ab8e5a4a7e5ada6e9a785e5898de5ba97code/",
+    "fetched_at": "2026-07-14T09:12:00+09:00",
+    "http_status": 200,
+    "parse_status": "no_2026_07_13_latest_2026_07_12",
+    "error_message": "7/12=+66枚、平均3038G、勝率38%(54/143)まで掲載。7/13は未掲載。6/9系平日・26日・通常28日・末尾・据え置き・冷え上げは自動昇格しない。"
+  },
+  {
+    "hall_id": "toyoko_hinomaru_nakameguro",
+    "source_name": "pscube_7day_fresh_check",
+    "source_url": "https://www.pscube.jp/h/a704807/",
+    "fetched_at": "2026-07-14T09:12:00+09:00",
+    "http_status": 500,
+    "parse_status": "http_error_no_daily_snapshot",
+    "error_message": "当日を含む7日表を取得できず、前日7/13を保存できなかった。n=0、交換率未確認、forecast_enabled=false・全日NO BETを維持。"
+  },
+  {
+    "hall_id": null,
+    "source_name": "oyamadai_travel_cost_config",
+    "source_url": "https://www.tokyu.co.jp/railway/",
+    "fetched_at": "2026-07-14T09:35:00+09:00",
+    "http_status": 200,
+    "parse_status": "route_topology_ok_minutes_are_planning_estimates",
+    "error_message": "東急公式で尾山台・自由が丘・学芸大学・中目黒・渋谷・溝の口・綱島の路線接続を照合。所要分は駅間+徒歩の計画値でライブ時刻表ではない。10分まで無罰、超過1分=効用1点減。"
+  },
+  {
+    "hall_id": "shibuya_rakuen_ekimae",
+    "source_name": "slorepo_daily_selected_list",
+    "source_url": "https://www.slorepo.com/hole/e6a5bde59c92e6b88be8b0b7e9a785e5898de5ba97code/",
+    "fetched_at": "2026-07-14T09:14:00+09:00",
+    "http_status": 200,
+    "payload_path": "seed/daily_update_20260714_selections.csv",
+    "parse_status": "selected_machine_53_tail_11_across_31_dates",
+    "error_message": "6/1〜7/11の公開優秀リストを閾値選抜として保存。機種53件・末尾11件、該当日31日。設定・平均差枚・位置を推測補完しない。7/13分は未掲載。"
+  },
+  {
+    "hall_id": null,
+    "source_name": "public_event_and_visit_search_target9",
+    "source_url": "https://hall-navi.com/",
+    "fetched_at": "2026-07-14T09:20:00+09:00",
+    "http_status": null,
+    "parse_status": "no_indexed_2026_07_14_results_for_target9",
+    "error_message": "指定9店を店名×2026-07-14×取材/来店およびHall Navi条件で個別検索したが結果0件。公式Xの確定告知として扱える情報は取得できず、取材名による昇格は行わない。"
+  },
+  {
+    "hall_id": "ikegami_big_dipper_togoshi_ginza",
+    "source_name": "minrepo_report_list",
+    "source_url": "https://min-repo.com/tag/%e3%83%93%e3%83%83%e3%82%af%e3%83%87%e3%82%a3%e3%83%83%e3%83%91%e3%83%bc%e6%88%b8%e8%b6%8a%e9%8a%80%e5%ba%a7%e5%ba%97/",
+    "fetched_at": "2026-07-14T12:20:00+09:00",
+    "http_status": 200,
+    "content_sha256": "31139622c437ccffdc0aaea99f255260f47b78ca708fa3191611afae1b74bf8c",
+    "payload_path": "reports/big_dipper_collection_summary_2026-07-14.json",
+    "parse_status": "list_400_links_latest_2026_07_13_detail_window_225_selected",
+    "error_message": "一覧は400リンクを確認。正負を同一品質で復元できた直近225日だけをモデル投入し、一覧で負値が伏字の過去175日は混ぜない。"
+  },
+  {
+    "hall_id": "ikegami_big_dipper_togoshi_ginza",
+    "source_name": "minrepo_hall_day_normalized",
+    "source_url": "https://min-repo.com/tag/%e3%83%93%e3%83%83%e3%82%af%e3%83%87%e3%82%a3%e3%83%83%e3%83%91%e3%83%bc%e6%88%b8%e8%b6%8a%e9%8a%80%e5%ba%a7%e5%ba%97/",
+    "fetched_at": "2026-07-14T12:25:00+09:00",
+    "http_status": 200,
+    "content_sha256": "8125ce4b2331d786ea312a5770cf4cb9b7a87fdc9540929fa07a58eff9d377be",
+    "payload_path": "seed/big_dipper_hall_days.csv",
+    "parse_status": "225_days_146_exact_positive_79_rate_reconstructed_negative",
+    "error_message": "伏字の負日だけを機種別平均G×3×(出率-1)で復元。公開正日へ同式を当てた検算は平均誤差+0.018枚、MAE0.435枚。"
+  },
+  {
+    "hall_id": "ikegami_big_dipper_togoshi_ginza",
+    "source_name": "minrepo_machine_day_normalized",
+    "source_url": "https://min-repo.com/tag/%e3%83%93%e3%83%83%e3%82%af%e3%83%87%e3%82%a3%e3%83%83%e3%83%91%e3%83%bc%e6%88%b8%e8%b6%8a%e9%8a%80%e5%ba%a7%e5%ba%97/",
+    "fetched_at": "2026-07-14T12:25:00+09:00",
+    "http_status": 200,
+    "content_sha256": "6f509282b83e6ba705c135bfb8d5915ee47c4a2bac127c7623668e005eb43b14",
+    "payload_path": "seed/big_dipper_machine_days.csv",
+    "parse_status": "20229_machine_day_rows_current_scores_98",
+    "error_message": "複数台機種と1台バラエティを分離保存。公開優秀機種はselected_flagで保持し、設定値へ読み替えない。"
+  },
+  {
+    "hall_id": "ikegami_big_dipper_togoshi_ginza",
+    "source_name": "minrepo_tail_day_censored",
+    "source_url": "https://min-repo.com/tag/%e3%83%93%e3%83%83%e3%82%af%e3%83%87%e3%82%A3%e3%83%83%e3%83%91%e3%83%bc%e6%88%b8%e8%b6%8a%e9%8a%80%e5%ba%a7%e5%ba%97/",
+    "fetched_at": "2026-07-14T12:25:00+09:00",
+    "http_status": 200,
+    "content_sha256": "a07c553ce9f963e1528066f2adf7666fcca04a12e25316a04ac7675346bfce9d",
+    "payload_path": "seed/big_dipper_tail_days.csv",
+    "parse_status": "2475_tail_day_rows_negative_values_left_null_sign_retained",
+    "error_message": "負の末尾平均差枚は公開ページが伏字のため補完せずNULL。正負符号だけで日付末尾一致90件を検定。"
+  },
+  {
+    "hall_id": "ikegami_big_dipper_togoshi_ginza",
+    "source_name": "pworld_current_store_facts",
+    "source_url": "https://www.p-world.co.jp/tokyo/big-dipper-togin.htm",
+    "fetched_at": "2026-07-14T12:24:00+09:00",
+    "http_status": 200,
+    "parse_status": "slot_293_rate_1000yen_46_station_adjacent",
+    "error_message": "スロット293台、1000円46枚、東急池上線戸越銀座駅・都営浅草線戸越駅下車すぐを確認。"
+  },
+  {
+    "hall_id": "ikegami_big_dipper_togoshi_ginza",
+    "source_name": "minpachi_exchange_and_open_date",
+    "source_url": "https://minpachi.com/big-dipper-togin/",
+    "fetched_at": "2026-07-14T12:24:00+09:00",
+    "http_status": 200,
+    "parse_status": "grand_open_2024_12_20_exchange_5_2_user_report",
+    "error_message": "GO日12/20と46枚貸を照合。5.2枚交換・再プレイ460枚は第三者投稿なので現地再確認対象、decision_floor=+50を維持。"
+  },
+  {
+    "hall_id": "ikegami_big_dipper_togoshi_ginza",
+    "source_name": "hallnavi_media_schedule_and_current_facts",
+    "source_url": "https://hall-navi.com/hole_view?hid=142005100000001852",
+    "fetched_at": "2026-07-14T12:28:00+09:00",
+    "http_status": 200,
+    "parse_status": "recent_schedule_31_of_33_days_flagged_upcoming_7_14_to_7_18_registered",
+    "error_message": "6/11〜7/13は33日中31日に媒体・来店・AI・新台告知。固定日と媒体がほぼ分離不能なため、告知はcalendar_flagsへ置き日付平均へ自動加算しない。"
+  },
+  {
+    "hall_id": "ikegami_big_dipper_togoshi_ginza",
+    "source_name": "oyamadai_to_togoshi_ginza_route",
+    "source_url": "https://www.jorudan.co.jp/norikae/route/%E5%B0%BE%E5%B1%B1%E5%8F%B0_%E6%88%B8%E8%B6%8A%E9%8A%80%E5%BA%A7.html",
+    "fetched_at": "2026-07-14T12:15:00+09:00",
+    "http_status": 200,
+    "parse_status": "fastest_indexed_route_18_minutes_model_planning_estimate",
+    "error_message": "尾山台→旗の台→戸越銀座、検索時18〜22分。モデルは最速18分を計画値として保存し、ライブ時刻表とは扱わない。"
+  },
+  {
+    "hall_id": "keikyu_mitoya_omorimachi",
+    "source_name": "slorepo_hall_day_2026_normalized",
+    "source_url": "https://www.slorepo.com/hole/e381bfe381a8e38284e5a4a7e6a3aee794bae5ba97code/",
+    "fetched_at": "2026-07-14T18:35:00+09:00",
+    "http_status": 200,
+    "content_sha256": "01836d468e5ca751b500dbe346b8eda5995cd889e394cbc8e28a9c6c291721bf",
+    "payload_path": "seed/mitoya_omorimachi_hall_days.csv",
+    "parse_status": "194_days_2026_01_01_to_2026_07_13_20yen_266_units",
+    "error_message": "日付別平均差枚・平均Gを保存。公開分母266台は1000円47枚スロ区画。5円スロを混ぜない。"
+  },
+  {
+    "hall_id": "keikyu_mitoya_omorimachi",
+    "source_name": "slorepo_monthly_machine_aggregate",
+    "source_url": "https://www.slorepo.com/hole/e381bfe381a8e38284e5a4a7e6a3aee794bae5ba97code/kishu_tusan/",
+    "fetched_at": "2026-07-14T18:38:00+09:00",
+    "http_status": 200,
+    "payload_path": "seed/mitoya_omorimachi_machine_scores.csv",
+    "parse_status": "15_current_machine_scores_from_2026_06_and_07_aggregate",
+    "error_message": "43日加重の暫定機種層。特定日別の機種選抜・位置は未取得のため、店日ランクへ加算しない。"
+  },
+  {
+    "hall_id": "keikyu_mitoya_omorimachi",
+    "source_name": "pworld_current_store_facts",
+    "source_url": "https://www.p-world.co.jp/tokyo/mitoya-oomorimachi.htm",
+    "fetched_at": "2026-07-14T18:40:00+09:00",
+    "http_status": 200,
+    "parse_status": "slot_total_315_47coin_and_5yen_station_2min",
+    "error_message": "総スロ315台、1000円47枚と5円を確認。公開差枚266台との差49台は5円区画と推定するが、区画台数は現地再確認対象。"
+  },
+  {
+    "hall_id": "keikyu_mitoya_omorimachi",
+    "source_name": "minpachi_exchange_open_event_facts",
+    "source_url": "https://minpachi.com/%E3%81%BF%E3%81%A8%E3%82%84%E5%A4%A7%E6%A3%AE%E7%94%BA%E5%BA%97/",
+    "fetched_at": "2026-07-14T18:41:00+09:00",
+    "http_status": 200,
+    "parse_status": "old_event_4_7_open_2013_07_10_exchange_5_3_user_report",
+    "error_message": "4/7の日・GO日・抽選9:30を照合。5.3枚交換は第三者投稿なのでdecision_floor=+50で保守運用。"
+  },
+  {
+    "hall_id": "keikyu_mitoya_omorimachi",
+    "source_name": "minrepo_anniversary_2025",
+    "source_url": "https://min-repo.com/2474976/",
+    "fetched_at": "2026-07-14T18:42:00+09:00",
+    "http_status": 200,
+    "parse_status": "2025_07_10_avg_plus775_266_units",
+    "error_message": "2025周年+775、2026周年+960で周年ルールn=2。ソース差（2026みんレポ+946）を混ぜず、2026日次本体はスロレポ値を採用。"
+  },
+  {
+    "hall_id": "keikyu_mitoya_omorimachi",
+    "source_name": "oyamadai_to_omorimachi_route",
+    "source_url": "https://www.navitime.co.jp/transfer/searchlist?defaultCondition=0&dnvStationCode=00005646&orvStationCode=00007727",
+    "fetched_at": "2026-07-14T18:43:00+09:00",
+    "http_status": 200,
+    "parse_status": "indexed_routes_43_to_55_minutes_model_48",
+    "error_message": "時刻・経路により43〜55分程度。モデルは中間の48分を計画値に採用し、ライブ時刻表ではない。"
+  },
+  {
+    "hall_id": "ooimachi_big_dipper",
+    "source_name": "slorepo_hall_day_2026_normalized",
+    "source_url": "https://www.slorepo.com/hole/e38393e38383e382afe38387e382a3e38383e38391e383bce5a4a7e4ba95e794bae5ba97code/",
+    "fetched_at": "2026-07-14T19:20:00+09:00",
+    "http_status": 200,
+    "content_sha256": "bf10d4f12382c4c3dc2549465eca8df93409a1b6317d479cd4cbc08c66a1d3b9",
+    "payload_path": "seed/big_dipper_ooimachi_hall_days.csv",
+    "parse_status": "194_days_2026_01_01_to_2026_07_13_21_74yen_289_units",
+    "error_message": "負日を含む日付別平均差枚・平均Gを保存。店舗総スロ370台のうち5.43円81台を分離し、21.74円289台のみ。"
+  },
+  {
+    "hall_id": "ooimachi_big_dipper",
+    "source_name": "slorepo_monthly_machine_aggregate",
+    "source_url": "https://www.slorepo.com/hole/e38393e38383e382afe38387e382a3e38383e38391e383bce5a4a7e4ba95e794bae5ba97code/kishu_tusan/",
+    "fetched_at": "2026-07-14T19:22:00+09:00",
+    "http_status": 200,
+    "content_sha256": "8ff84a5799a5749d1c4d532b1649408fd4846387b6b567b434a5c2b4b23d2e58",
+    "payload_path": "seed/big_dipper_ooimachi_machine_scores.csv",
+    "parse_status": "15_current_machine_scores_from_2026_06_and_07_aggregate",
+    "error_message": "43日加重の暫定機種層。第3土曜・7日別の機種選抜と位置は未取得のため、店日ランクへ加算しない。"
+  },
+  {
+    "hall_id": "ooimachi_big_dipper",
+    "source_name": "pworld_current_store_facts",
+    "source_url": "https://www.p-world.co.jp/tokyo/bigdipper.htm",
+    "fetched_at": "2026-07-14T19:24:00+09:00",
+    "http_status": 200,
+    "parse_status": "slot_total_370_46coin_and_184coin_go_2018_11_22_station_1min",
+    "error_message": "総スロ370台、1000円46枚と1000円184枚、2018/11/22グランドオープン、大井町駅東口徒歩1分を確認。"
+  },
+  {
+    "hall_id": "ooimachi_big_dipper",
+    "source_name": "slorepo_exchange_event_facts",
+    "source_url": "https://www.slorepo.com/hole/e38393e38383e382afe38387e382a3e38383e38391e383bce5a4a7e4ba95e794bae5ba97code/",
+    "fetched_at": "2026-07-14T19:25:00+09:00",
+    "http_status": 200,
+    "parse_status": "exchange_46_to_52_old_event_7_1_11_22",
+    "error_message": "46枚貸/52枚交換、旧イベント7のつく日・1日・11日・22日を確認。みんレポの第3土曜表記と併せ、候補を事前固定して全件検証。"
+  },
+  {
+    "hall_id": "ooimachi_big_dipper",
+    "source_name": "anniversary_history",
+    "source_url": "https://min-repo.com/1995248/",
+    "fetched_at": "2026-07-14T19:26:00+09:00",
+    "http_status": 200,
+    "parse_status": "anniversary_2024_plus519_2025_plus7",
+    "error_message": "11/22周年は2024+519、2025+7で振幅が極端。平均値だけで強日認定せずn=2・鮮度不足として降格。"
+  },
+  {
+    "hall_id": "ooimachi_big_dipper",
+    "source_name": "oyamadai_to_ooimachi_route",
+    "source_url": "https://transit.yahoo.co.jp/search/result/%E5%B0%BE%E5%B1%B1%E5%8F%B0-%E5%A4%A7%E4%BA%95%E7%94%BA",
+    "fetched_at": "2026-07-14T19:27:00+09:00",
+    "http_status": 200,
+    "parse_status": "direct_routes_17_to_20_minutes_model_20",
+    "error_message": "東急大井町線で乗換なし17〜20分、店舗徒歩1分。モデルは保守的に20分を計画値採用。"
+  },
+  {
+    "hall_id": "yokohama_123_west",
+    "source_name": "pworld_official_store",
+    "source_url": "https://www.p-world.co.jp/kanagawa/123yokohamanishi.htm",
+    "fetched_at": "2026-07-14T20:10:00+09:00",
+    "http_status": 200,
+    "parse_status": "official_344_slots_46coin",
+    "error_message": "スロ344台・1000円46枚・横浜駅西口すぐを確認。"
+  },
+  {
+    "hall_id": "yokohama_123_west",
+    "source_name": "dmm_store_schedule",
+    "source_url": "https://p-town.dmm.com/shops/kanagawa/12985/schedule",
+    "fetched_at": "2026-07-14T20:10:00+09:00",
+    "http_status": 200,
+    "parse_status": "scheduled_20260715_and_20260722",
+    "error_message": "7/15スロパチステーション来店取材、7/22スロパチガール来店Sを確認。7/25は媒体予定の種別を当日再確認。"
+  },
+  {
+    "hall_id": "yokohama_123_west",
+    "source_name": "hall_navi_selected_reports",
+    "source_url": "https://hall-navi.com/hole_view?ec=event&hid=220000500000114100&koe=15322",
+    "fetched_at": "2026-07-14T20:10:00+09:00",
+    "http_status": 200,
+    "parse_status": "selected_blocks_parsed_full_hall_aggregate_insufficient",
+    "error_message": "過去180日11レポートの選抜箇所と7/7台番号を保存。来店/旧イベ集計はデータ不足表示のため全店予測へ不使用。"
+  },
+  {
+    "hall_id": "yokohama_123_west",
+    "source_name": "slopachi_20260707_selected_report",
+    "source_url": "https://777.slopachi-station.com/%E3%80%907%E6%9C%887%E6%97%A5-123%E6%A8%AA%E6%B5%9C%E8%A5%BF%E5%8F%A3%E5%BA%97%E3%80%91%E3%82%B9%E3%83%AD%E3%83%91%E3%83%81%E3%82%AC%E3%83%BC%E3%83%AB%E6%9D%A5%E5%BA%97s%EF%BC%81%E7%82%8E%E7%82%8E2/",
+    "fetched_at": "2026-07-14T20:10:00+09:00",
+    "http_status": 200,
+    "parse_status": "selected_report_384_queue_344_20slot",
+    "error_message": "並び384人、20スロ344台。記事の集計対象は好調箇所であり全店差枚ではない。"
+  },
+  {
+    "hall_id": "yokohama_123_west",
+    "source_name": "full_hall_archive_masked",
+    "source_url": "https://min-repo.com/tag/123%E6%A8%AA%E6%B5%9C%E8%A5%BF%E5%8F%A3%E5%BA%97/",
+    "fetched_at": "2026-07-14T20:10:00+09:00",
+    "http_status": 200,
+    "parse_status": "avg_games_visible_diff_masked",
+    "error_message": "2026年日別行は存在するが総差枚・平均差枚が--表示。負日を含む系列を復元できない。"
+  },
+  {
+    "hall_id": "yokohama_123_west",
+    "source_name": "oyamadai_to_yokohama_route",
+    "source_url": "https://ekitan.com/transit/route/sf-1782/st-3260",
+    "fetched_at": "2026-07-14T20:10:00+09:00",
+    "http_status": 200,
+    "parse_status": "route_26_to_29_minutes_plus_walk_model_31",
+    "error_message": "尾山台→横浜26〜29分、店舗徒歩約2分。モデルは31分を計画値採用。"
+  },
+  {
+    "hall_id": "ikebukuro_yasuda7",
+    "source_name": "slorepo_daily",
+    "source_url": "https://www.slorepo.com/hole/e38284e38199e381a037code/",
+    "fetched_at": "2026-07-14T22:30:00+09:00",
+    "http_status": 200,
+    "parse_status": "daily_20260101_to_20260713_194_rows_46yen255",
+    "error_message": "2026/1/1〜7/13の194日、46枚255台の平均差枚・平均Gを保存。7の日19回を全件検証。"
+  },
+  {
+    "hall_id": "ikebukuro_yasuda7",
+    "source_name": "pworld_official_store",
+    "source_url": "https://www.p-world.co.jp/tokyo/yasuda-7.htm",
+    "fetched_at": "2026-07-14T22:30:00+09:00",
+    "http_status": 200,
+    "parse_status": "official_total338_46coin_and_5yen",
+    "error_message": "店舗総スロ338台、1000円46枚と5円、池袋駅東口徒歩2分、抽選9:35を確認。"
+  },
+  {
+    "hall_id": "ikebukuro_yasuda7",
+    "source_name": "slorepo_machine_aggregate",
+    "source_url": "https://www.slorepo.com/hole/e38284e38199e381a037code/kishu_tusan/",
+    "fetched_at": "2026-07-14T22:30:00+09:00",
+    "http_status": 200,
+    "parse_status": "machine_monthly_202606_and_20260712",
+    "error_message": "6月と7/1〜12の機種別台/日平均から暫定15機種スコアを作成。"
+  },
+  {
+    "hall_id": "ikebukuro_yasuda7",
+    "source_name": "anniversary_2025",
+    "source_url": "https://x.com/slo1_tyousataiZ/status/1965901845664301154",
+    "fetched_at": "2026-07-14T22:30:00+09:00",
+    "http_status": 200,
+    "parse_status": "anniversary_20250910_plus450",
+    "error_message": "2025/9/10は総差約+15.2万枚・平均+450枚。単年値として保存し2026年追試。"
+  },
+  {
+    "hall_id": "ikebukuro_yasuda7",
+    "source_name": "oyamadai_to_ikebukuro_route",
+    "source_url": "https://www.jorudan.co.jp/norikae/route/%E5%B0%BE%E5%B1%B1%E5%8F%B0_%E6%B1%A0%E8%A2%8B.html",
+    "fetched_at": "2026-07-14T22:30:00+09:00",
+    "http_status": 200,
+    "parse_status": "route_31_to_36_plus_walk_model38",
+    "error_message": "尾山台→池袋は経路により31〜36分程度、店舗徒歩2分。保守的に38分を計画値採用。"
+  },
+  {
+    "hall_id": "tsurumi_uno",
+    "source_name": "slorepo_daily",
+    "source_url": "https://www.slorepo.com/hole/e9b6b4e8a68b554e4fcode/",
+    "fetched_at": "2026-07-14T23:10:00+09:00",
+    "http_status": 200,
+    "parse_status": "daily_20260101_to_20260713_194_rows_46yen281",
+    "error_message": "2026/1/1〜7/13の194日、平均差枚・平均G、公開期間の勝率を負日込みで保存。"
+  },
+  {
+    "hall_id": "tsurumi_uno",
+    "source_name": "dmm_official_store",
+    "source_url": "https://p-town.dmm.com/shops/kanagawa/4393",
+    "fetched_at": "2026-07-14T23:10:00+09:00",
+    "http_status": 200,
+    "parse_status": "official_46coin_281_station_front_anniversary_0710",
+    "error_message": "1000円46枚、スロット281台、JR鶴見駅東口目の前、周年7/10を確認。"
+  },
+  {
+    "hall_id": "tsurumi_uno",
+    "source_name": "slorepo_machine_aggregate",
+    "source_url": "https://www.slorepo.com/hole/e9b6b4e8a68b554e4fcode/kishu_tusan/",
+    "fetched_at": "2026-07-14T23:10:00+09:00",
+    "http_status": 200,
+    "parse_status": "machine_aggregate_snapshot_saved_as_provisional15",
+    "error_message": "機種集計は期間表示の解釈に注意し、予測本体には未使用。暫定15本のみ保存。"
+  },
+  {
+    "hall_id": "tsurumi_uno",
+    "source_name": "oyamadai_to_tsurumi_route",
+    "source_url": "https://www.navitime.co.jp/transfer/searchlist?defaultCondition=0&dnvStationCode=00006386&orvStationCode=00007727",
+    "fetched_at": "2026-07-14T23:10:00+09:00",
+    "http_status": 200,
+    "parse_status": "route_37_to_42_station_front_model38",
+    "error_message": "検索時点で37〜42分帯。店舗は駅東口目の前のため計画値38分。"
+  },
+  {
+    "hall_id": "tsurumi_aviva",
+    "source_name": "aviva_official_pworld",
+    "source_url": "https://www.p-world.co.jp/kanagawa/aviva-tsurumi.htm",
+    "fetched_at": "2026-07-14T23:45:00+09:00",
+    "http_status": 200,
+    "parse_status": "official_metadata_ok",
+    "error_message": "JR鶴見駅西口徒歩1分、総スロ364台、1000円46枚・6.25円を確認。"
+  },
+  {
+    "hall_id": "tsurumi_aviva",
+    "source_name": "aviva_slorepo_historical",
+    "source_url": "https://www.slorepo.com/hole/e382a2e38393e38390e9b6b4e8a68be5ba97code/",
+    "fetched_at": "2026-07-14T23:45:00+09:00",
+    "http_status": 200,
+    "parse_status": "historical_fixed_day_audit_saved",
+    "error_message": "旧イベント1/5/毎月8/第4土曜、等価、GO 2014-08-08。2024〜2025の確認可能全店平均をルール監査へ保存。"
+  },
+  {
+    "hall_id": "tsurumi_aviva",
+    "source_name": "aviva_slopachi_20260410",
+    "source_url": "https://777.slopachi-station.com/%E3%80%904%E6%9C%8810%E6%97%A5-%E3%82%A2%E3%83%93%E3%83%90%E9%B6%B4%E8%A6%8B%E5%BA%97%E3%80%91%E3%82%B9%E3%83%AD%E3%81%B1%E3%81%A1%E3%82%AC%E3%83%BC%E3%83%AB%E6%9D%A5%E5%BA%97ps%EF%BC%81%E6%94%BB/",
+    "fetched_at": "2026-07-14T23:45:00+09:00",
+    "http_status": 200,
+    "parse_status": "selected_4unit_blocks_saved",
+    "error_message": "20円335台、選抜4台ブロック9件。全店平均ではない。"
+  },
+  {
+    "hall_id": "tsurumi_aviva",
+    "source_name": "aviva_slopachi_20260510",
+    "source_url": "https://777.slopachi-station.com/%E3%80%905%E6%9C%8810%E6%97%A5-%E3%82%A2%E3%83%93%E3%83%90%E9%B6%B4%E8%A6%8B%E5%BA%97%E3%80%91%E3%82%B9%E3%83%AD%E3%81%B1%E3%81%A1%E3%82%AC%E3%83%BC%E3%83%AB%E6%9D%A5%E5%BA%97ps%EF%BC%81%E5%8C%97/",
+    "fetched_at": "2026-07-14T23:45:00+09:00",
+    "http_status": 200,
+    "parse_status": "selected_4unit_blocks_saved",
+    "error_message": "20円335台、選抜4台ブロック9件。全店平均ではない。"
+  },
+  {
+    "hall_id": "tsurumi_aviva",
+    "source_name": "aviva_slopachi_20260610",
+    "source_url": "https://777.slopachi-station.com/%E3%80%906%E6%9C%8810%E6%97%A5-%E3%82%A2%E3%83%93%E3%83%90%E9%B6%B4%E8%A6%8B%E5%BA%97%E3%80%91%E3%82%B9%E3%83%AD%E3%81%B1%E3%81%A1%E3%82%AC%E3%83%BC%E3%83%AB%E6%9D%A5%E5%BA%97ps%EF%BC%81sao2%E3%81%8C/",
+    "fetched_at": "2026-07-14T23:45:00+09:00",
+    "http_status": 200,
+    "parse_status": "selected_4unit_blocks_saved",
+    "error_message": "20円335台、選抜4台ブロック9件。全店平均ではない。"
+  },
+  {
+    "hall_id": "tsurumi_aviva",
+    "source_name": "aviva_renjiro_schedule",
+    "source_url": "https://777.slopachi-station.com/renjiro_schedule/",
+    "fetched_at": "2026-07-14T23:45:00+09:00",
+    "http_status": 200,
+    "parse_status": "future_flag_20260731_saved",
+    "error_message": "2026-07-31のれんじろう実践来店を事前登録。"
+  },
+  {
+    "hall_id": "tsurumi_aviva",
+    "source_name": "oyamadai_to_tsurumi_route_aviva",
+    "source_url": "https://www.navitime.co.jp/transfer/searchlist?defaultCondition=0&dnvStationCode=00006386&orvStationCode=00007727",
+    "fetched_at": "2026-07-14T23:45:00+09:00",
+    "http_status": 200,
+    "parse_status": "route_model39",
+    "error_message": "鶴見駅37〜42分帯に西口徒歩を加味し、計画値39分。"
+  },
+  {
+    "hall_id": "tsurumi_maruhan",
+    "source_name": "maruhan_tsurumi_slorepo_daily",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e9b6b4e8a68be5ba97code/",
+    "fetched_at": "2026-07-14T23:58:00+09:00",
+    "http_status": 200,
+    "parse_status": "daily_194_rows_46yen452_complete",
+    "error_message": "2026-01-01〜2026-07-13。負日込み、452台スコープ。"
+  },
+  {
+    "hall_id": "tsurumi_maruhan",
+    "source_name": "maruhan_tsurumi_store_metadata",
+    "source_url": "https://www.p-world.co.jp/kanagawa/maruhan-tsurumi.htm",
+    "fetched_at": "2026-07-14T23:58:00+09:00",
+    "http_status": 200,
+    "parse_status": "store_scope_and_access_verified",
+    "error_message": "店舗総スロ495台。46枚452台と低貸43台を分離。周年2012-05-25。"
+  },
+  {
+    "hall_id": "tsurumi_maruhan",
+    "source_name": "oyamadai_to_shitte_route_maruhan_tsurumi",
+    "source_url": "https://www.jorudan.co.jp/norikae/route/%E5%B0%BE%E5%B1%B1%E5%8F%B0_%E5%B0%BB%E6%89%8B.html",
+    "fetched_at": "2026-07-14T23:58:00+09:00",
+    "http_status": 200,
+    "parse_status": "route_model45",
+    "error_message": "尾山台→尻手を約31分、尻手駅から徒歩約14分として計画値45分。"
+  },
+  {
+    "hall_id": "tsurumi_maruhan",
+    "source_name": "maruhan_tsurumi_anniversary_archive",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e9b6b4e8a68be5ba97code/",
+    "fetched_at": "2026-07-14T23:58:00+09:00",
+    "http_status": 200,
+    "parse_status": "anniversary_2024_2026_saved",
+    "error_message": "5/25平均差枚: 2024 +431、2025 +192、2026 +243。"
+  },
+  {
+    "hall_id": "tsurumi_kintoki",
+    "source_name": "kintoki_tsurumi_slorepo_daily",
+    "source_url": "https://www.slorepo.com/hole/e98791e69982e9b6b4e8a68be5ba97code/",
+    "fetched_at": "2026-07-15T00:20:00+09:00",
+    "http_status": 200,
+    "parse_status": "daily_193_rows_46yen_189_to209_one_missing",
+    "error_message": "2026-01-01〜07-13。1/29のみ公開行欠損。4/18まで189台、4/19以降209台。"
+  },
+  {
+    "hall_id": "tsurumi_kintoki",
+    "source_name": "kintoki_tsurumi_store_metadata",
+    "source_url": "https://www.p-world.co.jp/kanagawa/kintoki-turumi.htm",
+    "fetched_at": "2026-07-15T00:20:00+09:00",
+    "http_status": 200,
+    "parse_status": "store_scope_verified",
+    "error_message": "1000円46枚スロ209台、営業時間9:00〜22:45、住所確認。"
+  },
+  {
+    "hall_id": "tsurumi_kintoki",
+    "source_name": "kintoki_tsurumi_anniversary_archive",
+    "source_url": "https://www.slorepo.com/hole/e98791e69982e9b6b4e8a68be5ba97code/",
+    "fetched_at": "2026-07-15T00:20:00+09:00",
+    "http_status": 200,
+    "parse_status": "anniversary_2024_2026_saved",
+    "error_message": "4/15平均差枚: 2024 +265、2025 -45、2026 -7。"
+  },
+  {
+    "hall_id": "tsurumi_kintoki",
+    "source_name": "oyamadai_to_tsurumi_route_kintoki",
+    "source_url": "https://www.navitime.co.jp/transfer/searchlist?defaultCondition=0&dnvStationCode=00006386&orvStationCode=00007727",
+    "fetched_at": "2026-07-15T00:20:00+09:00",
+    "http_status": 200,
+    "parse_status": "route_model50",
+    "error_message": "尾山台→鶴見37〜42分＋鶴見駅西口から徒歩11分を計画値50分。"
+  },
+  {
+    "hall_id": "tsurumi_nanbusen_shitte",
+    "source_name": "nanbusen_shitte_2026_event_list",
+    "source_url": "https://min-repo.com/tag/%E5%8D%97%E6%AD%A6%E7%B7%9A%E5%B0%BB%E6%89%8B%E9%A7%85%E5%89%8D%E5%BA%97/",
+    "fetched_at": "2026-07-14T20:30:00+09:00",
+    "http_status": 200,
+    "parse_status": "day7_17_27_signs_saved",
+    "error_message": "2026年の7/17/27日一覧を保存。27日は1月のみマイナス、2〜6月は5連続プラス。"
+  },
+  {
+    "hall_id": "tsurumi_nanbusen_shitte",
+    "source_name": "nanbusen_shitte_20260127_full80_reconstruction",
+    "source_url": "https://min-repo.com/3075782/",
+    "fetched_at": "2026-07-14T20:30:00+09:00",
+    "http_status": 200,
+    "parse_status": "full80_reconstructed",
+    "error_message": "80台詳細から総差枚-21,431、平均-267.8875、20/80プラス、平均3424Gを復元。"
+  },
+  {
+    "hall_id": "tsurumi_nanbusen_shitte",
+    "source_name": "nanbusen_shitte_store_metadata",
+    "source_url": "https://p-town.dmm.com/shops/kanagawa/4660",
+    "fetched_at": "2026-07-14T20:30:00+09:00",
+    "http_status": 200,
+    "parse_status": "store_scope_verified",
+    "error_message": "JR南武線尻手駅改札前、1000円47枚スロ80台、周年6/20、営業時間・抽選時刻を確認。"
+  },
+  {
+    "hall_id": "tsurumi_nanbusen_shitte",
+    "source_name": "nanbusen_shitte_exchange_audit",
+    "source_url": "https://minpachi.com/%E5%8D%97%E6%AD%A6%E7%B7%9A%E5%B0%BB%E6%89%8B%E9%A7%85%E5%89%8D%E5%BA%97/",
+    "fetched_at": "2026-07-14T20:30:00+09:00",
+    "http_status": 200,
+    "parse_status": "third_party_equal_exchange",
+    "error_message": "21.27円スロ・等価交換、旧イベント7のつく日、グランドオープン2018/6/20を第三者情報として保存。"
+  },
+  {
+    "hall_id": "tsurumi_nanbusen_shitte",
+    "source_name": "oyamadai_to_shitte_route",
+    "source_url": "https://ekitan.com/transit/section/sf-1782/st-2234",
+    "fetched_at": "2026-07-14T20:30:00+09:00",
+    "http_status": 200,
+    "parse_status": "route_model32",
+    "error_message": "尾山台→尻手は最速31分。店舗が改札前のため計画値32分。"
+  },
+  {
+    "hall_id": "tsurumi_nanbusen_shitte",
+    "source_name": "nanbusen_shitte_20260727_schedule",
+    "source_url": "https://www.p-world.co.jp/kanagawa/nanbusen-shitte.htm",
+    "fetched_at": "2026-07-14T20:30:00+09:00",
+    "http_status": 200,
+    "parse_status": "future_media_overlap_saved",
+    "error_message": "2026/7/27の来店取材予定を事前登録。27日固定日効果と媒体重複を分離して追試する。"
+  },
+  {
+    "hall_id": "kawasaki_access",
+    "source_name": "access_kawasaki_2026_event_list",
+    "source_url": "https://min-repo.com/tag/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%B7%9D%E5%B4%8E%E5%BA%97/",
+    "fetched_at": "2026-07-14T21:10:00+09:00",
+    "http_status": 200,
+    "parse_status": "2026_day13_day25_signs_saved",
+    "error_message": "13日は2/7プラス、25日は1/6プラス。正値3件のみ完全値を保存し、負日伏字を0補完しない。"
+  },
+  {
+    "hall_id": "kawasaki_access",
+    "source_name": "access_kawasaki_store_metadata",
+    "source_url": "https://www.p-world.co.jp/kanagawa/access-s.htm",
+    "fetched_at": "2026-07-14T21:10:00+09:00",
+    "http_status": 200,
+    "parse_status": "store_scope_verified",
+    "error_message": "川崎駅西口徒歩10分、店舗総スロ116台、20円・低貸併設を確認。"
+  },
+  {
+    "hall_id": "kawasaki_access",
+    "source_name": "access_kawasaki_exchange_audit",
+    "source_url": "https://minpachi.com/mima-million-2/",
+    "fetched_at": "2026-07-14T21:10:00+09:00",
+    "http_status": 200,
+    "parse_status": "third_party_20yen_5_5_exchange",
+    "error_message": "20円スロ5.5枚交換、再プレイ上限500枚、旧イベント13日・25日、周年11/13を第三者情報として保存。"
+  },
+  {
+    "hall_id": "kawasaki_access",
+    "source_name": "access_kawasaki_anniversary_metadata",
+    "source_url": "https://p-town.dmm.com/shops/kanagawa/4657/informations",
+    "fetched_at": "2026-07-14T21:10:00+09:00",
+    "http_status": 200,
+    "parse_status": "anniversary_1113_verified",
+    "error_message": "周年日11月13日、住所・営業時間・総台数を確認。"
+  },
+  {
+    "hall_id": "kawasaki_access",
+    "source_name": "oyamadai_to_kawasaki_route_access",
+    "source_url": "https://www.navitime.co.jp/transfer/searchlist?defaultCondition=0&dnvStationCode=00005203&orvStationCode=00007727",
+    "fetched_at": "2026-07-14T21:10:00+09:00",
+    "http_status": 200,
+    "parse_status": "route_model44",
+    "error_message": "尾山台→川崎32〜39分＋川崎駅西口から徒歩10分を計画値44分。"
+  },
+  {
+    "hall_id": "center_minami_ziath",
+    "source_name": "ziath_center_minami_store_metadata",
+    "source_url": "https://www.p-world.co.jp/kanagawa/ziath-c.htm",
+    "fetched_at": "2026-07-14T22:10:00+09:00",
+    "http_status": 200,
+    "parse_status": "store_scope_verified",
+    "error_message": "総スロ308台、1000円46枚・低貸併設、2017/5/3オープンを確認。"
+  },
+  {
+    "hall_id": "center_minami_ziath",
+    "source_name": "ziath_center_minami_event_archive",
+    "source_url": "https://min-repo.com/tag/%E3%82%B8%E3%82%A2%E3%82%B9%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%E5%8D%97/",
+    "fetched_at": "2026-07-14T22:10:00+09:00",
+    "http_status": 200,
+    "parse_status": "11th_21st_full_sample_and_sign_audit",
+    "error_message": "11日7回・21日6回を全件確定。伏字負日は機種別台数×平均差枚から復元。7系・月初1日は符号監査。"
+  },
+  {
+    "hall_id": "center_minami_ziath",
+    "source_name": "ziath_center_minami_exchange_audit",
+    "source_url": "https://minpachi.com/ziath-center-minami/",
+    "fetched_at": "2026-07-14T22:10:00+09:00",
+    "http_status": 200,
+    "parse_status": "third_party_equal_exchange",
+    "error_message": "46枚スロ5.0枚交換、旧イベント候補1日・7系・11日・21日、周年5/3を第三者情報として保存。"
+  },
+  {
+    "hall_id": "center_minami_ziath",
+    "source_name": "oyamadai_to_center_minami_route",
+    "source_url": "https://www.navitime.co.jp/transfer/searchlist?dnvStationCode=00000073&dnvStationName=%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%E5%8D%97&orvStationCode=00007727&orvStationName=%E5%B0%BE%E5%B1%B1%E5%8F%B0",
+    "fetched_at": "2026-07-14T22:10:00+09:00",
+    "http_status": 200,
+    "parse_status": "route_model43",
+    "error_message": "鉄道34〜39分を確認。店舗徒歩約7分を加え、計画値43分。"
+  },
+  {
+    "hall_id": "kawasaki_bellcity",
+    "source_name": "bellcity_store_metadata",
+    "source_url": "https://www.p-world.co.jp/kanagawa/city.htm",
+    "fetched_at": "2026-07-14T22:35:00+09:00",
+    "http_status": 200,
+    "parse_status": "official_213_units_46coin_station_near",
+    "error_message": "公式掲載でスロット213台、1000円46枚、川崎駅東口アゼリア24番出口近接、営業時間9:00〜22:40を確認。"
+  },
+  {
+    "hall_id": "kawasaki_bellcity",
+    "source_name": "bellcity_slorepo_daily_archive",
+    "source_url": "https://www.slorepo.com/hole/e382b6e382b7e38386e382a3e38399e383abe382b7e38386e382a3e5b79de5b48ee5ba97code/",
+    "fetched_at": "2026-07-14T22:35:00+09:00",
+    "http_status": 200,
+    "parse_status": "complete_2026_8day_sample_19rows",
+    "error_message": "2026年1/8〜7/8の8の日19回を負日込みで確定。全体7/19プラス平均-58.1、平日直近5回4/5平均+138.6、土曜0/3平均-289、日曜1/4平均-91。"
+  },
+  {
+    "hall_id": "kawasaki_bellcity",
+    "source_name": "bellcity_anniversary_metadata",
+    "source_url": "https://p-town.dmm.com/shops/kanagawa/4616/jackpot",
+    "fetched_at": "2026-07-14T22:35:00+09:00",
+    "http_status": 200,
+    "parse_status": "anniversary_0714_confirmed_2026_result_pending",
+    "error_message": "周年日7月14日を確認。2026/7/14の全台確定値は閉店直後で未公開のためhall_daysへ未投入。"
+  },
+  {
+    "hall_id": "kawasaki_bellcity",
+    "source_name": "bellcity_anniversary_live_comment",
+    "source_url": "https://minpachi.com/city/",
+    "fetched_at": "2026-07-14T22:35:00+09:00",
+    "http_status": 200,
+    "parse_status": "provisional_comment_not_numeric_evidence",
+    "error_message": "2026/7/14 19:25の現地コメントはメイン機が物足りない一方、バラエティで設定2以上示唆を複数確認との内容。数値証拠ではないため予測へ未使用。"
+  },
+  {
+    "hall_id": "kawasaki_bellcity",
+    "source_name": "oyamadai_to_kawasaki_route",
+    "source_url": "https://transit.yahoo.co.jp/search/result/%E5%B0%BE%E5%B1%B1%E5%8F%B0-%E5%B7%9D%E5%B4%8E",
+    "fetched_at": "2026-07-14T22:35:00+09:00",
+    "http_status": 200,
+    "parse_status": "route_model38",
+    "error_message": "鉄道約32〜39分、店舗は地下街出口近接。計画値38分。"
+  },
+  {
+    "hall_id": "kashimada_asahi2",
+    "source_name": "asahi2_official_metadata",
+    "source_url": "https://p-town.dmm.com/shops/kanagawa/13304/jackpot",
+    "fetched_at": "2026-07-14T23:05:00+09:00",
+    "http_status": 200,
+    "parse_status": "official_104_units_46coin_anniversary_1228",
+    "error_message": "公式掲載で1000円46枚104台、周年12/28、鹿島田駅東口徒歩2分、8:30抽選を確認。"
+  },
+  {
+    "hall_id": "kashimada_asahi2",
+    "source_name": "asahi2_minrepo_event_archive",
+    "source_url": "https://min-repo.com/tag/%E3%82%A2%E3%82%B5%E3%83%922%E9%B9%BF%E5%B3%B6%E7%94%B0%E5%BA%97/",
+    "fetched_at": "2026-07-14T23:05:00+09:00",
+    "http_status": 200,
+    "parse_status": "complete_2026_day02_12_22_20rows",
+    "error_message": "2026年1/2〜7/12の2・12・22日20回を保存。伏字6回は全104台の機種・単台詳細から復元。"
+  },
+  {
+    "hall_id": "kashimada_asahi2",
+    "source_name": "asahi2_longrun_event_summary",
+    "source_url": "https://minpachi.com/asahi2-kashimada/",
+    "fetched_at": "2026-07-14T23:05:00+09:00",
+    "http_status": 200,
+    "parse_status": "equal_exchange_old_event_and_28day_negative_context",
+    "error_message": "21.73円スロ等価、旧イベント2系/28日、過去要約で2系+117枚・28日-173枚を確認。"
+  },
+  {
+    "hall_id": "kashimada_asahi2",
+    "source_name": "asahi2_media_schedule_0722_0728",
+    "source_url": "https://rx7038.com/?p=1171531",
+    "fetched_at": "2026-07-14T23:05:00+09:00",
+    "http_status": 200,
+    "parse_status": "future_media_overlap_confirmed",
+    "error_message": "7/22クロロエンジェルS、7/28ALL STAR神の予定を確認。媒体効果を日付効果へ自動加算せずcalendar flagへ保存。"
+  },
+  {
+    "hall_id": "kashimada_asahi2",
+    "source_name": "oyamadai_to_kashimada_route",
+    "source_url": "https://ekitan.com/transit/last/sf-1782/st-1809",
+    "fetched_at": "2026-07-14T23:05:00+09:00",
+    "http_status": 200,
+    "parse_status": "route_model34",
+    "error_message": "尾山台→鹿島田は検索例32分、店舗徒歩2分。計画値34分。"
+  },
+  {
+    "hall_id": "yokohama_slot_mm_tsunashima",
+    "source_name": "mm_tsunashima_official_rate_scope",
+    "source_url": "https://www.p-world.co.jp/kanagawa/sunpalace.htm",
+    "fetched_at": "2026-07-14T23:45:00+09:00",
+    "http_status": 200,
+    "parse_status": "official_20s140_5s14_scope_confirmed",
+    "error_message": "公式掲載で20円スロ140台、5円スロ14台を確認。公開差枚系列の140台と一致するため20円島系列として扱う。"
+  },
+  {
+    "hall_id": "yokohama_slot_mm_tsunashima",
+    "source_name": "mm_tsunashima_exchange_audit",
+    "source_url": "https://minpachi.com/sunpalace/",
+    "fetched_at": "2026-07-14T23:45:00+09:00",
+    "http_status": 200,
+    "parse_status": "exchange_5_1_and_old_event_confirmed",
+    "error_message": "21.27円スロ5.1枚交換、旧イベント3・6のつく日を確認。交換情報はユーザー投稿系のためdecision_floor=50で保守運用。"
+  },
+  {
+    "hall_id": "yokohama_slot_mm_tsunashima",
+    "source_name": "mm_tsunashima_public_140_scope_match",
+    "source_url": "https://www.slorepo.com/hole/534c4f54204d264de7b6b1e5b3b6e5ba97code/",
+    "fetched_at": "2026-07-14T23:45:00+09:00",
+    "http_status": 200,
+    "parse_status": "public_series_140_inferred_as_20yen_scope",
+    "error_message": "公開差枚の対象140台が公式20円140台と一致。5円14台は公開系列に含まれないと推定し、予測ブロックを解除。"
+  },
+  {
+    "hall_id": "tsurumi_kiccho_komaoka",
+    "source_name": "kiccho_official_rate_scope",
+    "source_url": "https://www.kiccho.co.jp/46124/",
+    "fetched_at": "2026-07-14T23:58:00+09:00",
+    "http_status": 200,
+    "parse_status": "official_46coin750_5yen66_total816",
+    "error_message": "2026/7/14公式営業案内で46枚750台・5円66台・総スロ816台を確認。"
+  },
+  {
+    "hall_id": "tsurumi_kiccho_komaoka",
+    "source_name": "kiccho_hallnavi_metadata",
+    "source_url": "https://hall-navi.com/hole_view?hid=230007100000024330",
+    "fetched_at": "2026-07-14T23:58:00+09:00",
+    "http_status": 200,
+    "parse_status": "old_event_5_8_monthly7_go_20031226_selected_reports_only",
+    "error_message": "旧イベント候補5系・8系・毎月7日、GO 2003/12/26、過去180日36レポート、平均並び345人を確認。全店平均差枚は取得できない。"
+  },
+  {
+    "hall_id": "tsurumi_kiccho_komaoka",
+    "source_name": "kiccho_slopachi_20260118",
+    "source_url": "https://777.slopachi-station.com/%E3%80%901%E6%9C%8818%E6%97%A5-%E5%90%89%E5%85%86%E6%A8%AA%E6%B5%9C%E9%A7%92%E5%B2%A1%E5%BA%97%E3%80%91%E3%82%B9%E3%83%AD%E3%83%91%E3%83%81%E3%82%AC%E3%83%BC%E3%83%AB%E6%9D%A5%E5%BA%97s%EF%BC%81-2/",
+    "fetched_at": "2026-07-14T23:58:00+09:00",
+    "http_status": 200,
+    "parse_status": "selected_76units_avg2120_not_full_hall",
+    "error_message": "20スロ750台中、媒体選抜76台平均+2120。全店代表値ではないため位置証拠のみ保存。"
+  },
+  {
+    "hall_id": "tsurumi_kiccho_komaoka",
+    "source_name": "kiccho_slopachi_20260308",
+    "source_url": "https://777.slopachi-station.com/%E3%80%903%E6%9C%888%E6%97%A5-%E5%90%89%E5%85%86%E6%A8%AA%E6%B5%9C%E9%A7%92%E5%B2%A1%E5%BA%97%E3%80%91%E3%82%B9%E3%83%AD%E3%83%91%E3%83%81%E3%82%AC%E3%83%BC%E3%83%AB%E6%9D%A5%E5%BA%97s%EF%BC%81/",
+    "fetched_at": "2026-07-14T23:58:00+09:00",
+    "http_status": 200,
+    "parse_status": "selected_72units_avg3130_not_full_hall",
+    "error_message": "20スロ750台中、媒体選抜72台平均+3130。全店代表値ではない。"
+  },
+  {
+    "hall_id": "tsurumi_kiccho_komaoka",
+    "source_name": "kiccho_slopachi_20260628",
+    "source_url": "https://777.slopachi-station.com/%E3%80%906%E6%9C%8828%E6%97%A5-%E5%90%89%E5%85%86%E6%A8%AA%E6%B5%9C%E9%A7%92%E5%B2%A1%E5%BA%97%E3%80%91%E3%82%B9%E3%83%AD%E3%83%91%E3%83%81%E3%82%AC%E3%83%BC%E3%83%AB%E6%9D%A5%E5%BA%97s%EF%BC%81-2/",
+    "fetched_at": "2026-07-14T23:58:00+09:00",
+    "http_status": 200,
+    "parse_status": "selected_blocks_exact_unit_numbers_not_full_hall",
+    "error_message": "20スロ750台。選抜4台ブロックの台番・平均差枚・Gを保存。全店平均は未掲載。"
+  },
+  {
+    "hall_id": "tsurumi_kiccho_komaoka",
+    "source_name": "oyamadai_to_kiccho_komaoka_route",
+    "source_url": "https://www.navitime.co.jp/transfer/searchlist?dnvStationCode=00005678&orvStationCode=00007727",
+    "fetched_at": "2026-07-14T23:58:00+09:00",
+    "http_status": 200,
+    "parse_status": "route_model50",
+    "error_message": "尾山台→大倉山23〜26分、店舗は大倉山駅から徒歩24〜26分。計画値50分。"
+  },
+  {
+    "hall_id": "tsurumi_kicona_chuo",
+    "source_name": "kicona_tsurumi_chuo_official_scope",
+    "source_url": "https://p-town.dmm.com/shops/kanagawa/4386",
+    "fetched_at": "2026-07-14T23:26:00+09:00",
+    "http_status": 200,
+    "parse_status": "official_46coin185_lowrate16_total201_anniversary0427",
+    "error_message": "46枚185台・184枚16台・総スロ201台、周年4/27、営業時間9:00-22:50を確認。"
+  },
+  {
+    "hall_id": "tsurumi_kicona_chuo",
+    "source_name": "kicona_tsurumi_chuo_hallnavi",
+    "source_url": "https://hall-navi.com/hole_view?hid=230005100000003761",
+    "fetched_at": "2026-07-14T23:26:00+09:00",
+    "http_status": 200,
+    "parse_status": "old_event_3_9_go20190427_six_selected_reports_no_full_hall_aggregate",
+    "error_message": "旧イベント3・9のつく日、GO 2019/4/27、過去365日6レポートを確認。取材・旧イベ別の全店集計はデータ不足。"
+  },
+  {
+    "hall_id": "tsurumi_kicona_chuo",
+    "source_name": "kicona_tsurumi_chuo_perfect_research_20260613",
+    "source_url": "https://perfect-research.com/article/37566",
+    "fetched_at": "2026-07-14T23:26:00+09:00",
+    "http_status": 200,
+    "parse_status": "selected_top25_and_machine_images_not_full_hall",
+    "error_message": "6/13の46枚185台、並び62人、掲載機種を確認。TOP25/機種画像中心で全店平均は未掲載。"
+  },
+  {
+    "hall_id": "tsurumi_kicona_chuo",
+    "source_name": "oyamadai_to_kicona_tsurumi_chuo_route",
+    "source_url": "https://www.navitime.co.jp/transfer/searchlist?defaultCondition=0&dnvStationCode=00006386&orvStationCode=00007727",
+    "fetched_at": "2026-07-14T23:26:00+09:00",
+    "http_status": 200,
+    "parse_status": "route_model51",
+    "error_message": "尾山台→鶴見37〜43分、店舗徒歩9〜14分。計画値51分。"
+  },
+  {
+    "hall_id": "tsurumi_superseven_namamugi",
+    "source_name": "superseven_namamugi_official_scope",
+    "source_url": "https://www.p-world.co.jp/kanagawa/parlor-superseven.htm",
+    "fetched_at": "2026-07-14T23:55:00+09:00",
+    "http_status": 200,
+    "parse_status": "official_46coin126_station_1min",
+    "error_message": "1000円46枚スロ126台、生麦駅徒歩1分、営業時間9:00-22:50を確認。"
+  },
+  {
+    "hall_id": "tsurumi_superseven_namamugi",
+    "source_name": "superseven_namamugi_dmm_anniversary_announcements",
+    "source_url": "https://p-town.dmm.com/shops/kanagawa/4374/informations",
+    "fetched_at": "2026-07-14T23:55:00+09:00",
+    "http_status": 200,
+    "parse_status": "anniversary0707_superchange_and_machine_promotions_only",
+    "error_message": "周年7/7、6/6・6/20・7/4超CHANGE、6/15〜21アイムジャグラー推し等を確認。告知であり全店実績ではない。"
+  },
+  {
+    "hall_id": "tsurumi_superseven_namamugi",
+    "source_name": "superseven_namamugi_hallnavi",
+    "source_url": "https://hall-navi.com/hole_view?hid=230005200000037260",
+    "fetched_at": "2026-07-14T23:55:00+09:00",
+    "http_status": 200,
+    "parse_status": "old_event_7_selected_reports_no_reliable_full_hall_series",
+    "error_message": "旧イベント7のつく日を確認。全126台の負日込み連続系列は取得できず予測未解禁。"
+  },
+  {
+    "hall_id": "tsurumi_superseven_namamugi",
+    "source_name": "superseven_namamugi_exchange_third_party",
+    "source_url": "https://minpachi.com/%E3%83%91%E3%83%BC%E3%83%A9%E3%83%BC%E3%82%B9%E3%83%BC%E3%83%91%E3%83%BC%E3%82%BB%E3%83%96%E3%83%B3/",
+    "fetched_at": "2026-07-14T23:55:00+09:00",
+    "http_status": 200,
+    "parse_status": "third_party_exchange_5_0_and_old_event_7",
+    "error_message": "21.73円スロ5.0枚交換、旧イベント7の日の第三者情報。交換率は現地再確認対象。"
+  },
+  {
+    "hall_id": "tsurumi_superseven_namamugi",
+    "source_name": "oyamadai_to_namamugi_route",
+    "source_url": "https://transit.yahoo.co.jp/search/result/%E5%B0%BE%E5%B1%B1%E5%8F%B0-%E7%94%9F%E9%BA%A6",
+    "fetched_at": "2026-07-14T23:55:00+09:00",
+    "http_status": 200,
+    "parse_status": "route_model49",
+    "error_message": "尾山台→生麦は時間帯により45〜55分程度、店舗徒歩1分。計画値49分。"
+  },
+  {
+    "hall_id": "hirama_prest2",
+    "source_name": "prest_hirama2_official_scope",
+    "source_url": "https://p-town.dmm.com/shops/kanagawa/4666",
+    "fetched_at": "2026-07-15T09:00:00+09:00",
+    "http_status": 200,
+    "parse_status": "official_46coin144_station_1min_anniversary1208",
+    "error_message": "21.739円スロ144台、平間駅徒歩1分、周年12月8日、データ公開を確認。"
+  },
+  {
+    "hall_id": "hirama_prest2",
+    "source_name": "prest_hirama2_hallnavi",
+    "source_url": "https://hall-navi.com/hole_view?hid=211001500000000150",
+    "fetched_at": "2026-07-15T09:00:00+09:00",
+    "http_status": 200,
+    "parse_status": "old_event_3_7_and_selected_reports_no_full_hall_series",
+    "error_message": "3・7のつく日と多数の取材結果を確認。集計は選抜機種・台中心で、全144台の負日込み連続系列は未取得。"
+  },
+  {
+    "hall_id": "hirama_prest2",
+    "source_name": "prest_hirama2_rx_schedule",
+    "source_url": "https://rx7038.com/?page_id=1088703",
+    "fetched_at": "2026-07-15T09:00:00+09:00",
+    "http_status": 200,
+    "parse_status": "upcoming_0715_0717_0723_0725_0727_and_selected_results",
+    "error_message": "7/15 JG、7/17 World、7/23 World、7/25 JG、7/27 World予定を確認。取材に公約なしと明記。"
+  },
+  {
+    "hall_id": "hirama_prest2",
+    "source_name": "prest_hirama2_selected_20260703",
+    "source_url": "https://rx7038.com/?p=1176629",
+    "fetched_at": "2026-07-15T09:00:00+09:00",
+    "http_status": 200,
+    "parse_status": "selected_17_units_avg_minus474_not_full_hall",
+    "error_message": "7/3調査対象17台は平均3449G・平均-474枚・7/17プラス。全144台平均ではない。"
+  },
+  {
+    "hall_id": "hirama_prest2",
+    "source_name": "oyamadai_to_hirama_route",
+    "source_url": "https://ekitan.com/transit/route/sf-1782/st-2930",
+    "fetched_at": "2026-07-15T09:00:00+09:00",
+    "http_status": 200,
+    "parse_status": "route_model28",
+    "error_message": "尾山台→平間26〜27分、店舗徒歩1分。計画値28分。"
+  }
+]
