@@ -1,7 +1,7 @@
 {
-  "name": "巡回ログ 07.02",
-  "short_name": "巡回ログ",
-  "description": "展示会の巡回ログ。ブースごとの仮説検証をその場で記録",
+  "name": "Slot Atlas 狙い目カレンダー",
+  "short_name": "Slot Atlas",
+  "description": "パチスロホールの狙い目日365日カレンダー（仲間内限定・非公開共有）",
   "lang": "ja",
   "dir": "ltr",
   "start_url": ".",

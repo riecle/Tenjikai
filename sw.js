@@ -1,16 +1,18 @@
-/* 巡回ログ — オフライン用サービスワーカー
-   会場は電波が弱いことが多いので、初回アクセス後はオフラインでも起動できるように
-   アプリ本体（HTML/manifest/アイコン）をキャッシュする。
-   記録データ自体は localStorage に保存されるためキャッシュ対象外。 */
+/* Slot Atlas — オフライン用サービスワーカー
+   ホール現地は電波が弱いことがあるため、初回アクセス後はオフラインでも
+   カレンダーを開けるようアプリ本体と暗号化データをキャッシュする。
+   復号はブラウザ内でのみ行われ、パスワードはどこにも送信・保存されない。 */
 "use strict";
 
-const CACHE = "junkai-log-v1";
+const CACHE = "slot-atlas-v2";
 
-// サービスワーカーの場所を基準にした相対URL（GitHub Pages のサブパス配信でも動く）
 const ASSETS = [
   "./",
   "./index.html",
+  "./style.css",
+  "./app.js",
   "./manifest.webmanifest",
+  "./data/vault.json",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
   "./icons/apple-touch-icon.png"

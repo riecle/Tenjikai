@@ -1,0 +1,84 @@
+:root{
+  color-scheme: dark;
+  --bg:#09090b; --card:#151518; --card-border:#27272a; --fg:#f4f4f5; --muted:#9a9aa2;
+  --s:#f7c948; --a:#5bb0f7; --b:#7bd88f; --c:#3a3a40;
+  --ring:#f4f4f5; --danger:#f0a35c;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--fg);
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;
+  padding:14px; padding-bottom:40px; max-width:640px; margin:0 auto;
+}
+h1{font-size:1.15rem; margin:4px 0 2px}
+.sub{color:var(--muted); font-size:.82rem; margin:0 0 14px; line-height:1.5}
+.banner{
+  background:#3a2a0a; border:1px solid #6b4d12; color:#f7d98a; border-radius:10px;
+  padding:10px 12px; font-size:.78rem; line-height:1.5; margin-bottom:14px;
+}
+.card{background:var(--card); border:1px solid var(--card-border); border-radius:12px; padding:10px}
+
+/* login */
+.login-wrap{display:flex; align-items:center; justify-content:center; min-height:70vh}
+.login-card{width:100%; max-width:320px; background:var(--card); border:1px solid var(--card-border); border-radius:14px; padding:22px}
+.login-card h2{font-size:1rem; margin:0 0 4px}
+.login-card p{color:var(--muted); font-size:.78rem; margin:0 0 16px}
+.field{margin-bottom:12px}
+.field label{display:block; font-size:.78rem; color:var(--muted); margin-bottom:5px}
+.field input{
+  width:100%; background:#0d0d10; color:var(--fg); border:1px solid var(--card-border);
+  border-radius:9px; padding:10px 11px; font-size:.95rem;
+}
+.field input:focus{outline:2px solid var(--ring); outline-offset:1px}
+.login-btn{
+  width:100%; background:var(--fg); color:#09090b; border:none; border-radius:9px;
+  padding:11px; font-size:.92rem; font-weight:600; cursor:pointer; margin-top:4px;
+}
+.login-btn:disabled{opacity:.4; cursor:default}
+.login-error{color:var(--danger); font-size:.8rem; margin-top:10px; min-height:1.2em}
+.logout-row{display:flex; justify-content:flex-end; margin-bottom:6px}
+.logout-btn{
+  background:transparent; color:var(--muted); border:1px solid var(--card-border);
+  border-radius:8px; padding:5px 10px; font-size:.74rem; cursor:pointer;
+}
+
+/* controls */
+.controls{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px}
+select{
+  width:100%; background:var(--card); color:var(--fg); border:1px solid var(--card-border);
+  border-radius:10px; padding:9px 10px; font-size:.9rem;
+}
+.stats{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:12px}
+.stat{background:var(--card); border:1px solid var(--card-border); border-radius:12px; padding:10px; text-align:center}
+.stat .label{font-size:.72rem; color:var(--muted)}
+.stat .value{font-size:1.05rem; font-weight:600; margin-top:2px}
+.weekdays{display:grid; grid-template-columns:repeat(7,1fr); gap:5px; margin-bottom:5px; text-align:center; color:var(--muted); font-size:.72rem}
+.grid{display:grid; grid-template-columns:repeat(7,1fr); gap:5px; margin-bottom:14px}
+.day{
+  aspect-ratio:1/1; border-radius:9px; border:1px solid var(--card-border); background:var(--card);
+  color:var(--fg); font-size:.85rem; display:flex; align-items:center; justify-content:center;
+  cursor:pointer; position:relative; padding:0;
+}
+.day:disabled{opacity:.25; cursor:default}
+.day[data-rank="S"]{background:color-mix(in srgb, var(--s) 30%, var(--card)); border-color:color-mix(in srgb, var(--s) 60%, var(--card-border))}
+.day[data-rank="A"]{background:color-mix(in srgb, var(--a) 26%, var(--card)); border-color:color-mix(in srgb, var(--a) 55%, var(--card-border))}
+.day[data-rank="B"]{background:color-mix(in srgb, var(--b) 22%, var(--card)); border-color:color-mix(in srgb, var(--b) 50%, var(--card-border))}
+.day[data-rank="C"]{background:var(--c)}
+.day[aria-pressed="true"]{box-shadow:0 0 0 2px var(--ring) inset}
+.legend{display:flex; flex-wrap:wrap; gap:10px; font-size:.75rem; color:var(--muted); margin-bottom:14px; align-items:center}
+.legend span{display:inline-flex; align-items:center; gap:4px}
+.key{width:11px; height:11px; border-radius:3px; border:1px solid var(--card-border); display:inline-block}
+.key.s{background:color-mix(in srgb, var(--s) 30%, var(--card))}
+.key.a{background:color-mix(in srgb, var(--a) 26%, var(--card))}
+.key.b{background:color-mix(in srgb, var(--b) 22%, var(--card))}
+.key.c{background:var(--c)}
+.key.n{background:transparent}
+.detail{margin-bottom:16px}
+.detail .line1{display:flex; align-items:baseline; gap:8px; flex-wrap:wrap}
+.badge{font-size:.72rem; font-weight:700; padding:2px 8px; border-radius:999px; background:var(--card-border)}
+.detail strong{font-size:.95rem}
+.detail .why{color:var(--muted); font-size:.82rem; margin-top:6px; line-height:1.6}
+.detail .warn{color:var(--danger); font-size:.76rem; margin-top:6px}
+.footer{color:var(--muted); font-size:.72rem; line-height:1.7; text-align:center; margin-top:20px}
+.loading, .error{color:var(--muted); font-size:.85rem; text-align:center; padding:30px 0}
