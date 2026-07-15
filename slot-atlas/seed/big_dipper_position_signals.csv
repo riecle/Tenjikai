@@ -1,0 +1,11 @@
+﻿hall_id,result_date,event_name,machine_key,machine_name,unit_numbers,unit_count,winning_units,avg_diff,avg_games,rate_scope,source_name,notes
+ikegami_big_dipper_togoshi_ginza,2026-07-13,日付末尾一致（90日・符号検定）,tail_0,台番号末尾0,,29,,,5235.2,20yen,min-repo_tail_sign_90d,日付末尾一致9日中、公開平均差枚が正で表示された日3日。負の日は差枚値自体が非表示のため、平均差枚を補完せず符号だけで検定。
+ikegami_big_dipper_togoshi_ginza,2026-07-13,日付末尾一致（90日・符号検定）,tail_1,台番号末尾1,,30,,,4743.0,20yen,min-repo_tail_sign_90d,日付末尾一致10日中、公開平均差枚が正で表示された日5日。負の日は差枚値自体が非表示のため、平均差枚を補完せず符号だけで検定。
+ikegami_big_dipper_togoshi_ginza,2026-07-13,日付末尾一致（90日・符号検定）,tail_2,台番号末尾2,,30,,,4552.8,20yen,min-repo_tail_sign_90d,日付末尾一致9日中、公開平均差枚が正で表示された日4日。負の日は差枚値自体が非表示のため、平均差枚を補完せず符号だけで検定。
+ikegami_big_dipper_togoshi_ginza,2026-07-13,日付末尾一致（90日・符号検定）,tail_3,台番号末尾3,,30,,,5331.0,20yen,min-repo_tail_sign_90d,日付末尾一致9日中、公開平均差枚が正で表示された日5日。負の日は差枚値自体が非表示のため、平均差枚を補完せず符号だけで検定。
+ikegami_big_dipper_togoshi_ginza,2026-07-13,日付末尾一致（90日・符号検定）,tail_4,台番号末尾4,,29,,,5250.9,20yen,min-repo_tail_sign_90d,日付末尾一致8日中、公開平均差枚が正で表示された日4日。負の日は差枚値自体が非表示のため、平均差枚を補完せず符号だけで検定。
+ikegami_big_dipper_togoshi_ginza,2026-07-13,日付末尾一致（90日・符号検定）,tail_5,台番号末尾5,,29,,,4704.7,20yen,min-repo_tail_sign_90d,日付末尾一致9日中、公開平均差枚が正で表示された日5日。負の日は差枚値自体が非表示のため、平均差枚を補完せず符号だけで検定。
+ikegami_big_dipper_togoshi_ginza,2026-07-13,日付末尾一致（90日・符号検定）,tail_6,台番号末尾6,,29,,,4771.0,20yen,min-repo_tail_sign_90d,日付末尾一致9日中、公開平均差枚が正で表示された日6日。負の日は差枚値自体が非表示のため、平均差枚を補完せず符号だけで検定。
+ikegami_big_dipper_togoshi_ginza,2026-07-13,日付末尾一致（90日・符号検定）,tail_7,台番号末尾7,,29,,,5300.4,20yen,min-repo_tail_sign_90d,日付末尾一致9日中、公開平均差枚が正で表示された日6日。負の日は差枚値自体が非表示のため、平均差枚を補完せず符号だけで検定。
+ikegami_big_dipper_togoshi_ginza,2026-07-13,日付末尾一致（90日・符号検定）,tail_8,台番号末尾8,,29,,,4573.2,20yen,min-repo_tail_sign_90d,日付末尾一致9日中、公開平均差枚が正で表示された日3日。負の日は差枚値自体が非表示のため、平均差枚を補完せず符号だけで検定。
+ikegami_big_dipper_togoshi_ginza,2026-07-13,日付末尾一致（90日・符号検定）,tail_9,台番号末尾9,,29,,,5374.7,20yen,min-repo_tail_sign_90d,日付末尾一致9日中、公開平均差枚が正で表示された日5日。負の日は差枚値自体が非表示のため、平均差枚を補完せず符号だけで検定。

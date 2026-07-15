@@ -1,0 +1,6 @@
+﻿hall_id,as_of_date,machine_key,machine_name,units,baseline_days,baseline_avg_diff,special_selected_n,momentum_selected_n,composite_score,type_label,source_name,notes
+tsurumi_superseven_namamugi,2026-07-06,vvv2,Lパチスロ 革命機ヴァルヴレイヴ2,,0,,1,0,,公式導入告知・実績非代表,official_20260706_new_machine,7/6新台入替で導入。出玉実績ではなく監視対象。
+tsurumi_superseven_namamugi,2026-06-08,kabaneri,甲鉄城のカバネリ,,0,,1,0,,公式増台告知・実績非代表,official_20260608_expansion,6/8新台入替で増台告知。出玉実績ではない。
+tsurumi_superseven_namamugi,2026-06-21,im_juggler,アイムジャグラーEX,,0,,1,0,,公式おすすめ告知・実績非代表,official_20260615_21_juggler,6/15〜21おすすめ告知。全店・機種実績は未構造化。
+tsurumi_superseven_namamugi,2026-07-14,juggler,ジャグラーシリーズ,,0,,1,0,,公式常設訴求・実績非代表,official_store_features,公式特徴でジャグラーコーナー大量設置を訴求。
+tsurumi_superseven_namamugi,2026-07-14,smartslot,スマスロ各機種,,0,,1,0,,公式常設訴求・実績非代表,official_store_features,公式特徴でスマスロ大量設置を訴求。個別の強さは未検証。

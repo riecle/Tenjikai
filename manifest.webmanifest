@@ -1,0 +1,18 @@
+{
+  "name": "Slot Atlas 狙い目カレンダー",
+  "short_name": "Slot Atlas",
+  "description": "パチスロホールの狙い目日365日カレンダー（仲間内限定・非公開共有）",
+  "lang": "ja",
+  "dir": "ltr",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#09090b",
+  "theme_color": "#09090b",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

@@ -1,0 +1,4186 @@
+[
+  {
+    "rule_id": "ses_day01",
+    "hall_id": "shibuya_espace_shinkan",
+    "label": "1日",
+    "priority": 80,
+    "match": {
+      "day": 1
+    },
+    "mean_diff": 102,
+    "sample_n": 12,
+    "positive_rate": 1.0,
+    "data_through": "2026-07-12"
+  },
+  {
+    "rule_id": "ses_day05",
+    "hall_id": "shibuya_espace_shinkan",
+    "label": "5日",
+    "priority": 90,
+    "match": {
+      "day": 5
+    },
+    "mean_diff": 278,
+    "sample_n": 12,
+    "positive_rate": 1.0,
+    "data_through": "2026-07-12"
+  },
+  {
+    "rule_id": "ses_day11",
+    "hall_id": "shibuya_espace_shinkan",
+    "label": "11日",
+    "priority": 90,
+    "match": {
+      "day": 11
+    },
+    "mean_diff": 240,
+    "sample_n": 12,
+    "positive_rate": 0.92,
+    "data_through": "2026-07-12"
+  },
+  {
+    "rule_id": "ses_day22",
+    "hall_id": "shibuya_espace_shinkan",
+    "label": "22日",
+    "priority": 90,
+    "match": {
+      "day": 22
+    },
+    "mean_diff": 210,
+    "sample_n": 11,
+    "positive_rate": 0.92,
+    "data_through": "2026-07-12"
+  },
+  {
+    "rule_id": "ses_day27",
+    "hall_id": "shibuya_espace_shinkan",
+    "label": "27日",
+    "priority": 85,
+    "match": {
+      "day": 27
+    },
+    "mean_diff": 157,
+    "sample_n": 12,
+    "positive_rate": 0.83,
+    "data_through": "2026-07-12"
+  },
+  {
+    "rule_id": "ses_month_equal_day",
+    "hall_id": "shibuya_espace_shinkan",
+    "label": "月日ゾロ目",
+    "priority": 95,
+    "match": {
+      "month_equals_day": true
+    },
+    "mean_diff": 238,
+    "sample_n": 11,
+    "positive_rate": 0.91,
+    "data_through": "2026-07-12"
+  },
+  {
+    "rule_id": "ses_sunday_regime",
+    "hall_id": "shibuya_espace_shinkan",
+    "label": "本館閉店後の日曜",
+    "priority": 65,
+    "match": {
+      "weekday": 6
+    },
+    "mean_diff": 278,
+    "sample_n": 13,
+    "positive_rate": null,
+    "valid_from": "2026-04-01",
+    "data_through": "2026-07-12",
+    "notes": "直近レジーム限定"
+  },
+  {
+    "rule_id": "ses_day14",
+    "hall_id": "shibuya_espace_shinkan",
+    "label": "14日回避",
+    "priority": 85,
+    "match": {
+      "day": 14
+    },
+    "mean_diff": -109,
+    "sample_n": 12,
+    "positive_rate": null,
+    "data_through": "2026-07-12"
+  },
+  {
+    "rule_id": "ses_day31",
+    "hall_id": "shibuya_espace_shinkan",
+    "label": "31日回避",
+    "priority": 85,
+    "match": {
+      "day": 31
+    },
+    "mean_diff": -87,
+    "sample_n": 7,
+    "positive_rate": null,
+    "data_through": "2026-07-12"
+  },
+  {
+    "rule_id": "srd_day05",
+    "hall_id": "shibuya_rakuen_dogenzaka",
+    "label": "5日被せ",
+    "priority": 90,
+    "match": {
+      "day": 5
+    },
+    "mean_diff": 250,
+    "sample_n": 11,
+    "positive_rate": 0.91,
+    "data_through": "2026-06-26"
+  },
+  {
+    "rule_id": "srd_day11",
+    "hall_id": "shibuya_rakuen_dogenzaka",
+    "label": "11日",
+    "priority": 90,
+    "match": {
+      "day": 11
+    },
+    "mean_diff": 195,
+    "sample_n": 10,
+    "positive_rate": 1.0,
+    "data_through": "2026-06-26"
+  },
+  {
+    "rule_id": "srd_day22",
+    "hall_id": "shibuya_rakuen_dogenzaka",
+    "label": "22日",
+    "priority": 85,
+    "match": {
+      "day": 22
+    },
+    "mean_diff": 45,
+    "sample_n": 11,
+    "positive_rate": null,
+    "data_through": "2026-06-26"
+  },
+  {
+    "rule_id": "srd_day27",
+    "hall_id": "shibuya_rakuen_dogenzaka",
+    "label": "27日回避",
+    "priority": 85,
+    "match": {
+      "day": 27
+    },
+    "mean_diff": -88,
+    "sample_n": 11,
+    "positive_rate": 0.18,
+    "data_through": "2026-06-26"
+  },
+  {
+    "rule_id": "srd_day28",
+    "hall_id": "shibuya_rakuen_dogenzaka",
+    "label": "28日",
+    "priority": 95,
+    "match": {
+      "day": 28
+    },
+    "mean_diff": 320,
+    "sample_n": 11,
+    "positive_rate": 1.0,
+    "data_through": "2026-06-26"
+  },
+  {
+    "rule_id": "sre_day11",
+    "hall_id": "shibuya_rakuen_ekimae",
+    "label": "11日",
+    "priority": 90,
+    "match": {
+      "day": 11
+    },
+    "mean_diff": 171,
+    "sample_n": 11,
+    "positive_rate": 0.91,
+    "data_through": "2026-06-19"
+  },
+  {
+    "rule_id": "sre_day22",
+    "hall_id": "shibuya_rakuen_ekimae",
+    "label": "22日",
+    "priority": 90,
+    "match": {
+      "day": 22
+    },
+    "mean_diff": 188,
+    "sample_n": 10,
+    "positive_rate": 0.82,
+    "data_through": "2026-06-19"
+  },
+  {
+    "rule_id": "sre_month_equal_day",
+    "hall_id": "shibuya_rakuen_ekimae",
+    "label": "月日ゾロ目",
+    "priority": 95,
+    "match": {
+      "month_equals_day": true
+    },
+    "mean_diff": 138,
+    "sample_n": 12,
+    "positive_rate": null,
+    "data_through": "2026-06-19"
+  },
+  {
+    "rule_id": "mr_day11",
+    "hall_id": "mizonokuchi_rakuen",
+    "label": "11日",
+    "priority": 90,
+    "match": {
+      "day": 11
+    },
+    "mean_diff": -82.1,
+    "sample_n": 12,
+    "positive_rate": null,
+    "data_through": "2026-07-12"
+  },
+  {
+    "rule_id": "mr_day22",
+    "hall_id": "mizonokuchi_rakuen",
+    "label": "22日",
+    "priority": 90,
+    "match": {
+      "day": 22
+    },
+    "mean_diff": -69.8,
+    "sample_n": 12,
+    "positive_rate": null,
+    "data_through": "2026-07-12"
+  },
+  {
+    "rule_id": "mr_month_equal_day",
+    "hall_id": "mizonokuchi_rakuen",
+    "label": "月日ゾロ目",
+    "priority": 95,
+    "match": {
+      "month_equals_day": true
+    },
+    "mean_diff": -119.3,
+    "sample_n": 11,
+    "positive_rate": 0.182,
+    "data_through": "2026-07-12"
+  },
+  {
+    "rule_id": "mr_day7_family",
+    "hall_id": "mizonokuchi_rakuen",
+    "label": "7のつく日・棄却",
+    "priority": 75,
+    "match": {
+      "day_in": [
+        7,
+        17,
+        27
+      ]
+    },
+    "mean_diff": -172.5,
+    "sample_n": 35,
+    "positive_rate": 0.2,
+    "data_through": "2026-07-12"
+  },
+  {
+    "rule_id": "mr_month_end",
+    "hall_id": "mizonokuchi_rakuen",
+    "label": "月末回避",
+    "priority": 85,
+    "match": {
+      "month_end": true
+    },
+    "mean_diff": -229.3,
+    "sample_n": 12,
+    "positive_rate": 0.0,
+    "data_through": "2026-07-12"
+  },
+  {
+    "rule_id": "mes_day23",
+    "hall_id": "mizonokuchi_espace_shinkan",
+    "label": "23日",
+    "priority": 95,
+    "match": {
+      "day": 23
+    },
+    "mean_diff": 100,
+    "sample_n": 11,
+    "positive_rate": 0.91,
+    "data_through": "2026-07-12",
+    "regime_separated": true,
+    "notes": "v0.7: regime分離検定済み(月内ゼロサムr=-0.699)につきゼロ縮約"
+  },
+  {
+    "rule_id": "mes_second_sat",
+    "hall_id": "mizonokuchi_espace_shinkan",
+    "label": "第2土曜",
+    "priority": 85,
+    "match": {
+      "weekday": 5,
+      "nth_weekday": 2
+    },
+    "mean_diff": 42,
+    "sample_n": 13,
+    "positive_rate": 0.54,
+    "data_through": "2026-07-12",
+    "regime_separated": true,
+    "notes": "v0.7: regime分離検定済み(月内ゼロサムr=-0.699)につきゼロ縮約"
+  },
+  {
+    "rule_id": "mes_first_sat",
+    "hall_id": "mizonokuchi_espace_shinkan",
+    "label": "第1土曜",
+    "priority": 82,
+    "match": {
+      "weekday": 5,
+      "nth_weekday": 1
+    },
+    "mean_diff": 1,
+    "sample_n": 13,
+    "positive_rate": 0.38,
+    "data_through": "2026-07-12"
+  },
+  {
+    "rule_id": "mes_third_sat",
+    "hall_id": "mizonokuchi_espace_shinkan",
+    "label": "第3土曜回避",
+    "priority": 82,
+    "match": {
+      "weekday": 5,
+      "nth_weekday": 3
+    },
+    "mean_diff": -171,
+    "sample_n": 12,
+    "positive_rate": 0.0,
+    "data_through": "2026-07-12"
+  },
+  {
+    "rule_id": "mes_fourth_sat",
+    "hall_id": "mizonokuchi_espace_shinkan",
+    "label": "第4土曜回避",
+    "priority": 82,
+    "match": {
+      "weekday": 5,
+      "nth_weekday": 4
+    },
+    "mean_diff": -212,
+    "sample_n": 12,
+    "positive_rate": 0.17,
+    "data_through": "2026-07-12"
+  },
+  {
+    "rule_id": "meh_anniversary",
+    "hall_id": "mizonokuchi_espace_honkan",
+    "label": "周年10/15・検証",
+    "priority": 100,
+    "match": {
+      "month": 10,
+      "day": 15
+    },
+    "mean_diff": 432,
+    "sample_n": 1,
+    "positive_rate": 1.0,
+    "data_through": "2026-06-24",
+    "notes": "2024年は-90との報告。n=1なので強く縮約する"
+  },
+  {
+    "rule_id": "meh_day11",
+    "hall_id": "mizonokuchi_espace_honkan",
+    "label": "11日・名目",
+    "priority": 85,
+    "match": {
+      "day": 11
+    },
+    "mean_diff": -154,
+    "sample_n": 12,
+    "positive_rate": 0.08,
+    "data_through": "2026-06-24"
+  },
+  {
+    "rule_id": "meh_day22",
+    "hall_id": "mizonokuchi_espace_honkan",
+    "label": "22日・名目",
+    "priority": 85,
+    "match": {
+      "day": 22
+    },
+    "mean_diff": -125,
+    "sample_n": 12,
+    "positive_rate": 0.17,
+    "data_through": "2026-06-24"
+  },
+  {
+    "rule_id": "meh_day7_family",
+    "hall_id": "mizonokuchi_espace_honkan",
+    "label": "7のつく日・名目",
+    "priority": 80,
+    "match": {
+      "day_in": [
+        7,
+        17,
+        27
+      ]
+    },
+    "mean_diff": -157,
+    "sample_n": 35,
+    "positive_rate": 0.11,
+    "data_through": "2026-06-24"
+  },
+  {
+    "rule_id": "act_day07",
+    "hall_id": "mizonokuchi_slot_act",
+    "label": "7日・相対リフト/絶対回避",
+    "priority": 92,
+    "match": {
+      "day": 7
+    },
+    "mean_diff": -22.0,
+    "sample_n": 8,
+    "positive_rate": 0.25,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/534c4f54e38080414354code/",
+    "notes": "曜日調整後p=0.002、BH q=0.062。中央値-106のため監視止まり。"
+  },
+  {
+    "rule_id": "act_day17",
+    "hall_id": "mizonokuchi_slot_act",
+    "label": "17日・7の日棄却",
+    "priority": 90,
+    "match": {
+      "day": 17
+    },
+    "mean_diff": -162.3,
+    "sample_n": 7,
+    "positive_rate": 0.0,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/534c4f54e38080414354code/"
+  },
+  {
+    "rule_id": "act_day27",
+    "hall_id": "mizonokuchi_slot_act",
+    "label": "27日・7の日棄却",
+    "priority": 90,
+    "match": {
+      "day": 27
+    },
+    "mean_diff": -87.4,
+    "sample_n": 7,
+    "positive_rate": 0.143,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/534c4f54e38080414354code/"
+  },
+  {
+    "rule_id": "act_day11",
+    "hall_id": "mizonokuchi_slot_act",
+    "label": "11日・名目回避",
+    "priority": 90,
+    "match": {
+      "day": 11
+    },
+    "mean_diff": -237.8,
+    "sample_n": 8,
+    "positive_rate": 0.125,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/534c4f54e38080414354code/"
+  },
+  {
+    "rule_id": "act_day22",
+    "hall_id": "mizonokuchi_slot_act",
+    "label": "22日・名目回避",
+    "priority": 90,
+    "match": {
+      "day": 22
+    },
+    "mean_diff": -83.4,
+    "sample_n": 7,
+    "positive_rate": 0.143,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/534c4f54e38080414354code/"
+  },
+  {
+    "rule_id": "act_anniversary",
+    "hall_id": "mizonokuchi_slot_act",
+    "label": "周年6/22・検証",
+    "priority": 100,
+    "match": {
+      "month": 6,
+      "day": 22
+    },
+    "mean_diff": -58.0,
+    "sample_n": 1,
+    "positive_rate": 0.0,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/534c4f54e38080414354code/",
+    "notes": "2026年実測のみ。n=1かつマイナス。"
+  },
+  {
+    "rule_id": "act_first_sat",
+    "hall_id": "mizonokuchi_slot_act",
+    "label": "第1土曜・監視",
+    "priority": 84,
+    "match": {
+      "weekday": 5,
+      "nth_weekday": 1
+    },
+    "mean_diff": -102.0,
+    "sample_n": 8,
+    "positive_rate": 0.25,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/534c4f54e38080414354code/"
+  },
+  {
+    "rule_id": "act_second_sat",
+    "hall_id": "mizonokuchi_slot_act",
+    "label": "第2土曜回避",
+    "priority": 84,
+    "match": {
+      "weekday": 5,
+      "nth_weekday": 2
+    },
+    "mean_diff": -222.8,
+    "sample_n": 8,
+    "positive_rate": 0.0,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/534c4f54e38080414354code/"
+  },
+  {
+    "rule_id": "act_fourth_sat",
+    "hall_id": "mizonokuchi_slot_act",
+    "label": "第4土曜回避",
+    "priority": 84,
+    "match": {
+      "weekday": 5,
+      "nth_weekday": 4
+    },
+    "mean_diff": -216.9,
+    "sample_n": 7,
+    "positive_rate": 0.0,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/534c4f54e38080414354code/"
+  },
+  {
+    "rule_id": "act_month_end",
+    "hall_id": "mizonokuchi_slot_act",
+    "label": "月末回避",
+    "priority": 88,
+    "match": {
+      "month_end": true
+    },
+    "mean_diff": -178.3,
+    "sample_n": 7,
+    "positive_rate": 0.0,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/534c4f54e38080414354code/"
+  },
+  {
+    "rule_id": "act_day28_killed",
+    "hall_id": "mizonokuchi_slot_act",
+    "label": "28日・隠れ日仮説棄却",
+    "priority": 85,
+    "match": {
+      "day": 28
+    },
+    "mean_diff": -66.3,
+    "sample_n": 7,
+    "positive_rate": 0.286,
+    "data_through": "2026-07-12",
+    "status": "kill",
+    "source_url": "https://www.slorepo.com/hole/534c4f54e38080414354code/",
+    "notes": "曜日調整後p=0.028、BH q=0.336。多重比較後は不採用。"
+  },
+  {
+    "rule_id": "rr_event_saturday",
+    "hall_id": "toyoko_redrock_gakugei",
+    "label": "6・9系×土曜（26除外）",
+    "priority": 98,
+    "match": {
+      "day_in": [
+        6,
+        9,
+        16,
+        19,
+        29
+      ],
+      "weekday": 5
+    },
+    "mean_diff": 237.6,
+    "sample_n": 9,
+    "positive_rate": 0.778,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/e383ace38383e38389e383ade38383e382afe5ada6e88ab8e5a4a7e5ada6e9a785e5898de5ba97code/",
+    "notes": "他土曜+23.0との差+214.5、土曜内片側置換p=0.0053。中央値+245。"
+  },
+  {
+    "rule_id": "rr_anniversary",
+    "hall_id": "toyoko_redrock_gakugei",
+    "label": "周年12/28",
+    "priority": 100,
+    "match": {
+      "month": 12,
+      "day": 28
+    },
+    "mean_diff": 582.5,
+    "sample_n": 2,
+    "positive_rate": 1.0,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/e383ace38383e38389e383ade38383e382afe5ada6e88ab8e5a4a7e5ada6e9a785e5898de5ba97code/",
+    "notes": "2024+438、2025+727。GO初日は別レジーム。"
+  },
+  {
+    "rule_id": "rr_newyear",
+    "hall_id": "toyoko_redrock_gakugei",
+    "label": "正月1〜3日回避",
+    "priority": 99,
+    "match": {
+      "month": 1,
+      "day_in": [
+        1,
+        2,
+        3
+      ]
+    },
+    "mean_diff": -71.3,
+    "sample_n": 3,
+    "positive_rate": 0.333,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/e383ace38383e38389e383ade38383e382afe5ada6e88ab8e5a4a7e5ada6e9a785e5898de5ba97code/"
+  },
+  {
+    "rule_id": "rr_month_equal_day",
+    "hall_id": "toyoko_redrock_gakugei",
+    "label": "月=日・補助",
+    "priority": 95,
+    "match": {
+      "month_equals_day": true
+    },
+    "mean_diff": 96.8,
+    "sample_n": 11,
+    "positive_rate": 0.636,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/e383ace38383e38389e383ade38383e382afe5ada6e88ab8e5a4a7e5ada6e9a785e5898de5ba97code/",
+    "notes": "正月を除外。曜日調整p=0.104、縮約・床控除後はC。"
+  },
+  {
+    "rule_id": "rr_day06_nonsat",
+    "hall_id": "toyoko_redrock_gakugei",
+    "label": "6日・非土曜は見送り",
+    "priority": 90,
+    "match": {
+      "day": 6
+    },
+    "mean_diff": 44.4,
+    "sample_n": 9,
+    "positive_rate": 0.556,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/e383ace38383e38389e383ade38383e382afe5ada6e88ab8e5a4a7e5ada6e9a785e5898de5ba97code/",
+    "notes": "土曜はrr_event_saturdayが優先。"
+  },
+  {
+    "rule_id": "rr_day09_nonsat",
+    "hall_id": "toyoko_redrock_gakugei",
+    "label": "9日・非土曜は見送り",
+    "priority": 90,
+    "match": {
+      "day": 9
+    },
+    "mean_diff": 39.1,
+    "sample_n": 10,
+    "positive_rate": 0.4,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/e383ace38383e38389e383ade38383e382afe5ada6e88ab8e5a4a7e5ada6e9a785e5898de5ba97code/",
+    "notes": "土曜・月=日は上位ルールが優先。"
+  },
+  {
+    "rule_id": "rr_day16_nonsat",
+    "hall_id": "toyoko_redrock_gakugei",
+    "label": "16日・非土曜は見送り",
+    "priority": 90,
+    "match": {
+      "day": 16
+    },
+    "mean_diff": 47.9,
+    "sample_n": 10,
+    "positive_rate": 0.5,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/e383ace38383e38389e383ade38383e382afe5ada6e88ab8e5a4a7e5ada6e9a785e5898de5ba97code/",
+    "notes": "土曜はrr_event_saturdayが優先。"
+  },
+  {
+    "rule_id": "rr_day19_nonsat",
+    "hall_id": "toyoko_redrock_gakugei",
+    "label": "19日・非土曜は見送り",
+    "priority": 90,
+    "match": {
+      "day": 19
+    },
+    "mean_diff": 8.7,
+    "sample_n": 11,
+    "positive_rate": 0.455,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/e383ace38383e38389e383ade38383e382afe5ada6e88ab8e5a4a7e5ada6e9a785e5898de5ba97code/",
+    "notes": "土曜はrr_event_saturdayが優先。"
+  },
+  {
+    "rule_id": "rr_day26_avoid",
+    "hall_id": "toyoko_redrock_gakugei",
+    "label": "26日回避",
+    "priority": 96,
+    "match": {
+      "day": 26
+    },
+    "mean_diff": -132.8,
+    "sample_n": 12,
+    "positive_rate": 0.25,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/e383ace38383e38389e383ade38383e382afe5ada6e88ab8e5a4a7e5ada6e9a785e5898de5ba97code/",
+    "notes": "中央値-180.5。6の日から必ず分離。"
+  },
+  {
+    "rule_id": "rr_day29_nonsat",
+    "hall_id": "toyoko_redrock_gakugei",
+    "label": "29日・非土曜は見送り",
+    "priority": 90,
+    "match": {
+      "day": 29
+    },
+    "mean_diff": 49.3,
+    "sample_n": 10,
+    "positive_rate": 0.6,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/e383ace38383e38389e383ade38383e382afe5ada6e88ab8e5a4a7e5ada6e9a785e5898de5ba97code/",
+    "notes": "土曜はrr_event_saturdayが優先。"
+  },
+  {
+    "rule_id": "rr_normal_saturday",
+    "hall_id": "toyoko_redrock_gakugei",
+    "label": "通常土曜・見送り",
+    "priority": 70,
+    "match": {
+      "weekday": 5
+    },
+    "mean_diff": 23.0,
+    "sample_n": 43,
+    "positive_rate": 0.558,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/e383ace38383e38389e383ade38383e382afe5ada6e88ab8e5a4a7e5ada6e9a785e5898de5ba97code/",
+    "notes": "6/9系×土曜を除外。46/52の床未満。"
+  },
+  {
+    "rule_id": "rr_day30_avoid",
+    "hall_id": "toyoko_redrock_gakugei",
+    "label": "30日回避",
+    "priority": 94,
+    "match": {
+      "day": 30
+    },
+    "mean_diff": -172.7,
+    "sample_n": 11,
+    "positive_rate": 0.091,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/e383ace38383e38389e383ade38383e382afe5ada6e88ab8e5a4a7e5ada6e9a785e5898de5ba97code/",
+    "notes": "中央値-208。"
+  },
+  {
+    "rule_id": "rr_day28_killed",
+    "hall_id": "toyoko_redrock_gakugei",
+    "label": "感謝の28日・出玉指標棄却",
+    "priority": 93,
+    "match": {
+      "day": 28
+    },
+    "mean_diff": -0.7,
+    "sample_n": 11,
+    "positive_rate": 0.455,
+    "data_through": "2026-07-12",
+    "status": "kill",
+    "source_url": "https://x.com/666_REDROCK/status/2070809369630109714",
+    "notes": "企画実在はconfirm。周年を除くと平均-0.7で予測指標はkill。"
+  },
+  {
+    "rule_id": "rr_first_saturday_killed",
+    "hall_id": "toyoko_redrock_gakugei",
+    "label": "第1土曜仮説棄却",
+    "priority": 85,
+    "match": {
+      "weekday": 5,
+      "nth_weekday": 1
+    },
+    "mean_diff": 78.7,
+    "sample_n": 7,
+    "positive_rate": 0.714,
+    "data_through": "2026-07-12",
+    "status": "kill",
+    "source_url": "https://www.slorepo.com/hole/e383ace38383e38389e383ade38383e382afe5ada6e88ab8e5a4a7e5ada6e9a785e5898de5ba97code/",
+    "notes": "看板日・月=日・正月を除外後、他通常土曜との差p=0.444。"
+  },
+  {
+    "rule_id": "rr_11_22_killed",
+    "hall_id": "toyoko_redrock_gakugei",
+    "label": "11・22日棄却",
+    "priority": 85,
+    "match": {
+      "day_in": [
+        11,
+        22
+      ]
+    },
+    "mean_diff": 18.5,
+    "sample_n": 23,
+    "positive_rate": 0.565,
+    "data_through": "2026-07-12",
+    "status": "kill",
+    "source_url": "https://www.slorepo.com/hole/e383ace38383e38389e383ade38383e382afe5ada6e88ab8e5a4a7e5ada6e9a785e5898de5ba97code/",
+    "notes": "最近の上振れはあるがR12・交換差では不採用。"
+  },
+  {
+    "rule_id": "rr_old_event_unconditional_reframed",
+    "hall_id": "toyoko_redrock_gakugei",
+    "label": "6・9系の曜日無視を再定義",
+    "priority": 80,
+    "match": {
+      "day_in": [
+        6,
+        9,
+        16,
+        19,
+        26,
+        29
+      ]
+    },
+    "mean_diff": 33.8,
+    "sample_n": 71,
+    "positive_rate": 0.479,
+    "data_through": "2026-07-12",
+    "status": "reframe",
+    "source_url": "https://www.slorepo.com/hole/e383ace38383e38389e383ade38383e382afe5ada6e88ab8e5a4a7e5ada6e9a785e5898de5ba97code/",
+    "notes": "土曜交互作用と26日分離へreframe。"
+  },
+  {
+    "rule_id": "rr_tail_match_killed",
+    "hall_id": "toyoko_redrock_gakugei",
+    "label": "日付末尾一致棄却",
+    "priority": 10,
+    "match": {},
+    "mean_diff": -521.0,
+    "sample_n": 9,
+    "positive_rate": null,
+    "data_through": "2026-07-09",
+    "status": "kill",
+    "source_url": "https://www.slorepo.com/hole/e383ace38383e38389e383ade38383e382afe5ada6e88ab8e5a4a7e5ada6e9a785e5898de5ba97code/daiban_hiduke/",
+    "notes": "直近143日の日付一致3/47。6の日×末尾6は平均-521。"
+  },
+  {
+    "rule_id": "hn_zero_day_pending",
+    "hall_id": "toyoko_hinomaru_nakameguro",
+    "label": "0のつく日・検証待ち",
+    "priority": 90,
+    "match": {
+      "day_in": [
+        10,
+        20,
+        30
+      ]
+    },
+    "mean_diff": 0.0,
+    "sample_n": 0,
+    "positive_rate": null,
+    "data_through": "2026-07-13",
+    "status": "pending",
+    "source_url": "https://hall-navi.com/hole_view?hid=153005100000011980",
+    "notes": "旧イベ表示と公式告知は確認。Hall Naviは365日以内の出玉レポートなし。現行レジームの実測がないため予測禁止。"
+  },
+  {
+    "rule_id": "hn_anniversary_pending",
+    "hall_id": "toyoko_hinomaru_nakameguro",
+    "label": "周年4/25・検証待ち",
+    "priority": 100,
+    "match": {
+      "month": 4,
+      "day": 25
+    },
+    "mean_diff": 0.0,
+    "sample_n": 0,
+    "positive_rate": null,
+    "data_through": "2026-07-13",
+    "status": "pending",
+    "source_url": "https://hall-navi.com/hole_view?hid=153005100000011980",
+    "notes": "GO日2012/4/25。周年月はDMMでも4月表記だが、現行レジームの差枚n=0。"
+  },
+  {
+    "rule_id": "opj_maguro_reframed",
+    "hall_id": "toyoko_oriental_jiyugaoka",
+    "label": "マグロ取材・位置条件へ再定義",
+    "priority": 96,
+    "match": {},
+    "mean_diff": 81.0,
+    "sample_n": 8,
+    "positive_rate": null,
+    "data_through": "2026-06-06",
+    "status": "reframe",
+    "source_url": "https://hall-navi.com/hole_view?hid=152003500000011470",
+    "notes": "平均2,179G。店平均の固定日予測には使わず、事前告知が確認できた日の機種×塊レイヤーだけに使用。20円/5円の率区分は未分離。"
+  },
+  {
+    "rule_id": "opj_day5_killed",
+    "hall_id": "toyoko_oriental_jiyugaoka",
+    "label": "5のつく日・狙い日仮説棄却",
+    "priority": 90,
+    "match": {
+      "day_in": [
+        5,
+        15,
+        25
+      ]
+    },
+    "mean_diff": 9.0,
+    "sample_n": 18,
+    "positive_rate": null,
+    "data_through": "2026-06-06",
+    "status": "kill",
+    "source_url": "https://hall-navi.com/hole_view?hid=152003500000011470",
+    "notes": "公開集計平均+9枚・1,149G。交換率未確認の保守床+50枚を下回る。効果ゼロの断定ではなく、実戦座標としてkill。"
+  },
+  {
+    "rule_id": "opj_thursday_killed",
+    "hall_id": "toyoko_oriental_jiyugaoka",
+    "label": "木曜日・狙い日仮説棄却",
+    "priority": 75,
+    "match": {
+      "weekday": 3
+    },
+    "mean_diff": 3.0,
+    "sample_n": 26,
+    "positive_rate": null,
+    "data_through": "2026-06-06",
+    "status": "kill",
+    "source_url": "https://hall-navi.com/hole_view?hid=152003500000011470",
+    "notes": "公開集計平均+3枚・878G。絶対値・稼働とも採用基準未達。"
+  },
+  {
+    "rule_id": "opj_zorome_killed",
+    "hall_id": "toyoko_oriental_jiyugaoka",
+    "label": "日付ゾロ目・棄却",
+    "priority": 90,
+    "match": {
+      "day_in": [
+        11,
+        22
+      ]
+    },
+    "mean_diff": -3.0,
+    "sample_n": 12,
+    "positive_rate": null,
+    "data_through": "2026-06-06",
+    "status": "kill",
+    "source_url": "https://hall-navi.com/hole_view?hid=152003500000011470",
+    "notes": "公開集計平均-3枚・1,057G。狙い日としてkill。"
+  },
+  {
+    "rule_id": "opj_month_equal_killed",
+    "hall_id": "toyoko_oriental_jiyugaoka",
+    "label": "月=日・狙い日仮説棄却",
+    "priority": 94,
+    "match": {
+      "month_equals_day": true
+    },
+    "mean_diff": 10.0,
+    "sample_n": 9,
+    "positive_rate": null,
+    "data_through": "2026-06-06",
+    "status": "kill",
+    "source_url": "https://hall-navi.com/hole_view?hid=152003500000011470",
+    "notes": "公開集計平均+10枚・1,323G。保守床+50枚を下回る。"
+  },
+  {
+    "rule_id": "opj_anniversary_conflict_pending",
+    "hall_id": "toyoko_oriental_jiyugaoka",
+    "label": "周年候補9/14・9/15（ソース不一致）",
+    "priority": 100,
+    "match": {
+      "month": 9,
+      "day_in": [
+        14,
+        15
+      ]
+    },
+    "mean_diff": 0.0,
+    "sample_n": 0,
+    "positive_rate": null,
+    "data_through": "2026-07-07",
+    "status": "pending",
+    "source_url": "https://p-town.dmm.com/shops/tokyo/246",
+    "notes": "DMMは周年9/14、Hall NaviはGO 2010/9/15。どちらも現行差枚n=0のため予測禁止し、両日を事前観測する。 根拠が確定するまで採用しない。"
+  },
+  {
+    "rule_id": "toho_anniversary",
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "label": "周年4/24",
+    "priority": 100,
+    "match": {
+      "month": 4,
+      "day": 24
+    },
+    "mean_diff": 598.3,
+    "sample_n": 3,
+    "positive_rate": 1.0,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e696b0e5aebfe69db1e5ae9de38393e383abe5ba97code/",
+    "notes": "2024+528、2025+854、2026+413の3年実測。抽選人数と将来ホライズンを別リスクとして扱う。"
+  },
+  {
+    "rule_id": "toho_newyear",
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "label": "正月1〜3日",
+    "priority": 99,
+    "match": {
+      "month": 1,
+      "day_in": [
+        1,
+        2,
+        3
+      ]
+    },
+    "mean_diff": 361.3,
+    "sample_n": 3,
+    "positive_rate": 1.0,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e696b0e5aebfe69db1e5ae9de38393e383abe5ba97code/",
+    "notes": "R12内の2026年3日だけ。長期休暇リスクで自動降格する。"
+  },
+  {
+    "rule_id": "toho_month_equal",
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "label": "月=日ゾロ目",
+    "priority": 98,
+    "match": {
+      "month_equals_day": true
+    },
+    "mean_diff": 213.2,
+    "sample_n": 11,
+    "positive_rate": 0.818,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e696b0e5aebfe69db1e5ae9de38393e383abe5ba97code/",
+    "notes": "1/1を正月へ排他化。曜日調整置換検定p=0.022。"
+  },
+  {
+    "rule_id": "toho_day31",
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "label": "31日・隠れ看板",
+    "priority": 97,
+    "match": {
+      "day": 31
+    },
+    "mean_diff": 337.4,
+    "sample_n": 7,
+    "positive_rate": 1.0,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e696b0e5aebfe69db1e5ae9de38393e383abe5ba97code/",
+    "notes": "30日とは分離。曜日調整置換検定p=0.0018、7戦全勝。"
+  },
+  {
+    "rule_id": "toho_day21",
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "label": "21日・店長就任日",
+    "priority": 96,
+    "match": {
+      "day": 21
+    },
+    "mean_diff": 300.1,
+    "sample_n": 12,
+    "positive_rate": 0.917,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e696b0e5aebfe69db1e5ae9de38393e383abe5ba97code/",
+    "notes": "店長就任日という外部構造とR12実測が一致。"
+  },
+  {
+    "rule_id": "toho_day22",
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "label": "22日",
+    "priority": 95,
+    "match": {
+      "day": 22
+    },
+    "mean_diff": 218.8,
+    "sample_n": 12,
+    "positive_rate": 1.0,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e696b0e5aebfe69db1e5ae9de38393e383abe5ba97code/"
+  },
+  {
+    "rule_id": "toho_day11",
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "label": "11日",
+    "priority": 95,
+    "match": {
+      "day": 11
+    },
+    "mean_diff": 201.0,
+    "sample_n": 11,
+    "positive_rate": 1.0,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e696b0e5aebfe69db1e5ae9de38393e383abe5ba97code/",
+    "notes": "11/11は上位の月=日ルールが優先。"
+  },
+  {
+    "rule_id": "toho_day23",
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "label": "23日・やばたにえん",
+    "priority": 94,
+    "match": {
+      "day": 23
+    },
+    "mean_diff": 188.9,
+    "sample_n": 12,
+    "positive_rate": 0.833,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e696b0e5aebfe69db1e5ae9de38393e383abe5ba97code/",
+    "notes": "外部で月例企画名を確認。R12日次で再検算。"
+  },
+  {
+    "rule_id": "toho_day24",
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "label": "24日・旧イベ",
+    "priority": 93,
+    "match": {
+      "day": 24
+    },
+    "mean_diff": 150.3,
+    "sample_n": 11,
+    "positive_rate": 0.909,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e696b0e5aebfe69db1e5ae9de38393e383abe5ba97code/",
+    "notes": "周年4/24は上位ルールへ分離。"
+  },
+  {
+    "rule_id": "toho_day01",
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "label": "1日・隠れリズム",
+    "priority": 92,
+    "match": {
+      "day": 1
+    },
+    "mean_diff": 165.5,
+    "sample_n": 11,
+    "positive_rate": 0.909,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e696b0e5aebfe69db1e5ae9de38393e383abe5ba97code/",
+    "notes": "1/1は正月、月=日該当月は月=日が優先。"
+  },
+  {
+    "rule_id": "toho_day7_family",
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "label": "7のつく日・絶対値採用",
+    "priority": 91,
+    "match": {
+      "day_in": [
+        7,
+        17,
+        27
+      ]
+    },
+    "mean_diff": 98.1,
+    "sample_n": 35,
+    "positive_rate": 0.914,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e696b0e5aebfe69db1e5ae9de38393e383abe5ba97code/",
+    "notes": "曜日調整後の相対リフトはp=0.462で棄却。ただし46/52の判定床+50を絶対値で上回るためA候補として残す。"
+  },
+  {
+    "rule_id": "toho_day6_family",
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "label": "6のつく日・補助",
+    "priority": 90,
+    "match": {
+      "day_in": [
+        6,
+        16,
+        26
+      ]
+    },
+    "mean_diff": 129.3,
+    "sample_n": 36,
+    "positive_rate": 0.806,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e696b0e5aebfe69db1e5ae9de38393e383abe5ba97code/",
+    "notes": "絶対値は床を上回るが曜日調整後リフトは弱い。外部旧イベ候補との一致を補助根拠に縮約採用。"
+  },
+  {
+    "rule_id": "toho_day03_avoid",
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "label": "3日回避",
+    "priority": 89,
+    "match": {
+      "day": 3
+    },
+    "mean_diff": -10.9,
+    "sample_n": 12,
+    "positive_rate": 0.333,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e696b0e5aebfe69db1e5ae9de38393e383abe5ba97code/",
+    "notes": "日付31本の多重比較後BH q=0.014。1/3は上位の正月ルールが優先。"
+  },
+  {
+    "rule_id": "toho_day04_avoid",
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "label": "4日回避",
+    "priority": 89,
+    "match": {
+      "day": 4
+    },
+    "mean_diff": 6.7,
+    "sample_n": 12,
+    "positive_rate": 0.667,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e696b0e5aebfe69db1e5ae9de38393e383abe5ba97code/",
+    "notes": "曜日調整残差が負、多重比較後BH q=0.042。交換差の床未満。"
+  },
+  {
+    "rule_id": "toho_day15_avoid",
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "label": "15日回避",
+    "priority": 89,
+    "match": {
+      "day": 15
+    },
+    "mean_diff": -25.2,
+    "sample_n": 12,
+    "positive_rate": 0.333,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e696b0e5aebfe69db1e5ae9de38393e383abe5ba97code/",
+    "notes": "多重比較後BH q=0.0043。"
+  },
+  {
+    "rule_id": "toho_day20_avoid",
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "label": "20日回避",
+    "priority": 89,
+    "match": {
+      "day": 20
+    },
+    "mean_diff": -39.8,
+    "sample_n": 12,
+    "positive_rate": 0.25,
+    "data_through": "2026-07-12",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e696b0e5aebfe69db1e5ae9de38393e383abe5ba97code/",
+    "notes": "多重比較後BH q=0.0043。翌21日の前日。"
+  },
+  {
+    "rule_id": "toho_rebound_killed",
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "label": "ホール反発・棄却",
+    "priority": 10,
+    "match": {},
+    "mean_diff": 3.4,
+    "sample_n": 16,
+    "positive_rate": null,
+    "data_through": "2026-07-12",
+    "status": "kill",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e696b0e5aebfe69db1e5ae9de38393e383abe5ba97code/",
+    "notes": "lag1 r=+0.079。前日-100以下の翌通常+3.4、通常無条件+69.7で反発なし。"
+  },
+  {
+    "rule_id": "toho_cold_up_killed",
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "label": "機種の冷え上げ・棄却",
+    "priority": 10,
+    "match": {},
+    "mean_diff": 0.0,
+    "sample_n": 127,
+    "positive_rate": null,
+    "data_through": "2026-07-12",
+    "status": "kill",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e696b0e5aebfe69db1e5ae9de38393e383abe5ba97code/kisyu_tokubi/",
+    "notes": "再点火ハザード1-3日6.94%、4-7日9.07%、8-14日8.68%、15日以上4.43%。単調増加なし。"
+  },
+  {
+    "rule_id": "toho_carryover_killed",
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "label": "据え置き・棄却",
+    "priority": 10,
+    "match": {},
+    "mean_diff": 5.4,
+    "sample_n": 534,
+    "positive_rate": null,
+    "data_through": "2026-07-12",
+    "status": "kill",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e696b0e5aebfe69db1e5ae9de38393e383abe5ba97code/kisyu_tokubi/",
+    "notes": "優秀機種の翌日継続5.4%、無条件6.3%、lift=0.86。"
+  },
+  {
+    "rule_id": "toho_prev_squeeze_killed",
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "label": "前日絞り→特定日・棄却",
+    "priority": 10,
+    "match": {},
+    "mean_diff": 194.5,
+    "sample_n": 4,
+    "positive_rate": null,
+    "data_through": "2026-07-12",
+    "status": "kill",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e696b0e5aebfe69db1e5ae9de38393e383abe5ba97code/",
+    "notes": "前日-100以下n=4で+194.5、その他n=89で+174.2。差が小さくn不足。"
+  },
+  {
+    "rule_id": "toho_budget_buildup_reframed",
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "label": "直前3日溜め吐き・補助",
+    "priority": 10,
+    "match": {},
+    "mean_diff": -0.206,
+    "sample_n": 93,
+    "positive_rate": null,
+    "data_through": "2026-07-12",
+    "status": "reframe",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e696b0e5aebfe69db1e5ae9de38393e383abe5ba97code/",
+    "notes": "特定日差枚×直前3通常日平均r=-0.206。方向のみ一致し単独予測には不使用。"
+  },
+  {
+    "rule_id": "toho_month_zero_sum_killed",
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "label": "月内ゼロサム・棄却",
+    "priority": 10,
+    "match": {},
+    "mean_diff": 0.009,
+    "sample_n": 13,
+    "positive_rate": null,
+    "data_through": "2026-07-12",
+    "status": "kill",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e696b0e5aebfe69db1e5ae9de38393e383abe5ba97code/",
+    "notes": "月次の特定日平均×通常日平均r=+0.009。固定枠/ゼロサム根拠なし。"
+  },
+  {
+    "rule_id": "toho_tail_structure_reframed",
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "label": "末尾構造・位置レイヤー採用",
+    "priority": 10,
+    "match": {},
+    "mean_diff": 0.0,
+    "sample_n": 28,
+    "positive_rate": null,
+    "data_through": "2026-07-09",
+    "status": "reframe",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e696b0e5aebfe69db1e5ae9de38393e383abe5ba97code/daiban_hiduke/",
+    "notes": "直近91日マーカーの日付一致16/28=57%、連続リピート2/23。90日行列の対角は末尾6+2913、7+847、下2桁ゾロ目+3018。店日保証ではなく位置レイヤーだけに採用。"
+  },
+  {
+    "rule_id": "toho_day25_killed",
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "label": "25日・多重比較後不採用",
+    "priority": 10,
+    "match": {
+      "day": 25
+    },
+    "mean_diff": 163.9,
+    "sample_n": 12,
+    "positive_rate": 1.0,
+    "data_through": "2026-07-12",
+    "status": "kill",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e696b0e5aebfe69db1e5ae9de38393e383abe5ba97code/",
+    "notes": "見た目は強いが曜日調整後BH q=0.182。事後選択を避けるため固定日ルールへ昇格しない。"
+  },
+  {
+    "rule_id": "toho_day28_killed",
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "label": "28日・多重比較後不採用",
+    "priority": 10,
+    "match": {
+      "day": 28
+    },
+    "mean_diff": 168.9,
+    "sample_n": 12,
+    "positive_rate": null,
+    "data_through": "2026-07-12",
+    "status": "kill",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e696b0e5aebfe69db1e5ae9de38393e383abe5ba97code/",
+    "notes": "曜日調整後BH q=0.162。事後選択を避けるため固定日ルールへ昇格しない。"
+  },
+  {
+    "rule_id": "mm_old_event_3_6_union",
+    "hall_id": "yokohama_slot_mm_tsunashima",
+    "label": "3・6のつく日（20円140台・非等価）",
+    "priority": 70,
+    "match": {
+      "day_in": [
+        3,
+        6,
+        13,
+        16,
+        23,
+        26
+      ]
+    },
+    "mean_diff": 18.7,
+    "sample_n": 40,
+    "positive_rate": 0.575,
+    "data_through": "2026-06-24",
+    "regime_separated": true,
+    "source_url": "https://www.slorepo.com/hole/534c4f54204d264de7b6b1e5b3b6e5ba97code/",
+    "notes": "事前定義された旧イベ。その他日-66.1(n=162)との差+84.8、決定論的置換検定p=0.00053。公式20円140台と公開分母140台の一致で貸玉区分は解消したが、絶対平均+18.7は5.1枚交換の判定床+50未満。"
+  },
+  {
+    "rule_id": "mm_day16_reframed",
+    "hall_id": "yokohama_slot_mm_tsunashima",
+    "label": "16日・反復候補（非等価・移動後NO BET）",
+    "priority": 85,
+    "match": {
+      "day": 16
+    },
+    "mean_diff": 72.9,
+    "sample_n": 7,
+    "positive_rate": 0.857,
+    "data_through": "2026-06-24",
+    "status": "active",
+    "source_url": "https://www.slorepo.com/hole/534c4f54204d264de7b6b1e5b3b6e5ba97code/",
+    "notes": "6/7勝、平均+72.9、中央値+62、平均G3279.7。公式20円140台と公開分母140台の一致で貸玉区分を解消し日付ルールを解禁。ただし0縮約後+46.4、5.1枚交換床+50と移動罰を下回るため実戦は見送り。多重比較後BH q=0.424のため追試継続。",
+    "regime_separated": true
+  },
+  {
+    "rule_id": "mm_day23_reframed",
+    "hall_id": "yokohama_slot_mm_tsunashima",
+    "label": "23日・反復候補（非等価・移動後NO BET）",
+    "priority": 85,
+    "match": {
+      "day": 23
+    },
+    "mean_diff": 78.9,
+    "sample_n": 7,
+    "positive_rate": 0.714,
+    "data_through": "2026-06-24",
+    "status": "active",
+    "source_url": "https://www.slorepo.com/hole/534c4f54204d264de7b6b1e5b3b6e5ba97code/",
+    "notes": "5/7勝、平均+78.9、中央値+61、平均G2822.3。公式20円140台と公開分母140台の一致で貸玉区分を解消し日付ルールを解禁。ただし0縮約後+50.2で判定床とほぼ同値、移動罰込みではNO BET。多重比較後BH q=0.424のため追試継続。",
+    "regime_separated": true
+  },
+  {
+    "rule_id": "mm_3_13_26_split_killed",
+    "hall_id": "yokohama_slot_mm_tsunashima",
+    "label": "3日・13日・26日の単独昇格棄却",
+    "priority": 10,
+    "match": {
+      "day_in": [
+        3,
+        13,
+        26
+      ]
+    },
+    "mean_diff": -33.3,
+    "sample_n": 19,
+    "positive_rate": 0.421,
+    "data_through": "2026-06-24",
+    "status": "kill",
+    "source_url": "https://www.slorepo.com/hole/534c4f54204d264de7b6b1e5b3b6e5ba97code/",
+    "notes": "各日: 3日-20.3(n=6)、13日-22.4(n=7)、26日-56.5(n=6)。旧イベ一括の絶対プラスを各日へ外挿しない。"
+  },
+  {
+    "rule_id": "mm_day11_hidden_killed",
+    "hall_id": "yokohama_slot_mm_tsunashima",
+    "label": "11日・隠れ日候補を多重比較後棄却",
+    "priority": 10,
+    "match": {
+      "day": 11
+    },
+    "mean_diff": 54.1,
+    "sample_n": 7,
+    "positive_rate": 0.714,
+    "data_through": "2026-06-24",
+    "status": "kill",
+    "source_url": "https://www.slorepo.com/hole/534c4f54204d264de7b6b1e5b3b6e5ba97code/",
+    "notes": "見た目は5/7勝だが日付31本の多重比較後BH q=0.624。事後選択を避け固定日へ昇格しない。"
+  },
+  {
+    "rule_id": "mm_month_equals_day_killed",
+    "hall_id": "yokohama_slot_mm_tsunashima",
+    "label": "月=日ゾロ目・棄却",
+    "priority": 10,
+    "match": {
+      "month_equals_day": true
+    },
+    "mean_diff": 49.7,
+    "sample_n": 7,
+    "positive_rate": 0.571,
+    "data_through": "2026-06-24",
+    "status": "kill",
+    "source_url": "https://www.slorepo.com/hole/534c4f54204d264de7b6b1e5b3b6e5ba97code/",
+    "notes": "3/3・6/6が旧イベと重なるconfound。非等価床+50とほぼ同値、独立効果を確認できない。"
+  },
+  {
+    "rule_id": "mm_rebound_killed",
+    "hall_id": "yokohama_slot_mm_tsunashima",
+    "label": "ホール反発・棄却",
+    "priority": 10,
+    "match": {},
+    "mean_diff": -71.5,
+    "sample_n": 57,
+    "positive_rate": null,
+    "data_through": "2026-06-24",
+    "status": "kill",
+    "source_url": "https://www.slorepo.com/hole/534c4f54204d264de7b6b1e5b3b6e5ba97code/",
+    "notes": "lag1 r=-0.022。前日-100以下の翌通常-71.5(n=57)、その他-63.2(n=104)で反発なし。"
+  },
+  {
+    "rule_id": "mm_cold_up_killed",
+    "hall_id": "yokohama_slot_mm_tsunashima",
+    "label": "機種の冷え上げ・棄却",
+    "priority": 10,
+    "match": {},
+    "mean_diff": 0,
+    "sample_n": 1109,
+    "positive_rate": null,
+    "data_through": "2026-06-01",
+    "status": "kill",
+    "source_url": "https://www.slorepo.com/hole/534c4f54204d264de7b6b1e5b3b6e5ba97code/",
+    "notes": "現行19機種の公開優秀リスト再点火ハザード: 1-3日3.20%(4/125)、4-7日0.67%(1/149)、8-14日1.29%(3/232)、15日以上2.65%(16/603)。単調増加なし。閾値選抜データなので補助検定。"
+  },
+  {
+    "rule_id": "mm_carryover_killed",
+    "hall_id": "yokohama_slot_mm_tsunashima",
+    "label": "据え置き・棄却",
+    "priority": 10,
+    "match": {},
+    "mean_diff": 2.1,
+    "sample_n": 94,
+    "positive_rate": null,
+    "data_through": "2026-06-24",
+    "status": "kill",
+    "source_url": "https://www.slorepo.com/hole/534c4f54204d264de7b6b1e5b3b6e5ba97code/",
+    "notes": "優秀機種の翌日継続2/94=2.1%、無条件の同一機種日次出現1.72%で実用差なし。"
+  },
+  {
+    "rule_id": "mm_prev_squeeze_killed",
+    "hall_id": "yokohama_slot_mm_tsunashima",
+    "label": "前日絞り→特定日・棄却",
+    "priority": 10,
+    "match": {},
+    "mean_diff": 25.6,
+    "sample_n": 16,
+    "positive_rate": 0.562,
+    "data_through": "2026-06-24",
+    "status": "kill",
+    "source_url": "https://www.slorepo.com/hole/534c4f54204d264de7b6b1e5b3b6e5ba97code/",
+    "notes": "前日-100以下の旧イベ+25.6(n=16)、その他+14.2(n=24)。差+11.4のみ。"
+  },
+  {
+    "rule_id": "mm_budget_buildup_reframed",
+    "hall_id": "yokohama_slot_mm_tsunashima",
+    "label": "直前3日溜め吐き・補助",
+    "priority": 10,
+    "match": {},
+    "mean_diff": -0.196,
+    "sample_n": 39,
+    "positive_rate": null,
+    "data_through": "2026-06-24",
+    "status": "reframe",
+    "source_url": "https://www.slorepo.com/hole/534c4f54204d264de7b6b1e5b3b6e5ba97code/",
+    "notes": "旧イベ差枚×直前3日平均r=-0.196。方向のみ一致し単独予測には使わない。"
+  },
+  {
+    "rule_id": "mm_month_zero_sum_killed",
+    "hall_id": "yokohama_slot_mm_tsunashima",
+    "label": "月内ゼロサム・棄却",
+    "priority": 10,
+    "match": {},
+    "mean_diff": 0.127,
+    "sample_n": 7,
+    "positive_rate": null,
+    "data_through": "2026-06-24",
+    "status": "kill",
+    "source_url": "https://www.slorepo.com/hole/534c4f54204d264de7b6b1e5b3b6e5ba97code/",
+    "notes": "月次の旧イベ平均×その他日平均r=+0.127。固定枠・月内ゼロサムの裏付けなし。"
+  },
+  {
+    "rule_id": "mm_tail_structure_reframed",
+    "hall_id": "yokohama_slot_mm_tsunashima",
+    "label": "末尾構造・確認指標のみ",
+    "priority": 10,
+    "match": {},
+    "mean_diff": 0,
+    "sample_n": 40,
+    "positive_rate": null,
+    "data_through": "2026-06-24",
+    "status": "reframe",
+    "source_url": "https://www.slorepo.com/hole/534c4f54204d264de7b6b1e5b3b6e5ba97code/",
+    "notes": "優秀末尾40件（数字末尾38、下2桁ゾロ目2）。日付一致4/38=10.5%、選抜日間リピート1/29=3.4%。末尾1・8が各6回でも事前予測力なし。"
+  },
+  {
+    "rule_id": "rakuen_ekimae_july_rebound_pending",
+    "hall_id": "shibuya_rakuen_ekimae",
+    "label": "2026年7月短期反発・監視",
+    "priority": 10,
+    "match": {},
+    "mean_diff": 142.8,
+    "sample_n": 11,
+    "positive_rate": 0.818,
+    "data_through": "2026-07-11",
+    "status": "reframe",
+    "source_url": "https://www.slorepo.com/hole/e6a5bde59c92e6b88be8b0b7e9a785e5898de5ba97code/",
+    "notes": "7/1〜11の公開11日。短期反発は強いが特定日・曜日・周年が混在し、7/12・13も未掲載。通常日ベースや365日ランクへ自動昇格させず、月末まで追試する。"
+  },
+  {
+    "rule_id": "bd_month_equals_day_avoid",
+    "hall_id": "ikegami_big_dipper_togoshi_ginza",
+    "label": "月=日・回避（正候補を反転）",
+    "priority": 130,
+    "match": {
+      "month_equals_day": true
+    },
+    "mean_diff": -38.2,
+    "sample_n": 8,
+    "positive_rate": 0.5,
+    "data_through": "2026-07-13",
+    "status": "active",
+    "source_url": "https://min-repo.com/tag/%e3%83%93%e3%83%83%e3%82%af%e3%83%87%e3%82%a3%e3%83%83%e3%83%91%e3%83%bc%e6%88%b8%e8%b6%8a%e9%8a%80%e5%ba%a7%e5%ba%97/",
+    "notes": "事前の強日候補を反転。平均-38.2、前半-16.8、後半-59.6。曜日・月調整リフト-121.4、ただし多重補正q=0.662。1/1や7/7で他の正ルールを上書きし、強日扱いを禁止する保守ルール。"
+  },
+  {
+    "rule_id": "bd_day_11_22_avoid",
+    "hall_id": "ikegami_big_dipper_togoshi_ginza",
+    "label": "11日・22日・回避（正候補を反転）",
+    "priority": 120,
+    "match": {
+      "day_in": [
+        11,
+        22
+      ]
+    },
+    "mean_diff": -54.5,
+    "sample_n": 15,
+    "positive_rate": 0.4,
+    "data_through": "2026-07-13",
+    "status": "active",
+    "source_url": "https://min-repo.com/tag/%e3%83%93%e3%83%83%e3%82%af%e3%83%87%e3%82%a3%e3%83%83%e3%83%91%e3%83%bc%e6%88%b8%e8%b6%8a%e9%8a%80%e5%ba%a7%e5%ba%97/",
+    "notes": "外部旧イベ候補だったが平均-54.5、前半-69.5、後半-37.4。補正リフト-139.8、層別置換p=0.076、q=0.239。積極的な負予測ではなく、正候補として扱わないための回避上書き。"
+  },
+  {
+    "rule_id": "bd_day_1_20_absolute",
+    "hall_id": "ikegami_big_dipper_togoshi_ginza",
+    "label": "1日・20日（絶対水準）",
+    "priority": 100,
+    "match": {
+      "day_in": [
+        1,
+        20
+      ]
+    },
+    "mean_diff": 201.3,
+    "sample_n": 15,
+    "positive_rate": 0.7333,
+    "data_through": "2026-07-13",
+    "status": "active",
+    "source_url": "https://min-repo.com/tag/%e3%83%93%e3%83%83%e3%82%af%e3%83%87%e3%82%a3%e3%83%83%e3%83%91%e3%83%bc%e6%88%b8%e8%b6%8a%e9%8a%80%e5%ba%a7%e5%ba%97/",
+    "notes": "事前候補。平均+201.3、中央値+174、前半+197.8、後半+205.3。曜日・月調整リフト+133.1、層別置換p=0.033。全11検定BH q=0.239と媒体交絡を残すためSへは上げない。"
+  },
+  {
+    "rule_id": "bd_digit_7_absolute",
+    "hall_id": "ikegami_big_dipper_togoshi_ginza",
+    "label": "7のつく日（絶対水準B）",
+    "priority": 80,
+    "match": {
+      "day_in": [
+        7,
+        17,
+        27
+      ]
+    },
+    "mean_diff": 102.3,
+    "sample_n": 22,
+    "positive_rate": 0.8182,
+    "data_through": "2026-07-13",
+    "status": "active",
+    "source_url": "https://min-repo.com/tag/%e3%83%93%e3%83%83%e3%82%af%e3%83%87%e3%82%a3%e3%83%83%e3%83%91%e3%83%bc%e6%88%b8%e8%b6%8a%e9%8a%80%e5%ba%a7%e5%ba%97/",
+    "notes": "平均+102.3・勝率81.8%だが通常差+26.5、調整リフト+24.8、p=0.553。前半+146.6→後半+58.1。相対強日ではなく非等価床・移動効用を越える絶対水準だけをB採用。"
+  },
+  {
+    "rule_id": "bd_digit_9_absolute",
+    "hall_id": "ikegami_big_dipper_togoshi_ginza",
+    "label": "9のつく日（絶対水準B）",
+    "priority": 79,
+    "match": {
+      "day_in": [
+        9,
+        19,
+        29
+      ]
+    },
+    "mean_diff": 100.9,
+    "sample_n": 21,
+    "positive_rate": 0.7619,
+    "data_through": "2026-07-13",
+    "status": "active",
+    "source_url": "https://min-repo.com/tag/%e3%83%93%e3%83%83%e3%82%af%e3%83%87%e3%82%a3%e3%83%83%e3%83%91%e3%83%bc%e6%88%b8%e8%b6%8a%e9%8a%80%e5%ba%a7%e5%ba%97/",
+    "notes": "平均+100.9・勝率76.2%。通常差+24.8、調整リフト+27.8、p=0.452。前半+77.5・後半+122.2。相対強日ではなく絶対水準B。"
+  },
+  {
+    "rule_id": "bd_digit_3_absolute",
+    "hall_id": "ikegami_big_dipper_togoshi_ginza",
+    "label": "3のつく日（絶対水準B）",
+    "priority": 78,
+    "match": {
+      "day_in": [
+        3,
+        13,
+        23
+      ]
+    },
+    "mean_diff": 90.2,
+    "sample_n": 23,
+    "positive_rate": 0.7391,
+    "data_through": "2026-07-13",
+    "status": "active",
+    "source_url": "https://min-repo.com/tag/%e3%83%93%e3%83%83%e3%82%af%e3%83%87%e3%82%a3%e3%83%83%e3%83%91%e3%83%bc%e6%88%b8%e8%b6%8a%e9%8a%80%e5%ba%a7%e5%ba%97/",
+    "notes": "平均+90.2・勝率73.9%。通常差+13.1、調整リフト+14.2、p=0.747。前半+111.0・後半+71.1。相対強日ではなく絶対水準B。"
+  },
+  {
+    "rule_id": "bd_digit_5_absolute",
+    "hall_id": "ikegami_big_dipper_togoshi_ginza",
+    "label": "5のつく日（絶対水準B）",
+    "priority": 77,
+    "match": {
+      "day_in": [
+        5,
+        15,
+        25
+      ]
+    },
+    "mean_diff": 89.8,
+    "sample_n": 22,
+    "positive_rate": 0.6818,
+    "data_through": "2026-07-13",
+    "status": "active",
+    "source_url": "https://min-repo.com/tag/%e3%83%93%e3%83%83%e3%82%af%e3%83%87%e3%82%a3%e3%83%83%e3%83%91%e3%83%bc%e6%88%b8%e8%b6%8a%e9%8a%80%e5%ba%a7%e5%ba%97/",
+    "notes": "平均+89.8・勝率68.2%。通常差+12.5、調整リフト+10.8、p=0.794。前半+112.3・後半+67.2。相対強日ではなく絶対水準B。"
+  },
+  {
+    "rule_id": "bd_day_12_exploratory",
+    "hall_id": "ikegami_big_dipper_togoshi_ginza",
+    "label": "12日高見え・事前登録なし",
+    "priority": 10,
+    "match": {
+      "day": 12
+    },
+    "mean_diff": 204.7,
+    "sample_n": 8,
+    "positive_rate": 0.875,
+    "data_through": "2026-07-13",
+    "status": "reframe",
+    "source_url": "https://hall-navi.com/hole_view?hid=142005100000001852",
+    "notes": "平均+204.7、前半+179.2、後半+230.2でも事前の旧イベ候補ではない。探索後選択になるため365日予測へ入れず、同一媒体の事前告知がある時だけ再検証。"
+  },
+  {
+    "rule_id": "bd_day_16_exploratory",
+    "hall_id": "ikegami_big_dipper_togoshi_ginza",
+    "label": "16日高見え・事前登録なし",
+    "priority": 10,
+    "match": {
+      "day": 16
+    },
+    "mean_diff": 199.4,
+    "sample_n": 7,
+    "positive_rate": 0.8571,
+    "data_through": "2026-07-13",
+    "status": "reframe",
+    "source_url": "https://hall-navi.com/hole_view?hid=142005100000001852",
+    "notes": "平均+199.4、前半+115.5、後半+311.3でも事前登録なし。7/16の媒体告知を含む取材レイヤーとして追試し、固定日へ昇格しない。"
+  },
+  {
+    "rule_id": "bd_media_density_reframed",
+    "hall_id": "ikegami_big_dipper_togoshi_ginza",
+    "label": "日付×媒体交絡・告知別へ分離",
+    "priority": 10,
+    "match": {},
+    "mean_diff": 31,
+    "sample_n": 33,
+    "positive_rate": 0.9394,
+    "data_through": "2026-07-13",
+    "status": "reframe",
+    "source_url": "https://hall-navi.com/hole_view?hid=142005100000001852",
+    "notes": "Hall Naviは6/11〜7/13の33日中31日に1件以上の取材・来店・AI予想・新台告知を掲載。日付へ媒体効果を帰属させず、媒体名を事前登録して別検証する。mean_diff欄31は告知日数。"
+  },
+  {
+    "rule_id": "bd_machine_carryover_reframed",
+    "hall_id": "ikegami_big_dipper_togoshi_ginza",
+    "label": "前日優秀機種の翌日継続・機種レイヤー",
+    "priority": 10,
+    "match": {},
+    "mean_diff": 16.41,
+    "sample_n": 1426,
+    "positive_rate": 0.1641,
+    "data_through": "2026-07-13",
+    "status": "reframe",
+    "source_url": "https://min-repo.com/tag/%e3%83%93%e3%83%83%e3%82%af%e3%83%87%e3%82%a3%e3%83%83%e3%83%91%e3%83%bc%e6%88%b8%e8%b6%8a%e9%8a%80%e5%ba%a7%e5%ba%97/",
+    "notes": "前日公開優秀機種→翌日も優秀234/1426=16.41%、前日非選抜では1192/18665=6.39%、OR=2.88。機種内置換p=0.0022。店ランクは上げず、前日結果取得後の機種優先順位にだけ使う。"
+  },
+  {
+    "rule_id": "bd_machine_cold_up_killed",
+    "hall_id": "ikegami_big_dipper_togoshi_ginza",
+    "label": "機種の冷え上げ・棄却",
+    "priority": 10,
+    "match": {},
+    "mean_diff": 4.9,
+    "sample_n": 11175,
+    "positive_rate": null,
+    "data_through": "2026-07-13",
+    "status": "kill",
+    "source_url": "https://min-repo.com/tag/%e3%83%93%e3%83%83%e3%82%af%e3%83%87%e3%82%A3%e3%83%83%e3%83%91%e3%83%bc%e6%88%b8%e8%b6%8a%e9%8a%80%e5%ba%a7%e5%ba%97/",
+    "notes": "前回優秀から1-3日15.07%(546/3622)、4-7日14.38%、8-14日13.93%、15日以上4.90%(134/2733)。冷えたほど上がる形と逆。"
+  },
+  {
+    "rule_id": "bd_prev3_buildup_reframed",
+    "hall_id": "ikegami_big_dipper_togoshi_ginza",
+    "label": "直前3日マイナス→候補日・補助",
+    "priority": 10,
+    "match": {},
+    "mean_diff": 170.4,
+    "sample_n": 26,
+    "positive_rate": 0.8462,
+    "data_through": "2026-07-13",
+    "status": "reframe",
+    "source_url": "https://min-repo.com/tag/%e3%83%93%e3%83%83%e3%82%af%e3%83%87%e3%82%a3%e3%83%83%e3%83%91%e3%83%bc%e6%88%b8%e8%b6%8a%e9%8a%80%e5%ba%a7%e5%ba%97/",
+    "notes": "事前候補日の直前3日平均が負なら当日+170.4(n=26)、非負なら+91.9(n=75)、相関r=-0.175。日付・媒体との交絡を残すため単独ルールにしない。"
+  },
+  {
+    "rule_id": "bd_rebound_killed",
+    "hall_id": "ikegami_big_dipper_togoshi_ginza",
+    "label": "ホール翌日反発・棄却",
+    "priority": 10,
+    "match": {},
+    "mean_diff": -0.019,
+    "sample_n": 224,
+    "positive_rate": null,
+    "data_through": "2026-07-13",
+    "status": "kill",
+    "source_url": "https://min-repo.com/tag/%e3%83%93%e3%83%83%e3%82%af%e3%83%87%e3%82%A3%e3%83%83%e3%83%91%e3%83%bc%e6%88%b8%e8%b6%8a%e9%8a%80%e5%ba%a7%e5%ba%97/",
+    "notes": "lag1 r=-0.019。前日店平均が負の翌日+70.9(n=79)、非負翌日+84.3(n=145)で反発優位なし。"
+  },
+  {
+    "rule_id": "bd_month_zero_sum_killed",
+    "hall_id": "ikegami_big_dipper_togoshi_ginza",
+    "label": "月内ゼロサム・棄却",
+    "priority": 10,
+    "match": {},
+    "mean_diff": -0.04,
+    "sample_n": 8,
+    "positive_rate": null,
+    "data_through": "2026-07-13",
+    "status": "kill",
+    "source_url": "https://min-repo.com/tag/%e3%83%93%e3%83%83%e3%82%af%e3%83%87%e3%82%A3%e3%83%83%e3%83%91%e3%83%bc%e6%88%b8%e8%b6%8a%e9%8a%80%e5%ba%a7%e5%ba%97/",
+    "notes": "8か月の事前候補日平均×その他日平均r=-0.040。月内固定予算の裏付けなし。"
+  },
+  {
+    "rule_id": "bd_tail_date_match_killed",
+    "hall_id": "ikegami_big_dipper_togoshi_ginza",
+    "label": "日付末尾×台番末尾一致・棄却",
+    "priority": 10,
+    "match": {},
+    "mean_diff": -1.48,
+    "sample_n": 90,
+    "positive_rate": 0.5111,
+    "data_through": "2026-07-13",
+    "status": "kill",
+    "source_url": "https://min-repo.com/tag/%e3%83%93%e3%83%83%e3%82%af%e3%83%87%e3%82%A3%e3%83%83%e3%83%91%e3%83%bc%e6%88%b8%e8%b6%8a%e9%8a%80%e5%ba%a7%e5%ba%97/",
+    "notes": "90日で日付末尾一致の正符号46/90=51.1%、非一致426/810=52.6%（差-1.48pt）。負差枚値は非表示なので符号検定に限定。固定末尾狙いは採用しない。"
+  },
+  {
+    "rule_id": "km7_anniversary",
+    "hall_id": "kamata_maruhan_mega7",
+    "label": "周年7/7",
+    "priority": 99,
+    "match": {
+      "month": 7,
+      "day": 7
+    },
+    "mean_diff": 899,
+    "sample_n": 1,
+    "data_through": "2026-07-13",
+    "source_kind": "slorepo_daily",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e383a1e382ace382b7e38386e382a332303030e892b2e794b037code/",
+    "status": "active",
+    "notes": "GO周年。開店日25/7/7=+2597は別枠。n=1、2027要検証"
+  },
+  {
+    "rule_id": "km7_day30",
+    "hall_id": "kamata_maruhan_mega7",
+    "label": "30日",
+    "priority": 92,
+    "match": {
+      "day": 30
+    },
+    "mean_diff": 351,
+    "sample_n": 9,
+    "data_through": "2026-07-13",
+    "source_kind": "slorepo_daily",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e383a1e382ace382b7e38386e382a332303030e892b2e794b037code/",
+    "status": "active",
+    "notes": "25/9以降9戦全勝。旧イベ『月末』の実体は30日"
+  },
+  {
+    "rule_id": "km7_zorome",
+    "hall_id": "kamata_maruhan_mega7",
+    "label": "ゾロ目",
+    "priority": 88,
+    "match": {
+      "month_equals_day": true
+    },
+    "mean_diff": 248,
+    "sample_n": 6,
+    "data_through": "2026-07-13",
+    "source_kind": "slorepo_daily",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e383a1e382ace382b7e38386e382a332303030e892b2e794b037code/",
+    "status": "active",
+    "notes": "26年6戦全勝。7/7は周年ルールが優先"
+  },
+  {
+    "rule_id": "km7_day7",
+    "hall_id": "kamata_maruhan_mega7",
+    "label": "7の日",
+    "priority": 85,
+    "match": {
+      "day_in": [
+        7,
+        17,
+        27
+      ]
+    },
+    "mean_diff": 154,
+    "sample_n": 18,
+    "data_through": "2026-07-13",
+    "source_kind": "slorepo_daily",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e383a1e382ace382b7e38386e382a332303030e892b2e794b037code/",
+    "status": "active",
+    "notes": "26年n18・83%。直近6回+343は周年込みの数字、期待値は+150前後"
+  },
+  {
+    "rule_id": "km7_day31_avoid",
+    "hall_id": "kamata_maruhan_mega7",
+    "label": "31日回避",
+    "priority": 84,
+    "match": {
+      "day": 31
+    },
+    "mean_diff": -129,
+    "sample_n": 3,
+    "data_through": "2026-07-13",
+    "source_kind": "slorepo_daily",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e383a1e382ace382b7e38386e382a332303030e892b2e794b037code/",
+    "status": "active",
+    "notes": "1/31=-331。月末は30日と31日を分解必須"
+  },
+  {
+    "rule_id": "km7_saturday",
+    "hall_id": "kamata_maruhan_mega7",
+    "label": "土曜",
+    "priority": 70,
+    "match": {
+      "weekday": 5
+    },
+    "mean_diff": 177,
+    "sample_n": 16,
+    "data_through": "2026-07-13",
+    "source_kind": "slorepo_daily",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e383a1e382ace382b7e38386e382a332303030e892b2e794b037code/",
+    "status": "active",
+    "notes": "通常日最強。日曜52%と対照"
+  },
+  {
+    "rule_id": "hm_anniversary",
+    "hall_id": "kamata_hiroki_max",
+    "label": "周年7/23",
+    "priority": 99,
+    "match": {
+      "month": 7,
+      "day": 23
+    },
+    "mean_diff": 201,
+    "sample_n": 2,
+    "data_through": "2026-07-13",
+    "source_kind": "slorepo_daily",
+    "source_url": "https://www.slorepo.com/hole/e38392e383ade382ad33e58fb7e5ba97code/",
+    "status": "active",
+    "notes": "2024+346/2025+56。2026=20周年×改装後初の威信日。一発勝負枠"
+  },
+  {
+    "rule_id": "hm_day6",
+    "hall_id": "kamata_hiroki_max",
+    "label": "6の日",
+    "priority": 85,
+    "match": {
+      "day_in": [
+        6,
+        16,
+        26
+      ]
+    },
+    "mean_diff": 96,
+    "sample_n": 6,
+    "data_through": "2026-07-13",
+    "source_kind": "slorepo_daily",
+    "source_url": "https://www.slorepo.com/hole/e38392e383ade382ad33e58fb7e5ba97code/",
+    "status": "active",
+    "notes": "ROバフ2回(+409/+667)除外の直近6回全勝。バフ込みは+207/n8。floorすれすれ"
+  },
+  {
+    "rule_id": "ib_anniversary",
+    "hall_id": "fukutoshin_maruhan_ikebukuro_sb",
+    "label": "周年4/26",
+    "priority": 99,
+    "match": {
+      "month": 4,
+      "day": 26
+    },
+    "mean_diff": 892,
+    "sample_n": 2,
+    "data_through": "2026-07-13",
+    "source_kind": "slorepo_daily",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e6b1a0e8a28b2d736c6f742d62617365code/",
+    "status": "active",
+    "notes": "2025+1009/2026+775"
+  },
+  {
+    "rule_id": "ib_day21",
+    "hall_id": "fukutoshin_maruhan_ikebukuro_sb",
+    "label": "21日",
+    "priority": 95,
+    "match": {
+      "day": 21
+    },
+    "mean_diff": 596,
+    "sample_n": 9,
+    "data_through": "2026-07-13",
+    "source_kind": "slorepo_daily",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e6b1a0e8a28b2d736c6f742d62617365code/",
+    "status": "active",
+    "notes": "12連続プラス(25/7〜)。2026のみ+664中央+740。前日20日は平均-30の絞り。旧イベ表記外の真看板"
+  },
+  {
+    "rule_id": "ib_day26",
+    "hall_id": "fukutoshin_maruhan_ikebukuro_sb",
+    "label": "26日",
+    "priority": 90,
+    "match": {
+      "day": 26
+    },
+    "mean_diff": 290,
+    "sample_n": 8,
+    "data_through": "2026-07-13",
+    "source_kind": "slorepo_daily",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e6b1a0e8a28b2d736c6f742d62617365code/",
+    "status": "active",
+    "notes": "GO日(4/26)の月次看板化。周年は別ルール優先"
+  },
+  {
+    "rule_id": "ib_day28",
+    "hall_id": "fukutoshin_maruhan_ikebukuro_sb",
+    "label": "28日",
+    "priority": 88,
+    "match": {
+      "day": 28
+    },
+    "mean_diff": 298,
+    "sample_n": 9,
+    "data_through": "2026-07-13",
+    "source_kind": "slorepo_daily",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e6b1a0e8a28b2d736c6f742d62617365code/",
+    "status": "active",
+    "notes": "東宝28日と同族のマルハン看板"
+  },
+  {
+    "rule_id": "ib_day22",
+    "hall_id": "fukutoshin_maruhan_ikebukuro_sb",
+    "label": "22日",
+    "priority": 86,
+    "match": {
+      "day": 22
+    },
+    "mean_diff": 246,
+    "sample_n": 9,
+    "data_through": "2026-07-13",
+    "source_kind": "slorepo_daily",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e6b1a0e8a28b2d736c6f742d62617365code/",
+    "status": "active",
+    "notes": "21日の余熱日。コンパス4534名実績日"
+  },
+  {
+    "rule_id": "ib_day7family",
+    "hall_id": "fukutoshin_maruhan_ikebukuro_sb",
+    "label": "7の日",
+    "priority": 82,
+    "match": {
+      "day_in": [
+        7,
+        17,
+        27
+      ]
+    },
+    "mean_diff": 177,
+    "sample_n": 28,
+    "data_through": "2026-07-13",
+    "source_kind": "slorepo_daily",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e6b1a0e8a28b2d736c6f742d62617365code/",
+    "status": "active",
+    "notes": "通年82%。他セッション推し座標だが4番手"
+  },
+  {
+    "rule_id": "ib_day3_avoid",
+    "hall_id": "fukutoshin_maruhan_ikebukuro_sb",
+    "label": "3日回収",
+    "priority": 80,
+    "match": {
+      "day": 3
+    },
+    "mean_diff": -60,
+    "sample_n": 10,
+    "data_through": "2026-07-13",
+    "source_kind": "slorepo_daily",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e6b1a0e8a28b2d736c6f742d62617365code/",
+    "status": "active",
+    "notes": "月初回収帯。勝ち日率30%、5/3=-439"
+  },
+  {
+    "rule_id": "km7_k1_anniv_dip",
+    "hall_id": "kamata_maruhan_mega7",
+    "label": "蒲田1周年連動・相対谷",
+    "priority": 96,
+    "match": {
+      "month": 8,
+      "day": 10
+    },
+    "mean_diff": 107,
+    "sample_n": 1,
+    "data_through": "2026-07-13",
+    "source_kind": "slorepo_daily",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e383a1e382ace382b7e38386e382a332303030e892b2e794b037code/",
+    "status": "active",
+    "notes": "2025/8/10=+107だが月次比-208の谷(前後+300〜400)。蒲田1周年に吸われる。S/A狙い禁止、B止まりに抑制"
+  },
+  {
+    "rule_id": "km7_k1_reopen_avoid",
+    "hall_id": "kamata_maruhan_mega7",
+    "label": "蒲田1改装記念日回避",
+    "priority": 96,
+    "match": {
+      "month": 9,
+      "day": 1
+    },
+    "mean_diff": -351,
+    "sample_n": 1,
+    "data_through": "2026-07-13",
+    "source_kind": "slorepo_daily",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e383a1e382ace382b7e38386e382a332303030e892b2e794b037code/",
+    "status": "active",
+    "notes": "2025/9/1=蒲田1改装オープンで-351(全期間最悪、偏差-576)。大型日限定融通型の証拠"
+  },
+  {
+    "rule_id": "mt_anniversary_0710",
+    "hall_id": "keikyu_mitoya_omorimachi",
+    "label": "周年7/10",
+    "priority": 99,
+    "match": {
+      "month": 7,
+      "day": 10
+    },
+    "mean_diff": 867.5,
+    "sample_n": 2,
+    "positive_rate": 1.0,
+    "data_through": "2026-07-13",
+    "source_url": "https://min-repo.com/2474976/",
+    "status": "active",
+    "regime_separated": true,
+    "notes": "2025年+775、2026年+960。年一のため通常10日と分離。n=2なので自動S/A化せずB止まり。"
+  },
+  {
+    "rule_id": "mt_day4_family",
+    "hall_id": "keikyu_mitoya_omorimachi",
+    "label": "4のつく日",
+    "priority": 92,
+    "match": {
+      "day_in": [
+        4,
+        14,
+        24
+      ]
+    },
+    "mean_diff": 197.3,
+    "sample_n": 19,
+    "positive_rate": 0.8947,
+    "data_through": "2026-07-13",
+    "source_url": "https://www.slorepo.com/hole/e381bfe381a8e38284e5a4a7e6a3aee794bae5ba97code/",
+    "status": "active",
+    "regime_separated": true,
+    "notes": "2026年1/4〜7/4の19回。17/19プラス、中央値+198。直近6回は5/6プラス・平均+134。通常日と明確に分離。"
+  },
+  {
+    "rule_id": "mt_day7_family",
+    "hall_id": "keikyu_mitoya_omorimachi",
+    "label": "7のつく日",
+    "priority": 91,
+    "match": {
+      "day_in": [
+        7,
+        17,
+        27
+      ]
+    },
+    "mean_diff": 157.8,
+    "sample_n": 19,
+    "positive_rate": 0.9474,
+    "data_through": "2026-07-13",
+    "source_url": "https://www.slorepo.com/hole/e381bfe381a8e38284e5a4a7e6a3aee794bae5ba97code/",
+    "status": "active",
+    "regime_separated": true,
+    "notes": "2026年1/7〜7/7の19回。18/19プラス、中央値+117。直近6回は6/6プラス・平均+230（7/7を除く直近5回も平均+137）。"
+  },
+  {
+    "rule_id": "mt_day10_nonanniv_avoid",
+    "hall_id": "keikyu_mitoya_omorimachi",
+    "label": "通常10日回避",
+    "priority": 82,
+    "match": {
+      "day": 10
+    },
+    "mean_diff": -123.3,
+    "sample_n": 6,
+    "positive_rate": 0.1667,
+    "data_through": "2026-07-13",
+    "source_url": "https://www.slorepo.com/hole/e381bfe381a8e38284e5a4a7e6a3aee794bae5ba97code/",
+    "status": "active",
+    "notes": "2026年1〜6月の10日。1/6プラス、平均-123.3。7/10周年は上位ルールが優先。周年の強さを毎月10日へ誤外挿ししない。"
+  },
+  {
+    "rule_id": "mt_sunday_normal_avoid",
+    "hall_id": "keikyu_mitoya_omorimachi",
+    "label": "通常日曜回避",
+    "priority": 60,
+    "match": {
+      "weekday": 6
+    },
+    "mean_diff": -75.0,
+    "sample_n": 23,
+    "positive_rate": 0.2609,
+    "data_through": "2026-07-13",
+    "source_url": "https://www.slorepo.com/hole/e381bfe381a8e38284e5a4a7e6a3aee794bae5ba97code/",
+    "status": "active",
+    "notes": "4/7系と周年を除いた日曜のみ。固定日と重なれば4/7系が優先。"
+  },
+  {
+    "rule_id": "mt_zorome_confounded",
+    "hall_id": "keikyu_mitoya_omorimachi",
+    "label": "月日ゾロ目は固定日交絡",
+    "priority": 10,
+    "match": {
+      "month_equals_day": true
+    },
+    "mean_diff": 288.0,
+    "sample_n": 7,
+    "positive_rate": 1.0,
+    "data_through": "2026-07-13",
+    "source_url": "https://www.slorepo.com/hole/e381bfe381a8e38284e5a4a7e6a3aee794bae5ba97code/",
+    "status": "reframe",
+    "notes": "1/1〜7/7は7/7・4/4・6/6・正月等が重なり、独立したゾロ目効果を識別できない。店予測には使わず事前告知・機種配分の補助観測に限定。"
+  },
+  {
+    "rule_id": "od_anniversary_1122",
+    "hall_id": "ooimachi_big_dipper",
+    "label": "周年11/22・年次振幅大",
+    "priority": 100,
+    "match": {
+      "month": 11,
+      "day": 22
+    },
+    "mean_diff": 263.0,
+    "sample_n": 2,
+    "positive_rate": 1.0,
+    "data_through": "2025-11-22",
+    "source_url": "https://min-repo.com/1995248/",
+    "status": "active",
+    "regime_separated": true,
+    "notes": "2024年+519、2025年+7。平均だけでは危険なため、鮮度・n不足で自動降格。2026年は事前追試。"
+  },
+  {
+    "rule_id": "od_third_saturday",
+    "hall_id": "ooimachi_big_dipper",
+    "label": "第3土曜日",
+    "priority": 95,
+    "match": {
+      "weekday": 5,
+      "nth_weekday": 3
+    },
+    "mean_diff": 217.0,
+    "sample_n": 6,
+    "positive_rate": 1.0,
+    "data_through": "2026-07-13",
+    "source_url": "https://www.slorepo.com/hole/e38393e38383e382afe38387e382a3e38383e38391e383bce5a4a7e4ba95e794bae5ba97code/",
+    "status": "active",
+    "regime_separated": true,
+    "notes": "2026年1〜6月の第3土曜。+371,+48,+223,+192,+79,+389で6/6プラス。前半+214・後半+220と安定。"
+  },
+  {
+    "rule_id": "od_day7_family",
+    "hall_id": "ooimachi_big_dipper",
+    "label": "7のつく日・監視止まり",
+    "priority": 90,
+    "match": {
+      "day_in": [
+        7,
+        17,
+        27
+      ]
+    },
+    "mean_diff": 67.0,
+    "sample_n": 19,
+    "positive_rate": 0.7368,
+    "data_through": "2026-07-13",
+    "source_url": "https://www.slorepo.com/hole/e38393e38383e382afe38387e382a3e38383e38391e383bce5a4a7e4ba95e794bae5ba97code/",
+    "status": "active",
+    "regime_separated": true,
+    "notes": "全19回平均+67.0、14/19プラス。直近6回は+74.2だが7/7-329。前半+115.1→後半+23.7へ減衰し、非等価床・移動込みではNO BET。"
+  },
+  {
+    "rule_id": "od_day22_monitor",
+    "hall_id": "ooimachi_big_dipper",
+    "label": "22日・監視",
+    "priority": 89,
+    "match": {
+      "day": 22
+    },
+    "mean_diff": 94.3,
+    "sample_n": 6,
+    "positive_rate": 0.8333,
+    "data_through": "2026-07-13",
+    "source_url": "https://www.slorepo.com/hole/e38393e38383e382afe38387e382a3e38383e38391e383bce5a4a7e4ba95e794bae5ba97code/",
+    "status": "active",
+    "regime_separated": true,
+    "notes": "6回中5回プラスだが前半+143.7→後半+45.0。縮約後は非等価床と移動を越えずNO BET。11/22は周年ルール優先。"
+  },
+  {
+    "rule_id": "od_day1_no_edge",
+    "hall_id": "ooimachi_big_dipper",
+    "label": "1日・看板根拠なし",
+    "priority": 86,
+    "match": {
+      "day": 1
+    },
+    "mean_diff": -5.9,
+    "sample_n": 7,
+    "positive_rate": 0.4286,
+    "data_through": "2026-07-13",
+    "source_url": "https://www.slorepo.com/hole/e38393e38383e382afe38387e382a3e38383e38391e383bce5a4a7e4ba95e794bae5ba97code/",
+    "status": "active",
+    "notes": "外部旧イベ表記はあるが7回平均-5.9、3/7プラス。固定日として採用しない。"
+  },
+  {
+    "rule_id": "od_day11_avoid",
+    "hall_id": "ooimachi_big_dipper",
+    "label": "11日・回避",
+    "priority": 85,
+    "match": {
+      "day": 11
+    },
+    "mean_diff": -34.1,
+    "sample_n": 7,
+    "positive_rate": 0.4286,
+    "data_through": "2026-07-13",
+    "source_url": "https://www.slorepo.com/hole/e38393e38383e382afe38387e382a3e38383e38391e383bce5a4a7e4ba95e794bae5ba97code/",
+    "status": "active",
+    "notes": "7回平均-34.1、3/7プラス。7/11+146の単発反発で再昇格しない。"
+  },
+  {
+    "rule_id": "od_normal_saturday_avoid",
+    "hall_id": "ooimachi_big_dipper",
+    "label": "通常土曜（第3除く）回避",
+    "priority": 60,
+    "match": {
+      "weekday": 5
+    },
+    "mean_diff": -34.1,
+    "sample_n": 22,
+    "positive_rate": 0.4545,
+    "data_through": "2026-07-13",
+    "source_url": "https://www.slorepo.com/hole/e38393e38383e382afe38387e382a3e38383e38391e383bce5a4a7e4ba95e794bae5ba97code/",
+    "status": "active",
+    "notes": "第3土曜を除く土曜22回は平均-34.1。第3土曜の上位ルールが優先。土曜全体の見かけの強さを分離。"
+  },
+  {
+    "rule_id": "od_month_equals_day_killed",
+    "hall_id": "ooimachi_big_dipper",
+    "label": "月=日・独立効果なし",
+    "priority": 10,
+    "match": {
+      "month_equals_day": true
+    },
+    "mean_diff": 9.3,
+    "sample_n": 7,
+    "positive_rate": 0.7143,
+    "data_through": "2026-07-13",
+    "source_url": "https://www.slorepo.com/hole/e38393e38383e382afe38387e382a3e38383e38391e383bce5a4a7e4ba95e794bae5ba97code/",
+    "status": "kill",
+    "notes": "7回平均+9.3。6/6+211と7/7-329など既存日型との交絡が大きく、独立ルールを棄却。"
+  },
+  {
+    "rule_id": "od_day6_exploratory",
+    "hall_id": "ooimachi_big_dipper",
+    "label": "6のつく日・高勝率低差枚",
+    "priority": 10,
+    "match": {
+      "day_in": [
+        6,
+        16,
+        26
+      ]
+    },
+    "mean_diff": 23.5,
+    "sample_n": 19,
+    "positive_rate": 0.7895,
+    "data_through": "2026-07-13",
+    "source_url": "https://www.slorepo.com/hole/e38393e38383e382afe38387e382a3e38383e38391e383bce5a4a7e4ba95e794bae5ba97code/",
+    "status": "reframe",
+    "notes": "15/19プラスだが平均+23.5。小幅勝ち中心で非等価床を越えず、事前媒体・機種レイヤーへreframe。"
+  },
+  {
+    "rule_id": "od_day8_exploratory",
+    "hall_id": "ooimachi_big_dipper",
+    "label": "8のつく日・探索後候補",
+    "priority": 10,
+    "match": {
+      "day_in": [
+        8,
+        18,
+        28
+      ]
+    },
+    "mean_diff": 8.2,
+    "sample_n": 19,
+    "positive_rate": 0.5263,
+    "data_through": "2026-07-13",
+    "source_url": "https://www.slorepo.com/hole/e38393e38383e382afe38387e382a3e38383e38391e383bce5a4a7e4ba95e794bae5ba97code/",
+    "status": "reframe",
+    "notes": "全19回平均+8.2。7/8+249など直近値で高く見えるが長期では通常域。固定予測へ入れない。"
+  },
+  {
+    "rule_id": "yw_media_5days_unverified",
+    "hall_id": "yokohama_123_west",
+    "label": "5・15・25日＋媒体来店・全店値未検証",
+    "priority": 50,
+    "match": {
+      "day_in": [
+        5,
+        15,
+        25
+      ]
+    },
+    "mean_diff": 0.0,
+    "sample_n": 0,
+    "positive_rate": null,
+    "data_through": "2026-07-13",
+    "source_url": "https://hall-navi.com/hole_view?ec=event&hid=220000500000114100&koe=15322",
+    "status": "pending",
+    "notes": "媒体レポート掲載が反復するが、記事は選抜箇所集計。全344台平均を取得するまで固定日として使わない。"
+  },
+  {
+    "rule_id": "yw_day22_media_unverified",
+    "hall_id": "yokohama_123_west",
+    "label": "22日＋スロパチガールS・全店値未検証",
+    "priority": 50,
+    "match": {
+      "day": 22
+    },
+    "mean_diff": 0.0,
+    "sample_n": 0,
+    "positive_rate": null,
+    "data_through": "2026-07-13",
+    "source_url": "https://hall-navi.com/hole_view?ec=event&hid=220000500000114100&koe=15322",
+    "status": "reframe",
+    "notes": "22日前後に媒体企画が反復するが、選抜箇所の強さと店全体還元を分離して追試する。"
+  },
+  {
+    "rule_id": "yw_day1_unverified",
+    "hall_id": "yokohama_123_west",
+    "label": "1日候補・証拠不足",
+    "priority": 20,
+    "match": {
+      "day": 1
+    },
+    "mean_diff": 0.0,
+    "sample_n": 0,
+    "positive_rate": null,
+    "data_through": "2026-07-13",
+    "source_url": "https://hall-navi.com/hole_view?ec=event&hid=220000500000114100&koe=15322",
+    "status": "pending",
+    "notes": "旧イベント候補として外部言及はあるが、全店差枚系列を復元できず採否保留。"
+  },
+  {
+    "rule_id": "yw_anniversary_1221_pending",
+    "hall_id": "yokohama_123_west",
+    "label": "周年12月21日・全店値取得待ち",
+    "priority": 90,
+    "match": {
+      "month": 12,
+      "day": 21
+    },
+    "mean_diff": 0.0,
+    "sample_n": 0,
+    "positive_rate": null,
+    "data_through": "2026-07-13",
+    "source_url": "https://p-town.dmm.com/shops/kanagawa/12985",
+    "status": "pending",
+    "notes": "周年日は12/21。選抜レポートではなく全344台差枚を取得して初めて予測解禁を判断する。"
+  },
+  {
+    "rule_id": "ys7_anniversary_0910",
+    "hall_id": "ikebukuro_yasuda7",
+    "label": "周年9/10・単年高出玉",
+    "priority": 100,
+    "match": {
+      "month": 9,
+      "day": 10
+    },
+    "mean_diff": 450.0,
+    "sample_n": 1,
+    "positive_rate": 1.0,
+    "data_through": "2025-09-10",
+    "source_url": "https://x.com/slo1_tyousataiZ/status/1965901845664301154",
+    "status": "active",
+    "regime_separated": true,
+    "notes": "2025年は総差約+15.2万枚・平均+450枚。n=1かつ前年値のみなので、鮮度降格を残して2026年を事前追試。"
+  },
+  {
+    "rule_id": "ys7_day7_family",
+    "hall_id": "ikebukuro_yasuda7",
+    "label": "7のつく日",
+    "priority": 90,
+    "match": {
+      "day_in": [
+        7,
+        17,
+        27
+      ]
+    },
+    "mean_diff": 258.7,
+    "sample_n": 19,
+    "positive_rate": 0.7895,
+    "data_through": "2026-07-13",
+    "source_url": "https://www.slorepo.com/hole/e38284e38199e381a037code/",
+    "status": "active",
+    "regime_separated": true,
+    "notes": "2026年19回中15回プラス、平均G4425。前半9回+250.2、後半10回+266.3、直近6回+223.8(5/6)でレジーム減衰なし。通常ベースと分離して0へ縮約。"
+  },
+  {
+    "rule_id": "ys7_day4_family_avoid",
+    "hall_id": "ikebukuro_yasuda7",
+    "label": "4のつく日・回収帯",
+    "priority": 40,
+    "match": {
+      "day_in": [
+        4,
+        14,
+        24
+      ]
+    },
+    "mean_diff": -99.1,
+    "sample_n": 19,
+    "positive_rate": 0.1579,
+    "data_through": "2026-07-13",
+    "source_url": "https://www.slorepo.com/hole/e38284e38199e381a037code/",
+    "status": "active",
+    "notes": "3/19プラス。通常ベースよりさらに弱く、7の日との対照的な回収帯。"
+  },
+  {
+    "rule_id": "ys7_saturday_avoid",
+    "hall_id": "ikebukuro_yasuda7",
+    "label": "通常土曜・回収傾向",
+    "priority": 30,
+    "match": {
+      "weekday": 5
+    },
+    "mean_diff": -111.7,
+    "sample_n": 28,
+    "positive_rate": 0.25,
+    "data_through": "2026-07-13",
+    "source_url": "https://www.slorepo.com/hole/e38284e38199e381a037code/",
+    "status": "active",
+    "notes": "全土曜7/28プラス。7のつく土曜は優先度90の7日ルールが上書きするため、通常土曜だけを回避。"
+  },
+  {
+    "rule_id": "ys7_day22_decay",
+    "hall_id": "ikebukuro_yasuda7",
+    "label": "22日・初期値依存で減衰",
+    "priority": 50,
+    "match": {
+      "day": 22
+    },
+    "mean_diff": 212.7,
+    "sample_n": 6,
+    "positive_rate": 0.8333,
+    "data_through": "2026-07-13",
+    "source_url": "https://www.slorepo.com/hole/e38284e38199e381a037code/",
+    "status": "reframe",
+    "notes": "全体は5/6プラスだが、1〜3月平均+376.0に対し4〜6月平均+49.3。2/22+767への依存が大きく、現行固定日としては未採用。"
+  },
+  {
+    "rule_id": "ys7_day1_family_kill",
+    "hall_id": "ikebukuro_yasuda7",
+    "label": "1系・旧候補否定",
+    "priority": 20,
+    "match": {
+      "day_in": [
+        1,
+        11,
+        21,
+        31
+      ]
+    },
+    "mean_diff": 15.3,
+    "sample_n": 23,
+    "positive_rate": 0.4783,
+    "data_through": "2026-07-13",
+    "source_url": "https://www.slorepo.com/hole/e38284e38199e381a037code/",
+    "status": "kill",
+    "notes": "平均+15.3、11/23プラス。強日としての再現性なし。"
+  },
+  {
+    "rule_id": "ys7_month_equals_day_kill",
+    "hall_id": "ikebukuro_yasuda7",
+    "label": "月=日・前半値依存",
+    "priority": 20,
+    "match": {
+      "month_equals_day": true
+    },
+    "mean_diff": 118.1,
+    "sample_n": 7,
+    "positive_rate": 0.5714,
+    "data_through": "2026-07-13",
+    "source_url": "https://www.slorepo.com/hole/e38284e38199e381a037code/",
+    "status": "kill",
+    "notes": "1/1+440・2/2+260に依存し、3/3以降5回平均+25.4。7/7は7日ルールの一部としてのみ評価。"
+  },
+  {
+    "rule_id": "rk_anniversary",
+    "hall_id": "kamata_rakuen",
+    "label": "周年5/22",
+    "priority": 99,
+    "match": {
+      "month": 5,
+      "day": 22
+    },
+    "mean_diff": 436,
+    "sample_n": 2,
+    "data_through": "2026-07-13",
+    "source_kind": "slorepo_daily",
+    "source_url": "https://www.slorepo.com/hole/e6a5bde59c92e892b2e794b0e5ba97code/",
+    "status": "active",
+    "notes": "2025+567/2026+304(mogugen集計は+548、ソース間乖離→⑧検算メモ)。567台期実績"
+  },
+  {
+    "rule_id": "rk_day22",
+    "hall_id": "kamata_rakuen",
+    "label": "22日",
+    "priority": 90,
+    "match": {
+      "day": 22
+    },
+    "mean_diff": 159,
+    "sample_n": 11,
+    "data_through": "2026-07-13",
+    "source_kind": "slorepo_daily",
+    "source_url": "https://www.slorepo.com/hole/e6a5bde59c92e892b2e794b0e5ba97code/",
+    "status": "active",
+    "notes": "567台期実績・勝ち日率91%。587台期は8/22(土曜衝突)で再検定"
+  },
+  {
+    "rule_id": "rk_zorome",
+    "hall_id": "kamata_rakuen",
+    "label": "ゾロ目",
+    "priority": 88,
+    "match": {
+      "month_equals_day": true
+    },
+    "mean_diff": 173,
+    "sample_n": 12,
+    "data_through": "2026-07-13",
+    "source_kind": "slorepo_daily",
+    "source_url": "https://www.slorepo.com/hole/e6a5bde59c92e892b2e794b0e5ba97code/",
+    "status": "active",
+    "notes": "567台期実績83%。587台期で要再検証"
+  },
+  {
+    "rule_id": "rk_day11",
+    "hall_id": "kamata_rakuen",
+    "label": "11日",
+    "priority": 85,
+    "match": {
+      "day": 11
+    },
+    "mean_diff": 123,
+    "sample_n": 12,
+    "data_through": "2026-07-13",
+    "source_kind": "slorepo_daily",
+    "source_url": "https://www.slorepo.com/hole/e6a5bde59c92e892b2e794b0e5ba97code/",
+    "status": "active",
+    "notes": "567台期実績75%。587台期は8/11で再検定"
+  },
+  {
+    "rule_id": "k1_reopen_anniv",
+    "hall_id": "kamata_maruhan_mega1",
+    "label": "改装記念9/1",
+    "priority": 99,
+    "match": {
+      "month": 9,
+      "day": 1
+    },
+    "mean_diff": 642,
+    "sample_n": 1,
+    "data_through": "2026-07-13",
+    "source_kind": "slorepo_daily",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e892b2e794b0e9a785e69db1e5ba97code/",
+    "status": "active",
+    "notes": "2025RO当日+642。2026=改装後初周年、n=1につきシステムC=裁量一発枠。蒲田7は同日回避ルール済"
+  },
+  {
+    "rule_id": "k1_old_anniv",
+    "hall_id": "kamata_maruhan_mega1",
+    "label": "旧周年8/10",
+    "priority": 96,
+    "match": {
+      "month": 8,
+      "day": 10
+    },
+    "mean_diff": 178,
+    "sample_n": 1,
+    "data_through": "2026-07-13",
+    "source_kind": "slorepo_daily",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e892b2e794b0e9a785e69db1e5ba97code/",
+    "status": "active",
+    "notes": "初代GO(2012/8/10)周年。25年(駅東店期)+178。改装後の扱い不明、26年で生死判定"
+  },
+  {
+    "rule_id": "k1_day30",
+    "hall_id": "kamata_maruhan_mega1",
+    "label": "30日",
+    "priority": 92,
+    "match": {
+      "day": 30
+    },
+    "mean_diff": 272,
+    "sample_n": 5,
+    "data_through": "2026-07-13",
+    "source_kind": "slorepo_daily",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e892b2e794b0e9a785e69db1e5ba97code/",
+    "status": "active",
+    "notes": "2026年5戦全勝。マルハン30日看板、蒲田7(+351)と共催——エリアごと燃える日"
+  },
+  {
+    "rule_id": "k1_day11",
+    "hall_id": "kamata_maruhan_mega1",
+    "label": "11日",
+    "priority": 90,
+    "match": {
+      "day": 11
+    },
+    "mean_diff": 249,
+    "sample_n": 7,
+    "data_through": "2026-07-13",
+    "source_kind": "slorepo_daily",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e892b2e794b0e9a785e69db1e5ba97code/",
+    "status": "active",
+    "notes": "2026年7戦全勝。この店固有の第一看板"
+  },
+  {
+    "rule_id": "k1_zorome",
+    "hall_id": "kamata_maruhan_mega1",
+    "label": "ゾロ目",
+    "priority": 88,
+    "match": {
+      "month_equals_day": true
+    },
+    "mean_diff": 217,
+    "sample_n": 7,
+    "data_through": "2026-07-13",
+    "source_kind": "slorepo_daily",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e892b2e794b0e9a785e69db1e5ba97code/",
+    "status": "active",
+    "notes": "平均+217だが中央+51と割れる=当たり外れ大"
+  },
+  {
+    "rule_id": "k1_day22",
+    "hall_id": "kamata_maruhan_mega1",
+    "label": "22日",
+    "priority": 85,
+    "match": {
+      "day": 22
+    },
+    "mean_diff": 140,
+    "sample_n": 6,
+    "data_through": "2026-07-13",
+    "source_kind": "slorepo_daily",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e892b2e794b0e9a785e69db1e5ba97code/",
+    "status": "active",
+    "notes": "83%"
+  },
+  {
+    "rule_id": "k1_day7family",
+    "hall_id": "kamata_maruhan_mega1",
+    "label": "7の日",
+    "priority": 80,
+    "match": {
+      "day_in": [
+        7,
+        17,
+        27
+      ]
+    },
+    "mean_diff": 94,
+    "sample_n": 19,
+    "data_through": "2026-07-13",
+    "source_kind": "slorepo_daily",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e892b2e794b0e9a785e69db1e5ba97code/",
+    "status": "active",
+    "notes": "旧イベ表記筆頭のわりに薄い。68%。7/7は蒲田7周年と共催で+820の実績"
+  },
+  {
+    "rule_id": "tu_anniversary_0710",
+    "hall_id": "tsurumi_uno",
+    "label": "周年7/10",
+    "priority": 100,
+    "match": {
+      "month": 7,
+      "day": 10
+    },
+    "mean_diff": 217.0,
+    "sample_n": 3,
+    "regime_separated": true,
+    "data_through": "2026-07-10",
+    "source_kind": "slorepo_daily_2024_2026_anniversary",
+    "source_url": "https://www.slorepo.com/hole/e9b6b4e8a68b554e4fcode/",
+    "status": "active",
+    "notes": "2024=-29、2025=+148、2026=+532。振幅が大きいためn=3で0へ縮約し、周年だけでS/Aへ上げない。"
+  },
+  {
+    "rule_id": "tu_day10_regular",
+    "hall_id": "tsurumi_uno",
+    "label": "毎月10日（周年除外）",
+    "priority": 90,
+    "match": {
+      "day": 10
+    },
+    "mean_diff": 178.7,
+    "sample_n": 6,
+    "regime_separated": true,
+    "data_through": "2026-07-13",
+    "source_kind": "slorepo_daily_2026_regular_day10",
+    "source_url": "https://www.slorepo.com/hole/e9b6b4e8a68b554e4fcode/",
+    "status": "active",
+    "notes": "2026年1〜6月の10日。+330,+44,+344,-285,+422,+217で5/6プラス。7/10周年+532は除外した保守値。 最終通常10日は6/10だが、店舗日次ソースは7/13まで取得済み。"
+  },
+  {
+    "rule_id": "tu_day1_family_monitor",
+    "hall_id": "tsurumi_uno",
+    "label": "1のつく日（監視）",
+    "priority": 75,
+    "match": {
+      "day_in": [
+        1,
+        11,
+        21,
+        31
+      ]
+    },
+    "mean_diff": -2.0,
+    "sample_n": 23,
+    "regime_separated": true,
+    "data_through": "2026-07-11",
+    "source_kind": "slorepo_daily_2026",
+    "source_url": "https://www.slorepo.com/hole/e9b6b4e8a68b554e4fcode/",
+    "status": "active",
+    "notes": "旧イベ表記だが23回平均-2.0、10/23プラス。日別では1日+88.9、11日-93.7、21日-7.2、31日+10.3で安定しない。移動込みNO BET。"
+  },
+  {
+    "rule_id": "tu_day7_family_avoid",
+    "hall_id": "tsurumi_uno",
+    "label": "7のつく日（回避）",
+    "priority": 80,
+    "match": {
+      "day_in": [
+        7,
+        17,
+        27
+      ]
+    },
+    "mean_diff": -158.2,
+    "sample_n": 19,
+    "regime_separated": false,
+    "data_through": "2026-07-07",
+    "source_kind": "slorepo_daily_2026",
+    "source_url": "https://www.slorepo.com/hole/e9b6b4e8a68b554e4fcode/",
+    "status": "active",
+    "notes": "19回中プラス1回、平均-158.2。旧イベ表記と実測が逆方向のため明示的回避。"
+  },
+  {
+    "rule_id": "av_day1_historical_avoid",
+    "hall_id": "tsurumi_aviva",
+    "label": "1のつく日（過去全店履歴・回避）",
+    "priority": 70,
+    "match": {
+      "day_in": [
+        1,
+        11,
+        21,
+        31
+      ]
+    },
+    "mean_diff": -102.0,
+    "sample_n": 21,
+    "regime_separated": false,
+    "data_through": "2025-11-01",
+    "source_kind": "slorepo_historical_full_hall",
+    "source_url": "https://www.slorepo.com/hole/e382a2e38393e38390e9b6b4e8a68be5ba97code/",
+    "status": "kill",
+    "notes": "2025年中心の確認可能21回で7/21プラス、平均-102.0。現行レジーム再取得まで固定日仮説を棄却。"
+  },
+  {
+    "rule_id": "av_day5_historical_avoid",
+    "hall_id": "tsurumi_aviva",
+    "label": "5のつく日（過去全店履歴・回避）",
+    "priority": 75,
+    "match": {
+      "day_in": [
+        5,
+        15,
+        25
+      ]
+    },
+    "mean_diff": -218.2,
+    "sample_n": 15,
+    "regime_separated": false,
+    "data_through": "2025-10-25",
+    "source_kind": "slorepo_historical_full_hall",
+    "source_url": "https://www.slorepo.com/hole/e382a2e38393e38390e9b6b4e8a68be5ba97code/",
+    "status": "kill",
+    "notes": "確認可能15回が全敗、平均-218.2。旧イベント表記と実測が逆方向。"
+  },
+  {
+    "rule_id": "av_monthly8_historical_avoid",
+    "hall_id": "tsurumi_aviva",
+    "label": "毎月8日（過去全店履歴・回避）",
+    "priority": 80,
+    "match": {
+      "day": 8
+    },
+    "mean_diff": -202.7,
+    "sample_n": 7,
+    "regime_separated": false,
+    "data_through": "2025-10-08",
+    "source_kind": "slorepo_historical_full_hall",
+    "source_url": "https://www.slorepo.com/hole/e382a2e38393e38390e9b6b4e8a68be5ba97code/",
+    "status": "kill",
+    "notes": "2024〜2025の確認可能7回で1/7プラス、平均-202.7。周年8/8は別ルール。"
+  },
+  {
+    "rule_id": "av_fourth_saturday_historical_avoid",
+    "hall_id": "tsurumi_aviva",
+    "label": "第4土曜日（過去全店履歴・回避）",
+    "priority": 80,
+    "match": {
+      "weekday": 5,
+      "nth_weekday": 4
+    },
+    "mean_diff": -181.1,
+    "sample_n": 8,
+    "regime_separated": false,
+    "data_through": "2025-10-25",
+    "source_kind": "slorepo_historical_full_hall",
+    "source_url": "https://www.slorepo.com/hole/e382a2e38393e38390e9b6b4e8a68be5ba97code/",
+    "status": "kill",
+    "notes": "確認可能8回で1/8プラス、平均-181.1。現行レジームの8/22を追試するが事前予測には使わない。"
+  },
+  {
+    "rule_id": "av_anniversary_0808_historical_retest",
+    "hall_id": "tsurumi_aviva",
+    "label": "周年8月8日（独立追試）",
+    "priority": 100,
+    "match": {
+      "month": 8,
+      "day": 8
+    },
+    "mean_diff": -317.5,
+    "sample_n": 2,
+    "regime_separated": true,
+    "data_through": "2025-08-08",
+    "source_kind": "slorepo_historical_full_hall",
+    "source_url": "https://www.slorepo.com/hole/e382a2e38393e38390e9b6b4e8a68be5ba97code/",
+    "status": "reframe",
+    "notes": "2024=-419、2025=-216。周年名だけで上位化せず、2026年は全335台を独立追試。"
+  },
+  {
+    "rule_id": "av_slopachi_ps_selected_blocks_reframe",
+    "hall_id": "tsurumi_aviva",
+    "label": "10日×スロぱちガールPS（選抜箇所・店全体非代表）",
+    "priority": 95,
+    "match": {
+      "day": 10
+    },
+    "mean_diff": 2660.0,
+    "sample_n": 3,
+    "regime_separated": true,
+    "data_through": "2026-06-10",
+    "source_kind": "slopachi_selected_4unit_blocks",
+    "source_url": "https://777.slopachi-station.com/%E3%80%906%E6%9C%8810%E6%97%A5-%E3%82%A2%E3%83%93%E3%83%90%E9%B6%B4%E8%A6%8B%E5%BA%97%E3%80%91%E3%82%B9%E3%83%AD%E3%81%B1%E3%81%A1%E3%82%AC%E3%83%BC%E3%83%AB%E6%9D%A5%E5%BA%97ps%EF%BC%81sao2%E3%81%8C/",
+    "status": "reframe",
+    "notes": "2026/4/10・5/10・6/10の選抜ブロックには強い結果があるが、媒体が事後選抜した4台箇所で全335台平均ではない。店日予測へ直接入力禁止。"
+  },
+  {
+    "rule_id": "mt_anniversary_0525",
+    "hall_id": "tsurumi_maruhan",
+    "label": "周年5/25",
+    "priority": 100,
+    "match": {
+      "month": 5,
+      "day": 25
+    },
+    "mean_diff": 288.7,
+    "sample_n": 3,
+    "positive_rate": 1.0,
+    "regime_separated": true,
+    "data_through": "2026-05-25",
+    "source_kind": "slorepo_daily_2024_2026_anniversary",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e9b6b4e8a68be5ba97code/",
+    "status": "active",
+    "notes": "2024=+431、2025=+192、2026=+243。3/3プラス、平均+288.7。通常25日とは分離し、n=3を0へ縮約。遠期は予測地平で自動降格。"
+  },
+  {
+    "rule_id": "mt_day25_regular_avoid",
+    "hall_id": "tsurumi_maruhan",
+    "label": "通常25日（周年除外・回避）",
+    "priority": 95,
+    "match": {
+      "day": 25
+    },
+    "mean_diff": -166.8,
+    "sample_n": 5,
+    "positive_rate": 0.0,
+    "regime_separated": false,
+    "data_through": "2026-06-25",
+    "source_kind": "slorepo_daily_2026_regular_day25",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e9b6b4e8a68be5ba97code/",
+    "status": "active",
+    "notes": "2026年1〜4月・6月の25日。-62,-191,-210,-213,-158で0/5プラス。5/25周年+243は除外。"
+  },
+  {
+    "rule_id": "mt_day7_family_avoid",
+    "hall_id": "tsurumi_maruhan",
+    "label": "7のつく日（回避）",
+    "priority": 90,
+    "match": {
+      "day_in": [
+        7,
+        17,
+        27
+      ]
+    },
+    "mean_diff": -204.7,
+    "sample_n": 19,
+    "positive_rate": 0.0,
+    "regime_separated": false,
+    "data_through": "2026-07-07",
+    "source_kind": "slorepo_daily_2026",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e9b6b4e8a68be5ba97code/",
+    "status": "active",
+    "notes": "2026年19回すべてマイナス、平均-204.7、平均4934G。マルハン共通の7日仮説をこの店では明示的に棄却。"
+  },
+  {
+    "rule_id": "mt_day1_family_avoid",
+    "hall_id": "tsurumi_maruhan",
+    "label": "1のつく日（回避）",
+    "priority": 85,
+    "match": {
+      "day_in": [
+        1,
+        11,
+        21,
+        31
+      ]
+    },
+    "mean_diff": -241.6,
+    "sample_n": 23,
+    "positive_rate": 0.0,
+    "regime_separated": false,
+    "data_through": "2026-07-11",
+    "source_kind": "slorepo_daily_2026",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e9b6b4e8a68be5ba97code/",
+    "status": "active",
+    "notes": "2026年23回すべてマイナス、平均-241.6。外部旧イベント候補を実測で棄却。"
+  },
+  {
+    "rule_id": "mt_day3_family_avoid",
+    "hall_id": "tsurumi_maruhan",
+    "label": "3のつく日（回避）",
+    "priority": 84,
+    "match": {
+      "day_in": [
+        3,
+        13,
+        23
+      ]
+    },
+    "mean_diff": -188.2,
+    "sample_n": 20,
+    "positive_rate": 0.1,
+    "regime_separated": false,
+    "data_through": "2026-07-13",
+    "source_kind": "slorepo_daily_2026",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e9b6b4e8a68be5ba97code/",
+    "status": "active",
+    "notes": "2026年20回中プラス2回、平均-188.2。旧イベント候補としては再現せず回避。"
+  },
+  {
+    "rule_id": "mt_day9_family_avoid",
+    "hall_id": "tsurumi_maruhan",
+    "label": "9のつく日（回避）",
+    "priority": 83,
+    "match": {
+      "day_in": [
+        9,
+        19,
+        29
+      ]
+    },
+    "mean_diff": -187.6,
+    "sample_n": 18,
+    "positive_rate": 0.1111,
+    "regime_separated": false,
+    "data_through": "2026-07-09",
+    "source_kind": "slorepo_daily_2026",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e9b6b4e8a68be5ba97code/",
+    "status": "active",
+    "notes": "2026年18回中プラス2回、平均-187.6。外部旧イベント候補を棄却。"
+  },
+  {
+    "rule_id": "mt_month_equals_day_avoid",
+    "hall_id": "tsurumi_maruhan",
+    "label": "月と日が同じ日（回避）",
+    "priority": 80,
+    "match": {
+      "month_equals_day": true
+    },
+    "mean_diff": -127.9,
+    "sample_n": 7,
+    "positive_rate": 0.1429,
+    "regime_separated": false,
+    "data_through": "2026-07-07",
+    "source_kind": "slorepo_daily_2026",
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e9b6b4e8a68be5ba97code/",
+    "status": "active",
+    "notes": "1/1〜7/7の7回でプラス1回、平均-127.9。ゾロ目日仮説を棄却。周年5/25とは非重複。"
+  },
+  {
+    "rule_id": "kt_anniversary_0415",
+    "hall_id": "tsurumi_kintoki",
+    "label": "周年4月15日（監視）",
+    "priority": 100,
+    "match": {
+      "month": 4,
+      "day": 15
+    },
+    "mean_diff": 71.0,
+    "sample_n": 3,
+    "positive_rate": 0.3333,
+    "regime_separated": false,
+    "data_through": "2026-04-15",
+    "source_kind": "slorepo_anniversary_2024_2026",
+    "source_url": "https://www.slorepo.com/hole/e98791e69982e9b6b4e8a68be5ba97code/",
+    "status": "active",
+    "notes": "2024 +265、2025 -45、2026 -7。3年平均+71.0でも1/3プラス。通常ベースへの縮約と移動罰でNO BET。"
+  },
+  {
+    "rule_id": "kt_day25_avoid",
+    "hall_id": "tsurumi_kintoki",
+    "label": "25日（回避）",
+    "priority": 94,
+    "match": {
+      "day": 25
+    },
+    "mean_diff": -154.3,
+    "sample_n": 6,
+    "positive_rate": 0.0,
+    "regime_separated": false,
+    "data_through": "2026-06-25",
+    "source_kind": "slorepo_daily_2026",
+    "source_url": "https://www.slorepo.com/hole/e98791e69982e9b6b4e8a68be5ba97code/",
+    "status": "active",
+    "notes": "2026年1〜6月の6回すべてマイナス。平均-154.3、平均2760G。"
+  },
+  {
+    "rule_id": "kt_day15_regular_avoid",
+    "hall_id": "tsurumi_kintoki",
+    "label": "通常15日（周年除外・回避）",
+    "priority": 93,
+    "match": {
+      "day": 15
+    },
+    "mean_diff": -129.4,
+    "sample_n": 5,
+    "positive_rate": 0.2,
+    "regime_separated": false,
+    "data_through": "2026-06-15",
+    "source_kind": "slorepo_daily_2026",
+    "source_url": "https://www.slorepo.com/hole/e98791e69982e9b6b4e8a68be5ba97code/",
+    "status": "active",
+    "notes": "周年4/15を除く1/15・2/15・3/15・5/15・6/15。1/5プラス、平均-129.4。周年ルールが優先。"
+  },
+  {
+    "rule_id": "kt_day5_monitor",
+    "hall_id": "tsurumi_kintoki",
+    "label": "通常5日（見送り）",
+    "priority": 92,
+    "match": {
+      "day": 5
+    },
+    "mean_diff": -7.3,
+    "sample_n": 7,
+    "positive_rate": 0.4286,
+    "regime_separated": false,
+    "data_through": "2026-07-05",
+    "source_kind": "slorepo_daily_2026",
+    "source_url": "https://www.slorepo.com/hole/e98791e69982e9b6b4e8a68be5ba97code/",
+    "status": "active",
+    "notes": "旧イベント表記だが2026年は3/7プラス・平均-7.3。絶対値が弱く、尾山台から50分の移動込みでNO BET。"
+  },
+  {
+    "rule_id": "kt_month_equals_day_avoid",
+    "hall_id": "tsurumi_kintoki",
+    "label": "月と日が同じ日（回避）",
+    "priority": 89,
+    "match": {
+      "month_equals_day": true
+    },
+    "mean_diff": -69.3,
+    "sample_n": 7,
+    "positive_rate": 0.2857,
+    "regime_separated": false,
+    "data_through": "2026-07-07",
+    "source_kind": "slorepo_daily_2026",
+    "source_url": "https://www.slorepo.com/hole/e98791e69982e9b6b4e8a68be5ba97code/",
+    "status": "active",
+    "notes": "1/1〜7/7の7回で2/7プラス、平均-69.3。5/5は通常5日ルールが優先。"
+  },
+  {
+    "rule_id": "kt_saturday_avoid",
+    "hall_id": "tsurumi_kintoki",
+    "label": "土曜日（回避）",
+    "priority": 82,
+    "match": {
+      "weekday": 5
+    },
+    "mean_diff": -179.6,
+    "sample_n": 28,
+    "positive_rate": 0.1071,
+    "regime_separated": false,
+    "data_through": "2026-07-11",
+    "source_kind": "slorepo_daily_2026",
+    "source_url": "https://www.slorepo.com/hole/e98791e69982e9b6b4e8a68be5ba97code/",
+    "status": "active",
+    "notes": "2026年28回中3回プラス、平均-179.6。週末稼働増でも店平均は弱い。"
+  },
+  {
+    "rule_id": "kt_sunday_avoid",
+    "hall_id": "tsurumi_kintoki",
+    "label": "日曜日（回避）",
+    "priority": 81,
+    "match": {
+      "weekday": 6
+    },
+    "mean_diff": -146.5,
+    "sample_n": 28,
+    "positive_rate": 0.1786,
+    "regime_separated": false,
+    "data_through": "2026-07-12",
+    "source_kind": "slorepo_daily_2026",
+    "source_url": "https://www.slorepo.com/hole/e98791e69982e9b6b4e8a68be5ba97code/",
+    "status": "active",
+    "notes": "旧イベント候補だが2026年28回中5回プラス、平均-146.5。明示的に棄却。"
+  },
+  {
+    "rule_id": "ns_day27",
+    "hall_id": "tsurumi_nanbusen_shitte",
+    "label": "毎月27日（小型店補正・追試中）",
+    "priority": 95,
+    "match": {
+      "day": 27
+    },
+    "mean_diff": 165.5,
+    "sample_n": 6,
+    "positive_rate": 0.8333,
+    "regime_separated": true,
+    "data_through": "2026-06-27",
+    "source_kind": "minrepo_2026_day27_full_sample_reconstructed",
+    "source_url": "https://min-repo.com/tag/%E5%8D%97%E6%AD%A6%E7%B7%9A%E5%B0%BB%E6%89%8B%E9%A7%85%E5%89%8D%E5%BA%97/",
+    "status": "active",
+    "notes": "2026年1〜6月: -267.9,+426,+54,+201,+429,+151枚。1/27は公開80台詳細から総差枚-21,431枚を復元。6回中5回プラス、平均+165.5枚、平均4140G、台勝率39.0%。80台の小型店につき0縮約と移動罰を適用。"
+  },
+  {
+    "rule_id": "ns_day7_sign_audit",
+    "hall_id": "tsurumi_nanbusen_shitte",
+    "label": "毎月7日（符号監査・不採用）",
+    "priority": 93,
+    "match": {
+      "day": 7
+    },
+    "mean_diff": 37.1,
+    "sample_n": 7,
+    "positive_rate": 0.2857,
+    "regime_separated": true,
+    "data_through": "2026-07-07",
+    "source_kind": "minrepo_sign_only_upper_bound",
+    "source_url": "https://min-repo.com/tag/%E5%8D%97%E6%AD%A6%E7%B7%9A%E5%B0%BB%E6%89%8B%E9%A7%85%E5%89%8D%E5%BA%97/",
+    "status": "inactive",
+    "notes": "2026年は+60,+200の2/7プラス、残る5回は一覧でマイナス伏字。実平均は正値2回だけを足した上限+37.1枚未満。7/7単発を7日全般へ外挿しない。"
+  },
+  {
+    "rule_id": "ns_day17_sign_audit",
+    "hall_id": "tsurumi_nanbusen_shitte",
+    "label": "毎月17日（符号監査・不採用）",
+    "priority": 92,
+    "match": {
+      "day": 17
+    },
+    "mean_diff": 47.8,
+    "sample_n": 6,
+    "positive_rate": 0.3333,
+    "regime_separated": true,
+    "data_through": "2026-06-17",
+    "source_kind": "minrepo_sign_only_upper_bound",
+    "source_url": "https://min-repo.com/tag/%E5%8D%97%E6%AD%A6%E7%B7%9A%E5%B0%BB%E6%89%8B%E9%A7%85%E5%89%8D%E5%BA%97/",
+    "status": "inactive",
+    "notes": "2026年は1/17+111、2/17+176の2/6プラスで、3〜6月はマイナス伏字。実平均は上限+47.8枚未満のため採用しない。"
+  },
+  {
+    "rule_id": "ns_anniversary_0620_monitor",
+    "hall_id": "tsurumi_nanbusen_shitte",
+    "label": "周年6月20日（監視）",
+    "priority": 100,
+    "match": {
+      "month": 6,
+      "day": 20
+    },
+    "mean_diff": 0.0,
+    "sample_n": 3,
+    "positive_rate": 0.3333,
+    "regime_separated": true,
+    "data_through": "2026-06-20",
+    "source_kind": "historical_sign_audit_neutral_placeholder",
+    "source_url": "https://min-repo.com/tag/%E5%8D%97%E6%AD%A6%E7%B7%9A%E5%B0%BB%E6%89%8B%E9%A7%85%E5%89%8D%E5%BA%97/",
+    "status": "active",
+    "notes": "周年は2024年+67枚、2025年・2026年は公開一覧でマイナス表示。正の周年レジームを認定せず、中立0の監視ルールでNO BET。"
+  },
+  {
+    "rule_id": "ak_day13_2026_sign_audit",
+    "hall_id": "kawasaki_access",
+    "label": "毎月13日（2026年失速・符号監査）",
+    "priority": 95,
+    "match": {
+      "day": 13
+    },
+    "mean_diff": 50.0,
+    "sample_n": 7,
+    "positive_rate": 0.2857,
+    "regime_separated": true,
+    "data_through": "2026-07-13",
+    "source_kind": "minrepo_sign_only_upper_bound",
+    "source_url": "https://min-repo.com/tag/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%B7%9D%E5%B4%8E%E5%BA%97/",
+    "status": "active",
+    "notes": "2026年1〜7月は2/7プラス。4/13+145、7/13+205、残る5回はマイナス伏字。正値だけを合算した上限平均+50.0枚であり実平均は必ずこれ未満。5.5枚交換・尾山台から44分込みでNO BET。"
+  },
+  {
+    "rule_id": "ak_day25_2026_sign_audit",
+    "hall_id": "kawasaki_access",
+    "label": "毎月25日（2026年失速・符号監査）",
+    "priority": 94,
+    "match": {
+      "day": 25
+    },
+    "mean_diff": 15.5,
+    "sample_n": 6,
+    "positive_rate": 0.1667,
+    "regime_separated": true,
+    "data_through": "2026-06-25",
+    "source_kind": "minrepo_sign_only_upper_bound",
+    "source_url": "https://min-repo.com/tag/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%B7%9D%E5%B4%8E%E5%BA%97/",
+    "status": "active",
+    "notes": "2026年1〜6月は1/6プラス。6/25+93、残る5回はマイナス伏字。正値だけを合算した上限平均+15.5枚であり実平均は必ずこれ未満。明示的にNO BET。"
+  },
+  {
+    "rule_id": "ak_anniversary_1113_monitor",
+    "hall_id": "kawasaki_access",
+    "label": "周年11月13日（監視）",
+    "priority": 100,
+    "match": {
+      "month": 11,
+      "day": 13
+    },
+    "mean_diff": 0.0,
+    "sample_n": 4,
+    "positive_rate": 0.5,
+    "regime_separated": true,
+    "data_through": "2025-11-13",
+    "source_kind": "minrepo_historical_sign_audit_neutral_placeholder",
+    "source_url": "https://min-repo.com/tag/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%B7%9D%E5%B4%8E%E5%BA%97/",
+    "status": "active",
+    "notes": "周年11/13は2022マイナス伏字、2023+39、2024マイナス伏字、2025+452で2/4プラス。負値不明のため平均0の中立監視とし、周年だけで昇格させない。"
+  },
+  {
+    "rule_id": "ak_day13_2025_prior_regime",
+    "hall_id": "kawasaki_access",
+    "label": "2025年13日・旧レジーム（参考）",
+    "priority": 70,
+    "match": {
+      "day": 13
+    },
+    "mean_diff": 170.8,
+    "sample_n": 12,
+    "positive_rate": 0.8333,
+    "regime_separated": true,
+    "data_through": "2025-12-13",
+    "source_kind": "minrepo_sign_only_upper_bound_prior_regime",
+    "source_url": "https://min-repo.com/tag/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%B7%9D%E5%B4%8E%E5%BA%97/",
+    "status": "inactive",
+    "notes": "2025年は10/12プラス。正値合計だけの上限平均+170.8枚。2026年2/7へ崩れたため予測へ流用しない。"
+  },
+  {
+    "rule_id": "ak_day25_2025_prior_regime",
+    "hall_id": "kawasaki_access",
+    "label": "2025年25日・旧レジーム（参考）",
+    "priority": 69,
+    "match": {
+      "day": 25
+    },
+    "mean_diff": 128.4,
+    "sample_n": 12,
+    "positive_rate": 0.9167,
+    "regime_separated": true,
+    "data_through": "2025-12-25",
+    "source_kind": "minrepo_sign_only_upper_bound_prior_regime",
+    "source_url": "https://min-repo.com/tag/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%B7%9D%E5%B4%8E%E5%BA%97/",
+    "status": "inactive",
+    "notes": "2025年は11/12プラス。正値合計だけの上限平均+128.4枚。2026年1/6へ崩れたため予測へ流用しない。"
+  },
+  {
+    "rule_id": "zc_anniversary_0503",
+    "hall_id": "center_minami_ziath",
+    "label": "周年5月3日（単年B・接近後追試）",
+    "priority": 110,
+    "match": {
+      "month": 5,
+      "day": 3
+    },
+    "mean_diff": 499.0,
+    "sample_n": 1,
+    "positive_rate": 1.0,
+    "regime_separated": true,
+    "data_through": "2026-05-03",
+    "source_kind": "minrepo_anniversary_single_year_full_store",
+    "source_url": "https://min-repo.com/tag/%E3%82%B8%E3%82%A2%E3%82%B9%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%E5%8D%97/",
+    "status": "active",
+    "notes": "2026/5/3は20円261台で総差枚+130,260枚、平均+499枚、平均7755G。n=1なので高出玉をS/Aへ外挿せず、接近時B候補として独立追試。"
+  },
+  {
+    "rule_id": "zc_day11_2026",
+    "hall_id": "center_minami_ziath",
+    "label": "毎月11日（B・高振幅）",
+    "priority": 105,
+    "match": {
+      "day": 11
+    },
+    "mean_diff": 105.8219616858,
+    "sample_n": 7,
+    "positive_rate": 0.7143,
+    "regime_separated": true,
+    "data_through": "2026-07-11",
+    "source_kind": "minrepo_11th_full_sample_with_two_negative_reconstructions",
+    "source_url": "https://min-repo.com/tag/%E3%82%B8%E3%82%A2%E3%82%B9%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%E5%8D%97/",
+    "status": "active",
+    "notes": "2026年1〜7月は+524,+121,+3,+327,-169.1,+253,-318.1で5/7プラス・平均+105.8枚。5/11と7/11は全台機種表から負差枚を復元。標準偏差約270枚で取材・曜日交絡が大きく、43分移動込みB。"
+  },
+  {
+    "rule_id": "zc_day21_2026",
+    "hall_id": "center_minami_ziath",
+    "label": "毎月21日（NO BET）",
+    "priority": 103,
+    "match": {
+      "day": 21
+    },
+    "mean_diff": 30.8850574713,
+    "sample_n": 6,
+    "positive_rate": 0.5,
+    "regime_separated": true,
+    "data_through": "2026-06-21",
+    "source_kind": "minrepo_21st_full_sample_with_negative_reconstructions",
+    "source_url": "https://min-repo.com/tag/%E3%82%B8%E3%82%A2%E3%82%B9%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%E5%8D%97/",
+    "status": "active",
+    "notes": "2026年1〜6月は-69.0,-227.2,+417,+77,-125.5,+113で3/6プラス・平均+30.9枚。1/21・2/21・5/21は全台機種表から復元。縮約・尾山台から43分の移動込みでNO BET。"
+  },
+  {
+    "rule_id": "zc_day7_family_2026_sign_audit",
+    "hall_id": "center_minami_ziath",
+    "label": "7のつく日（2026年符号監査・NO BET）",
+    "priority": 101,
+    "match": {
+      "day_in": [
+        7,
+        17,
+        27
+      ]
+    },
+    "mean_diff": 30.2105263158,
+    "sample_n": 19,
+    "positive_rate": 0.2105,
+    "regime_separated": true,
+    "data_through": "2026-07-07",
+    "source_kind": "minrepo_sign_only_positive_sum_upper_bound",
+    "source_url": "https://min-repo.com/tag/%E3%82%B8%E3%82%A2%E3%82%B9%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%E5%8D%97/",
+    "status": "active",
+    "notes": "2026年1/7〜7/7は4/19プラス。確認できる正値+383,+16,+97,+78だけを全19回で割った甘い上限平均+30.2枚で、実平均は必ずこれ未満。上限を使っても移動込みNO BET。"
+  },
+  {
+    "rule_id": "zc_month_start_1st_neutral",
+    "hall_id": "center_minami_ziath",
+    "label": "毎月1日（負値未確定・中立監視）",
+    "priority": 99,
+    "match": {
+      "day": 1
+    },
+    "mean_diff": 0.0,
+    "sample_n": 7,
+    "positive_rate": 0.5714,
+    "regime_separated": true,
+    "data_through": "2026-07-01",
+    "source_kind": "minrepo_sign_audit_neutral_placeholder",
+    "source_url": "https://min-repo.com/tag/%E3%82%B8%E3%82%A2%E3%82%B9%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%E5%8D%97/",
+    "status": "active",
+    "notes": "2026年1〜7月は4/7プラス（2/1+286、3/1+187、5/1+34、7/1+168）だが、3回の負値が公開一覧で伏字。正値だけの上限を予測値にせず、平均0の中立監視としてNO BET固定。"
+  },
+  {
+    "rule_id": "bc_anniversary_0714_monitor",
+    "hall_id": "kawasaki_bellcity",
+    "label": "周年7月14日（2026確定値待ち）",
+    "priority": 220,
+    "match": {
+      "month": 7,
+      "day": 14
+    },
+    "mean_diff": 344.0,
+    "sample_n": 2,
+    "positive_rate": 1.0,
+    "regime_separated": true,
+    "data_through": "2025-07-14",
+    "source_kind": "minrepo_anniversary_2024_2025_only",
+    "source_url": "https://www.slorepo.com/hole/e382b6e382b7e38386e382a3e38399e383abe382b7e38386e382a3e5b79de5b48ee5ba97code/",
+    "status": "active",
+    "notes": "2024年+93、2025年+595で平均+344。2026年は閉店直後で全台確定値未公開のため混ぜない。n=2かつ更新待ちで監視。"
+  },
+  {
+    "rule_id": "bc_8day_saturday_kill",
+    "hall_id": "kawasaki_bellcity",
+    "label": "8のつく土曜日（回避）",
+    "priority": 210,
+    "match": {
+      "day_in": [
+        8,
+        18,
+        28
+      ],
+      "weekday": 5
+    },
+    "mean_diff": -289.0,
+    "sample_n": 3,
+    "positive_rate": 0.0,
+    "regime_separated": true,
+    "data_through": "2026-04-18",
+    "source_kind": "slorepo_complete_weekend_intersection",
+    "source_url": "https://www.slorepo.com/hole/e382b6e382b7e38386e382a3e38399e383abe382b7e38386e382a3e5b79de5b48ee5ba97code/",
+    "status": "active",
+    "notes": "2026年2/28=-297、3/28=-364、4/18=-206。3/3マイナス。7/18・8/8は平日レジームより本ルールを優先。"
+  },
+  {
+    "rule_id": "bc_8day_sunday_kill",
+    "hall_id": "kawasaki_bellcity",
+    "label": "8のつく日曜日（回避）",
+    "priority": 209,
+    "match": {
+      "day_in": [
+        8,
+        18,
+        28
+      ],
+      "weekday": 6
+    },
+    "mean_diff": -91.0,
+    "sample_n": 4,
+    "positive_rate": 0.25,
+    "regime_separated": true,
+    "data_through": "2026-06-28",
+    "source_kind": "slorepo_complete_weekend_intersection",
+    "source_url": "https://www.slorepo.com/hole/e382b6e382b7e38386e382a3e38399e383abe382b7e38386e382a3e5b79de5b48ee5ba97code/",
+    "status": "active",
+    "notes": "2026年1/18=-189、2/8=+322、3/8=-395、6/28=-102。1/4プラス・平均-91。"
+  },
+  {
+    "rule_id": "bc_8day_weekday_recent_regime",
+    "hall_id": "kawasaki_bellcity",
+    "label": "平日の8のつく日・直近上昇レジーム",
+    "priority": 200,
+    "match": {
+      "day_in": [
+        8,
+        18,
+        28
+      ]
+    },
+    "mean_diff": 138.6,
+    "sample_n": 5,
+    "positive_rate": 0.8,
+    "regime_separated": true,
+    "valid_from": "2026-05-18",
+    "data_through": "2026-07-08",
+    "source_kind": "slorepo_recent_weekday_8day_regime",
+    "source_url": "https://www.slorepo.com/hole/e382b6e382b7e38386e382a3e38399e383abe382b7e38386e382a3e5b79de5b48ee5ba97code/",
+    "status": "active",
+    "notes": "5/18=+292、5/28=+79、6/8=+191、6/18=-39、7/8=+170。4/5プラス・平均+138.6・平均G4213。土日は高優先度killで上書き。0縮約と38分移動でA追試。"
+  },
+  {
+    "rule_id": "bc_8day_2026_full_audit",
+    "hall_id": "kawasaki_bellcity",
+    "label": "8のつく日・2026年全標本（監査）",
+    "priority": 20,
+    "match": {
+      "day_in": [
+        8,
+        18,
+        28
+      ]
+    },
+    "mean_diff": -58.0526315789,
+    "sample_n": 19,
+    "positive_rate": 0.3684210526315789,
+    "regime_separated": true,
+    "data_through": "2026-07-08",
+    "source_kind": "slorepo_complete_8day_sample",
+    "source_url": "https://www.slorepo.com/hole/e382b6e382b7e38386e382a3e38399e383abe382b7e38386e382a3e5b79de5b48ee5ba97code/",
+    "status": "inactive",
+    "notes": "1/8〜7/8の19回を負日込みで集計。7/19プラス・平均-58.1・平均G4274。直近平日レジームと週末交差へreframeしたためinactive保存。"
+  },
+  {
+    "rule_id": "a2_anniversary_1228",
+    "hall_id": "kashimada_asahi2",
+    "label": "周年12月28日・独立監視",
+    "priority": 130,
+    "match": {
+      "month": 12,
+      "day": 28
+    },
+    "mean_diff": 360.0,
+    "sample_n": 2,
+    "positive_rate": 1.0,
+    "regime_separated": true,
+    "data_through": "2025-12-28",
+    "source_kind": "minrepo_anniversary_history",
+    "source_url": "https://min-repo.com/2823984/",
+    "status": "active",
+    "notes": "2024年+442、2025年+278。通常28日と分離。n=2かつ遠期のため現時点はNO BET、接近後に2026予定・媒体・抽選を再確認。"
+  },
+  {
+    "rule_id": "a2_day02_2026",
+    "hall_id": "kashimada_asahi2",
+    "label": "毎月2日・現行運用パッケージ",
+    "priority": 118,
+    "match": {
+      "day": 2
+    },
+    "mean_diff": 214.6057692308,
+    "sample_n": 7,
+    "positive_rate": 0.8571428571428571,
+    "regime_separated": true,
+    "data_through": "2026-07-02",
+    "source_kind": "minrepo_complete_day02_sample",
+    "source_url": "https://min-repo.com/tag/%E3%82%A2%E3%82%B5%E3%83%922%E9%B9%BF%E5%B3%B6%E7%94%B0%E5%BA%97/",
+    "status": "active",
+    "notes": "1/2=+1、2/2=-54.8（104台復元）、3/2=+5、4/2=+366、5/2=+277、6/2=+345、7/2=+563。6/7プラス・平均+214.6。媒体重複が多いため純粋な日付効果とは断定せず、2日×取材運用の現行パッケージとしてA追試。"
+  },
+  {
+    "rule_id": "a2_day12_2026",
+    "hall_id": "kashimada_asahi2",
+    "label": "毎月12日・高稼働だが収益不安定",
+    "priority": 117,
+    "match": {
+      "day": 12
+    },
+    "mean_diff": 30.0041208791,
+    "sample_n": 7,
+    "positive_rate": 0.5714285714285714,
+    "regime_separated": true,
+    "data_through": "2026-07-12",
+    "source_kind": "minrepo_complete_day12_sample_reconstructed",
+    "source_url": "https://min-repo.com/tag/%E3%82%A2%E3%82%B5%E3%83%922%E9%B9%BF%E5%B3%B6%E7%94%B0%E5%BA%97/",
+    "status": "active",
+    "notes": "1/12=-229.0、2/12=-25.0、3/12=+335、4/12=+152、5/12=-292、6/12=+171、7/12=+98。4/7プラスでも平均+30.0。0縮約・34分移動込みでNO BET。"
+  },
+  {
+    "rule_id": "a2_day22_2026",
+    "hall_id": "kashimada_asahi2",
+    "label": "毎月22日・高振幅の次点監視",
+    "priority": 116,
+    "match": {
+      "day": 22
+    },
+    "mean_diff": 124.4230769231,
+    "sample_n": 6,
+    "positive_rate": 0.6666666666666666,
+    "regime_separated": true,
+    "data_through": "2026-06-22",
+    "source_kind": "minrepo_complete_day22_sample_reconstructed",
+    "source_url": "https://min-repo.com/tag/%E3%82%A2%E3%82%B5%E3%83%922%E9%B9%BF%E5%B3%B6%E7%94%B0%E5%BA%97/",
+    "status": "active",
+    "notes": "1/22=+461、2/22=-33.0、3/22=+197、4/22=+188、5/22=-401.4、6/22=+335。4/6プラス・平均+124.4だが振幅が大きい。7/22はクロロエンジェルS重複を全店104台で追試。"
+  },
+  {
+    "rule_id": "a2_day28_regular_monitor",
+    "hall_id": "kashimada_asahi2",
+    "label": "通常28日・周年除外の監視",
+    "priority": 112,
+    "match": {
+      "day": 28
+    },
+    "mean_diff": 0.0,
+    "sample_n": 6,
+    "positive_rate": 0.5,
+    "regime_separated": true,
+    "data_through": "2026-06-28",
+    "source_kind": "minrepo_2026_day28_sign_audit",
+    "source_url": "https://min-repo.com/tag/%E3%82%A2%E3%82%B5%E3%83%922%E9%B9%BF%E5%B3%B6%E7%94%B0%E5%BA%97/",
+    "status": "active",
+    "notes": "2026年1〜6月は3/6プラス。負日差枚の復元が未完了で、旧長期集計も毎月28日-173枚のため中立0でNO BET。周年12/28は高優先度ルールで分離。"
+  },
+  {
+    "rule_id": "a2_day2_family_2026_audit",
+    "hall_id": "kashimada_asahi2",
+    "label": "2・12・22日全体監査",
+    "priority": 20,
+    "match": {
+      "day_in": [
+        2,
+        12,
+        22
+      ]
+    },
+    "mean_diff": 122.9403846154,
+    "sample_n": 20,
+    "positive_rate": 0.7,
+    "regime_separated": true,
+    "data_through": "2026-07-12",
+    "source_kind": "minrepo_complete_2family_audit",
+    "source_url": "https://min-repo.com/tag/%E3%82%A2%E3%82%B5%E3%83%922%E9%B9%BF%E5%B3%B6%E7%94%B0%E5%BA%97/",
+    "status": "inactive",
+    "notes": "20回14勝・平均+122.9だが、日付別に2日+214.6、12日+30.0、22日+124.4と異質なため分割しinactive保存。"
+  },
+  {
+    "rule_id": "kk_day8_family_unverified",
+    "hall_id": "tsurumi_kiccho_komaoka",
+    "label": "8のつく日・全店値未検証",
+    "priority": 95,
+    "match": {
+      "day_in": [
+        8,
+        18,
+        28
+      ]
+    },
+    "mean_diff": 0.0,
+    "sample_n": 0,
+    "positive_rate": null,
+    "regime_separated": true,
+    "data_through": "2026-06-28",
+    "source_kind": "selected_media_reports_only",
+    "source_url": "https://hall-navi.com/hole_view?hid=230007100000024330",
+    "status": "reframe",
+    "notes": "旧イベント候補。媒体選抜では強い箇所が反復するが、46枚750台の全店平均を取得できていない。7/18・7/28・8/8を全店追試し、選抜差枚は店日予測へ直接入力しない。"
+  },
+  {
+    "rule_id": "kk_day5_family_unverified",
+    "hall_id": "tsurumi_kiccho_komaoka",
+    "label": "5のつく日・全店値未検証",
+    "priority": 90,
+    "match": {
+      "day_in": [
+        5,
+        15,
+        25
+      ]
+    },
+    "mean_diff": 0.0,
+    "sample_n": 0,
+    "positive_rate": null,
+    "regime_separated": true,
+    "data_through": "2026-06-25",
+    "source_kind": "hallnavi_old_event_and_selected_reports",
+    "source_url": "https://hall-navi.com/hole_view?hid=230007100000024330",
+    "status": "pending",
+    "notes": "5系は旧イベント候補かつ媒体重複が多いが、全750台の負日込み系列がない。7/25を対照追試し、8系との優劣を分離する。"
+  },
+  {
+    "rule_id": "kk_monthly7_unverified",
+    "hall_id": "tsurumi_kiccho_komaoka",
+    "label": "毎月7日・証拠不足",
+    "priority": 70,
+    "match": {
+      "day": 7
+    },
+    "mean_diff": 0.0,
+    "sample_n": 0,
+    "positive_rate": null,
+    "regime_separated": true,
+    "data_through": "2026-07-07",
+    "source_kind": "hallnavi_old_event_metadata",
+    "source_url": "https://hall-navi.com/hole_view?hid=230007100000024330",
+    "status": "pending",
+    "notes": "Hall Naviの法則候補に毎月7日があるが、全店差枚の反復証拠が不足。現段階では予測へ未使用。"
+  },
+  {
+    "rule_id": "kk_selected_media_blocks_reframe",
+    "hall_id": "tsurumi_kiccho_komaoka",
+    "label": "媒体選抜ブロック・店全体非代表",
+    "priority": 100,
+    "match": {
+      "day_in": [
+        8,
+        18,
+        28
+      ]
+    },
+    "mean_diff": 2780.0,
+    "sample_n": 3,
+    "positive_rate": null,
+    "regime_separated": true,
+    "data_through": "2026-06-28",
+    "source_kind": "slopachi_and_hallnavi_selected_units",
+    "source_url": "https://777.slopachi-station.com/shopposts/?shop_id=4093",
+    "status": "reframe",
+    "notes": "2026/1/18選抜76台平均+2120、3/8選抜72台平均+3130、6/28選抜48台平均約+3300の加重平均+2780。結果後選抜で全750台平均ではないため、店日予測へ直接入力禁止。"
+  },
+  {
+    "rule_id": "kk_anniversary_1226_pending",
+    "hall_id": "tsurumi_kiccho_komaoka",
+    "label": "周年12月26日・全店値取得待ち",
+    "priority": 130,
+    "match": {
+      "month": 12,
+      "day": 26
+    },
+    "mean_diff": 0.0,
+    "sample_n": 0,
+    "positive_rate": null,
+    "regime_separated": true,
+    "data_through": "2026-07-14",
+    "source_kind": "hallnavi_grand_open_metadata",
+    "source_url": "https://hall-navi.com/hole_view?hid=230007100000024330",
+    "status": "pending",
+    "notes": "グランドオープン2003/12/26。周年名だけでは昇格せず、全750台平均・稼働・勝率を取得して独立検証する。"
+  },
+  {
+    "rule_id": "kc_day3_family_unverified",
+    "hall_id": "tsurumi_kicona_chuo",
+    "label": "3のつく日・全店値未検証",
+    "priority": 95,
+    "match": {
+      "day_in": [
+        3,
+        13,
+        23
+      ]
+    },
+    "mean_diff": 0.0,
+    "sample_n": 0,
+    "positive_rate": null,
+    "regime_separated": true,
+    "data_through": "2026-07-13",
+    "source_kind": "hallnavi_old_event_metadata_selected_reports_only",
+    "source_url": "https://hall-navi.com/hole_view?hid=230005100000003761",
+    "status": "pending",
+    "notes": "旧イベント候補。6/13など媒体レポートはあるが、46枚185台の全店平均を負日込みで取得できない。7/23・8/3を全店追試し、選抜機種は店日予測へ直接入力しない。"
+  },
+  {
+    "rule_id": "kc_day9_family_unverified",
+    "hall_id": "tsurumi_kicona_chuo",
+    "label": "9のつく日・全店値未検証",
+    "priority": 94,
+    "match": {
+      "day_in": [
+        9,
+        19,
+        29
+      ]
+    },
+    "mean_diff": 0.0,
+    "sample_n": 0,
+    "positive_rate": null,
+    "regime_separated": true,
+    "data_through": "2026-07-09",
+    "source_kind": "hallnavi_old_event_metadata_selected_reports_only",
+    "source_url": "https://hall-navi.com/hole_view?hid=230005100000003761",
+    "status": "pending",
+    "notes": "旧イベント候補。3/9・4/27等の取材レポートは結果後選抜で、全店値ではない。7/19・7/29を46枚185台で追試。"
+  },
+  {
+    "rule_id": "kc_selected_media_reports_reframe",
+    "hall_id": "tsurumi_kicona_chuo",
+    "label": "媒体選抜機種・店全体非代表",
+    "priority": 100,
+    "match": {
+      "day_in": [
+        3,
+        9,
+        13,
+        19,
+        23,
+        29
+      ]
+    },
+    "mean_diff": 0.0,
+    "sample_n": 6,
+    "positive_rate": null,
+    "regime_separated": true,
+    "data_through": "2026-06-13",
+    "source_kind": "hallnavi_and_perfect_research_selected_machine_reports",
+    "source_url": "https://perfect-research.com/store/584",
+    "status": "reframe",
+    "notes": "過去365日6レポート。Hall Navi掲載例には東京喰種4台平均+3640、吉宗5台平均+2849等があるが、結果後選抜の機種値で全185台平均ではない。発火禁止のreframe証拠。"
+  },
+  {
+    "rule_id": "kc_anniversary_0427_pending",
+    "hall_id": "tsurumi_kicona_chuo",
+    "label": "周年4月27日・全店値取得待ち",
+    "priority": 130,
+    "match": {
+      "month": 4,
+      "day": 27
+    },
+    "mean_diff": 0.0,
+    "sample_n": 0,
+    "positive_rate": null,
+    "regime_separated": true,
+    "data_through": "2026-07-14",
+    "source_kind": "hallnavi_grand_open_metadata",
+    "source_url": "https://hall-navi.com/hole_view?hid=230005100000003761",
+    "status": "pending",
+    "notes": "グランドオープン2019/4/27。周年名だけでは昇格せず、46枚185台の全店平均・稼働・勝率を取得して独立検証する。"
+  },
+  {
+    "rule_id": "ssn_day7_family_unverified",
+    "hall_id": "tsurumi_superseven_namamugi",
+    "label": "7のつく日・全店値未検証",
+    "priority": 95,
+    "match": {
+      "day_in": [
+        7,
+        17,
+        27
+      ]
+    },
+    "mean_diff": 0.0,
+    "sample_n": 0,
+    "positive_rate": null,
+    "regime_separated": true,
+    "data_through": "2026-07-07",
+    "source_kind": "old_event_metadata_and_official_announcements_no_full_hall_series",
+    "source_url": "https://hall-navi.com/hole_view?hid=230005200000037260",
+    "status": "pending",
+    "notes": "旧イベント候補だが、46枚126台の全店差枚を負日込みで連続取得できない。7/17・7/27・8/7・8/17を全店追試し、告知や一部機種を店日予測へ直接入力しない。"
+  },
+  {
+    "rule_id": "ssn_anniversary_0707_pending",
+    "hall_id": "tsurumi_superseven_namamugi",
+    "label": "周年7月7日・全店値取得待ち",
+    "priority": 130,
+    "match": {
+      "month": 7,
+      "day": 7
+    },
+    "mean_diff": 0.0,
+    "sample_n": 0,
+    "positive_rate": null,
+    "regime_separated": true,
+    "data_through": "2026-07-14",
+    "source_kind": "dmm_official_anniversary_metadata",
+    "source_url": "https://p-town.dmm.com/shops/kanagawa/4374",
+    "status": "pending",
+    "notes": "創業日・周年日7月7日。2026年7月7日の全126台確定値を取得できないため周年名だけでは昇格しない。"
+  },
+  {
+    "rule_id": "ssn_superchange_reframe",
+    "hall_id": "tsurumi_superseven_namamugi",
+    "label": "超CHANGE告知・結果未検証",
+    "priority": 100,
+    "match": {
+      "day_in": [
+        4,
+        6,
+        20
+      ]
+    },
+    "mean_diff": 0.0,
+    "sample_n": 3,
+    "positive_rate": null,
+    "regime_separated": true,
+    "data_through": "2026-07-04",
+    "source_kind": "official_shop_announcements_only",
+    "source_url": "https://p-town.dmm.com/shops/kanagawa/4374/informations",
+    "status": "reframe",
+    "notes": "2026/6/6・6/20・7/4に超CHANGE告知。広告・運用シグナルであり全126台結果ではないため発火禁止。日付固定性も未確認。"
+  },
+  {
+    "rule_id": "ssn_juggler_promotion_reframe",
+    "hall_id": "tsurumi_superseven_namamugi",
+    "label": "ジャグラー推し告知・店全体非代表",
+    "priority": 101,
+    "match": {
+      "month": 6,
+      "day_in": [
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ]
+    },
+    "mean_diff": 0.0,
+    "sample_n": 1,
+    "positive_rate": null,
+    "regime_separated": true,
+    "data_through": "2026-06-21",
+    "source_kind": "official_shop_machine_promotion_only",
+    "source_url": "https://p-town.dmm.com/shops/kanagawa/4374/informations",
+    "status": "reframe",
+    "notes": "6/15〜21アイムジャグラーおすすめ告知。機種訴求であり全店差枚・設定投入率ではないため、着席推奨や店日予測へ直接入力しない。"
+  },
+  {
+    "rule_id": "ph_day3_family_unverified",
+    "hall_id": "hirama_prest2",
+    "label": "3のつく日・全店値未検証",
+    "priority": 95,
+    "match": {
+      "day_in": [
+        3,
+        13,
+        23
+      ]
+    },
+    "mean_diff": 0.0,
+    "sample_n": 0,
+    "positive_rate": null,
+    "regime_separated": true,
+    "data_through": "2026-07-13",
+    "source_kind": "old_event_metadata_and_selected_world_reports",
+    "source_url": "https://hall-navi.com/hole_view?hid=211001500000000150",
+    "status": "pending",
+    "notes": "旧イベント候補。7/3調査対象17台は平均-474枚、7/13にも取材結果があるが、全144台値ではない。7/23を全店追試。"
+  },
+  {
+    "rule_id": "ph_day7_family_unverified",
+    "hall_id": "hirama_prest2",
+    "label": "7のつく日・全店値未検証",
+    "priority": 94,
+    "match": {
+      "day_in": [
+        7,
+        17,
+        27
+      ]
+    },
+    "mean_diff": 0.0,
+    "sample_n": 0,
+    "positive_rate": null,
+    "regime_separated": true,
+    "data_through": "2026-07-07",
+    "source_kind": "old_event_metadata_and_selected_world_reports",
+    "source_url": "https://hall-navi.com/hole_view?hid=211001500000000150",
+    "status": "pending",
+    "notes": "旧イベント候補。4/7調査対象9台は平均+1023枚、7/7等にも取材があるが全144台平均ではない。7/17・7/27を全店追試。"
+  },
+  {
+    "rule_id": "ph_day1_unverified",
+    "hall_id": "hirama_prest2",
+    "label": "毎月1日・第三者旧イベント候補",
+    "priority": 70,
+    "match": {
+      "day": 1
+    },
+    "mean_diff": 0.0,
+    "sample_n": 0,
+    "positive_rate": null,
+    "regime_separated": true,
+    "data_through": "2026-07-01",
+    "source_kind": "anaslo_old_event_metadata_only",
+    "source_url": "https://ana-slo.com/%E3%83%9B%E3%83%BC%E3%83%AB%E3%83%87%E3%83%BC%E3%82%BF/%E7%A5%9E%E5%A5%88%E5%B7%9D%E7%9C%8C/%E3%83%97%E3%83%AC%E3%82%B9%E3%83%88%E5%B9%B3%E9%96%93%E5%BA%97ii-%E3%83%87%E3%83%BC%E3%82%BF%E4%B8%80%E8%A6%A7/",
+    "status": "pending",
+    "notes": "第三者サイトで旧イベント候補。全店反復証拠を未取得のため発火禁止。"
+  },
+  {
+    "rule_id": "ph_world_selected_reframe",
+    "hall_id": "hirama_prest2",
+    "label": "スロッター×ワールド選抜台・店全体非代表",
+    "priority": 100,
+    "match": {
+      "day_in": [
+        3,
+        7,
+        13,
+        17,
+        23,
+        27
+      ]
+    },
+    "mean_diff": 274.5,
+    "sample_n": 2,
+    "positive_rate": 0.5,
+    "regime_separated": true,
+    "data_through": "2026-07-03",
+    "source_kind": "rx7038_selected_units_not_full_hall",
+    "source_url": "https://rx7038.com/?page_id=1088703",
+    "status": "reframe",
+    "notes": "4/7調査対象9台平均+1023枚と7/3調査対象17台平均-474枚の単純平均。取材対象として選ばれた台で全144台平均ではないため店日予測へ直接入力禁止。"
+  },
+  {
+    "rule_id": "ph_world_jg_reframe",
+    "hall_id": "hirama_prest2",
+    "label": "JG取材選抜ジャグラー・店全体非代表",
+    "priority": 101,
+    "match": {
+      "day_in": [
+        5,
+        15,
+        25
+      ]
+    },
+    "mean_diff": 0.0,
+    "sample_n": 3,
+    "positive_rate": null,
+    "regime_separated": true,
+    "data_through": "2026-07-05",
+    "source_kind": "rx7038_jg_selected_juggler_reports",
+    "source_url": "https://rx7038.com/?page_id=1088703",
+    "status": "reframe",
+    "notes": "5・15・25日にJG取材が反復。選抜ジャグラーの結果で全144台値ではないため、着席・店日予測へ直接入力しない。"
+  },
+  {
+    "rule_id": "ph_anniversary_1208_pending",
+    "hall_id": "hirama_prest2",
+    "label": "周年12月8日・全店値取得待ち",
+    "priority": 130,
+    "match": {
+      "month": 12,
+      "day": 8
+    },
+    "mean_diff": 0.0,
+    "sample_n": 0,
+    "positive_rate": null,
+    "regime_separated": true,
+    "data_through": "2026-07-15",
+    "source_kind": "dmm_official_anniversary_metadata",
+    "source_url": "https://p-town.dmm.com/shops/kanagawa/4666",
+    "status": "pending",
+    "notes": "周年12月8日。周年名だけでは昇格せず、全144台平均・稼働・勝率を取得して独立検証する。"
+  }
+]

@@ -1,0 +1,738 @@
+[
+  {
+    "flag_date": "2026-09-14",
+    "hall_id": "toyoko_oriental_jiyugaoka",
+    "flag_type": "anniversary_candidate",
+    "flag_name": "周年候補（DMM表記）",
+    "pre_registered": true,
+    "source_url": "https://p-town.dmm.com/shops/tokyo/246"
+  },
+  {
+    "flag_date": "2026-09-15",
+    "hall_id": "toyoko_oriental_jiyugaoka",
+    "flag_type": "anniversary_candidate",
+    "flag_name": "GO日候補（Hall Navi表記）",
+    "pre_registered": true,
+    "source_url": "https://hall-navi.com/hole_view?hid=152003500000011470"
+  },
+  {
+    "flag_date": "2026-07-21",
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "flag_type": "monthly_manager_day",
+    "flag_name": "21日・店長就任日",
+    "pre_registered": true,
+    "source_url": "https://www.dechau.com/news/single.php?area=&id=5199"
+  },
+  {
+    "flag_date": "2026-07-23",
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "flag_type": "monthly_campaign",
+    "flag_name": "23日・やばたにえん",
+    "pre_registered": true,
+    "source_url": "https://sloslo-blog.hatenablog.com/entry/2026/02/23/082236"
+  },
+  {
+    "flag_date": "2026-07-31",
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "flag_type": "hidden_date_rhythm",
+    "flag_name": "31日・隠れ看板の追試",
+    "pre_registered": true,
+    "source_url": "https://sloslo-blog.hatenablog.com/entry/2026/04/01/074150"
+  },
+  {
+    "flag_date": "2027-04-24",
+    "hall_id": "fukutoshin_maruhan_shinjuku_toho",
+    "flag_type": "anniversary",
+    "flag_name": "周年4/24・n=4化",
+    "pre_registered": true,
+    "source_url": "https://www.maruhan.co.jp/hall/3044/"
+  },
+  {
+    "flag_date": "2026-07-14",
+    "hall_id": "ikegami_big_dipper_togoshi_ginza",
+    "flag_type": "public_media_schedule",
+    "flag_name": "推し機種ガチ取材P・金龍取材",
+    "pre_registered": true,
+    "source_url": "https://hall-navi.com/hole_view?hid=142005100000001852"
+  },
+  {
+    "flag_date": "2026-07-15",
+    "hall_id": "ikegami_big_dipper_togoshi_ginza",
+    "flag_type": "public_media_schedule",
+    "flag_name": "5のつく日・推し機種ガチ取材P・GOBOTEN来店",
+    "pre_registered": true,
+    "source_url": "https://hall-navi.com/hole_view?hid=142005100000001852"
+  },
+  {
+    "flag_date": "2026-07-16",
+    "hall_id": "ikegami_big_dipper_togoshi_ginza",
+    "flag_type": "public_media_schedule",
+    "flag_name": "中小ホールの存在証明・推し機種ガチ取材P",
+    "pre_registered": true,
+    "source_url": "https://hall-navi.com/hole_view?hid=142005100000001852"
+  },
+  {
+    "flag_date": "2026-07-17",
+    "hall_id": "ikegami_big_dipper_togoshi_ginza",
+    "flag_type": "public_media_schedule",
+    "flag_name": "7のつく日・ナビ子AI差枚プラス★3・推し機種ガチ取材P",
+    "pre_registered": true,
+    "source_url": "https://hall-navi.com/hole_view?hid=142005100000001852"
+  },
+  {
+    "flag_date": "2026-07-18",
+    "hall_id": "ikegami_big_dipper_togoshi_ginza",
+    "flag_type": "public_media_schedule",
+    "flag_name": "土曜・ナビ子AI機種仕掛け★5+",
+    "pre_registered": true,
+    "source_url": "https://hall-navi.com/hole_view?hid=142005100000001852"
+  },
+  {
+    "flag_date": "2026-12-20",
+    "hall_id": "ikegami_big_dipper_togoshi_ginza",
+    "flag_type": "anniversary",
+    "flag_name": "グランドオープン周年12/20",
+    "pre_registered": true,
+    "source_url": "https://minpachi.com/big-dipper-togin/"
+  },
+  {
+    "flag_date": "2026-07-17",
+    "hall_id": "keikyu_mitoya_omorimachi",
+    "flag_type": "old_event_day",
+    "flag_name": "7のつく日・初回追試",
+    "pre_registered": true,
+    "source_url": "https://www.slorepo.com/hole/e381bfe381a8e38284e5a4a7e6a3aee794bae5ba97code/"
+  },
+  {
+    "flag_date": "2026-07-24",
+    "hall_id": "keikyu_mitoya_omorimachi",
+    "flag_type": "old_event_day",
+    "flag_name": "4のつく日・初回追試",
+    "pre_registered": true,
+    "source_url": "https://www.slorepo.com/hole/e381bfe381a8e38284e5a4a7e6a3aee794bae5ba97code/"
+  },
+  {
+    "flag_date": "2026-07-27",
+    "hall_id": "keikyu_mitoya_omorimachi",
+    "flag_type": "old_event_day",
+    "flag_name": "7のつく日・再現追試",
+    "pre_registered": true,
+    "source_url": "https://www.slorepo.com/hole/e381bfe381a8e38284e5a4a7e6a3aee794bae5ba97code/"
+  },
+  {
+    "flag_date": "2027-07-10",
+    "hall_id": "keikyu_mitoya_omorimachi",
+    "flag_type": "anniversary",
+    "flag_name": "周年7/10・n=3化",
+    "pre_registered": true,
+    "source_url": "https://min-repo.com/2474976/"
+  },
+  {
+    "flag_date": "2026-07-17",
+    "hall_id": "ooimachi_big_dipper",
+    "flag_type": "old_event_day",
+    "flag_name": "7のつく日・監視追試",
+    "pre_registered": true,
+    "source_url": "https://www.slorepo.com/hole/e38393e38383e382afe38387e382a3e38383e38391e383bce5a4a7e4ba95e794bae5ba97code/"
+  },
+  {
+    "flag_date": "2026-07-18",
+    "hall_id": "ooimachi_big_dipper",
+    "flag_type": "old_event_day",
+    "flag_name": "第3土曜日・最重要追試",
+    "pre_registered": true,
+    "source_url": "https://www.slorepo.com/hole/e38393e38383e382afe38387e382a3e38383e38391e383bce5a4a7e4ba95e794bae5ba97code/"
+  },
+  {
+    "flag_date": "2026-07-22",
+    "hall_id": "ooimachi_big_dipper",
+    "flag_type": "old_event_day",
+    "flag_name": "22日・監視追試",
+    "pre_registered": true,
+    "source_url": "https://www.slorepo.com/hole/e38393e38383e382afe38387e382a3e38383e38391e383bce5a4a7e4ba95e794bae5ba97code/"
+  },
+  {
+    "flag_date": "2026-11-22",
+    "hall_id": "ooimachi_big_dipper",
+    "flag_type": "anniversary",
+    "flag_name": "周年11/22・年次振幅検証",
+    "pre_registered": true,
+    "source_url": "https://min-repo.com/1995248/"
+  },
+  {
+    "flag_date": "2026-07-15",
+    "hall_id": "yokohama_123_west",
+    "flag_type": "public_media_schedule",
+    "flag_name": "スロパチステーション来店取材・全店差枚追試",
+    "pre_registered": true,
+    "source_url": "https://p-town.dmm.com/shops/kanagawa/12985/schedule"
+  },
+  {
+    "flag_date": "2026-07-22",
+    "hall_id": "yokohama_123_west",
+    "flag_type": "public_media_schedule",
+    "flag_name": "スロパチガール来店S・全店差枚追試",
+    "pre_registered": true,
+    "source_url": "https://p-town.dmm.com/shops/kanagawa/12985/schedule"
+  },
+  {
+    "flag_date": "2026-07-25",
+    "hall_id": "yokohama_123_west",
+    "flag_type": "public_media_schedule",
+    "flag_name": "スロパチ媒体予定・種別再確認＋全店差枚追試",
+    "pre_registered": true,
+    "source_url": "https://p-town.dmm.com/shops/kanagawa/12985/schedule"
+  },
+  {
+    "flag_date": "2026-12-21",
+    "hall_id": "yokohama_123_west",
+    "flag_type": "anniversary",
+    "flag_name": "グランドオープン周年12/21・全店差枚取得待ち",
+    "pre_registered": true,
+    "source_url": "https://p-town.dmm.com/shops/kanagawa/12985"
+  },
+  {
+    "flag_date": "2026-07-17",
+    "hall_id": "ikebukuro_yasuda7",
+    "flag_type": "old_event_day",
+    "flag_name": "7のつく日・初回池袋比較追試",
+    "pre_registered": true,
+    "source_url": "https://www.slorepo.com/hole/e38284e38199e381a037code/"
+  },
+  {
+    "flag_date": "2026-07-27",
+    "hall_id": "ikebukuro_yasuda7",
+    "flag_type": "old_event_day",
+    "flag_name": "7のつく日・連続再現追試",
+    "pre_registered": true,
+    "source_url": "https://www.slorepo.com/hole/e38284e38199e381a037code/"
+  },
+  {
+    "flag_date": "2026-08-07",
+    "hall_id": "ikebukuro_yasuda7",
+    "flag_type": "old_event_day",
+    "flag_name": "7のつく日・月跨ぎ追試",
+    "pre_registered": true,
+    "source_url": "https://www.slorepo.com/hole/e38284e38199e381a037code/"
+  },
+  {
+    "flag_date": "2026-09-10",
+    "hall_id": "ikebukuro_yasuda7",
+    "flag_type": "anniversary",
+    "flag_name": "周年9/10・単年高出玉追試",
+    "pre_registered": true,
+    "source_url": "https://p-town.dmm.com/shops/tokyo/465"
+  },
+  {
+    "flag_date": "2026-08-10",
+    "hall_id": "tsurumi_uno",
+    "flag_type": "old_event_day",
+    "flag_name": "毎月10日・通常回の初回追試",
+    "pre_registered": true,
+    "source_url": "https://www.slorepo.com/hole/e9b6b4e8a68b554e4fcode/"
+  },
+  {
+    "flag_date": "2026-09-10",
+    "hall_id": "tsurumi_uno",
+    "flag_type": "old_event_day",
+    "flag_name": "毎月10日・月跨ぎ追試",
+    "pre_registered": true,
+    "source_url": "https://www.slorepo.com/hole/e9b6b4e8a68b554e4fcode/"
+  },
+  {
+    "flag_date": "2026-10-10",
+    "hall_id": "tsurumi_uno",
+    "flag_type": "old_event_day",
+    "flag_name": "毎月10日・週末重複追試",
+    "pre_registered": true,
+    "source_url": "https://www.slorepo.com/hole/e9b6b4e8a68b554e4fcode/"
+  },
+  {
+    "flag_date": "2027-07-10",
+    "hall_id": "tsurumi_uno",
+    "flag_type": "anniversary",
+    "flag_name": "周年7/10・過去3年の振幅再検証",
+    "pre_registered": true,
+    "source_url": "https://www.slorepo.com/hole/e9b6b4e8a68b554e4fcode/"
+  },
+  {
+    "flag_date": "2026-07-31",
+    "hall_id": "tsurumi_aviva",
+    "flag_type": "media_visit",
+    "flag_name": "れんじろう実践来店・全335台結果回収",
+    "pre_registered": true,
+    "source_url": "https://777.slopachi-station.com/renjiro_schedule/"
+  },
+  {
+    "flag_date": "2026-08-08",
+    "hall_id": "tsurumi_aviva",
+    "flag_type": "anniversary",
+    "flag_name": "周年8/8・過去2年マイナスからの現行レジーム追試",
+    "pre_registered": true,
+    "source_url": "https://www.slorepo.com/hole/e382a2e38393e38390e9b6b4e8a68be5ba97code/"
+  },
+  {
+    "flag_date": "2026-08-10",
+    "hall_id": "tsurumi_aviva",
+    "flag_type": "media_pattern_watch",
+    "flag_name": "10日×媒体選抜型・全335台結果回収",
+    "pre_registered": true,
+    "source_url": "https://777.slopachi-station.com/%E3%80%906%E6%9C%8810%E6%97%A5-%E3%82%A2%E3%83%93%E3%83%90%E9%B6%B4%E8%A6%8B%E5%BA%97%E3%80%91%E3%82%B9%E3%83%AD%E3%81%B1%E3%81%A1%E3%82%AC%E3%83%BC%E3%83%AB%E6%9D%A5%E5%BA%97ps%EF%BC%81sao2%E3%81%8C/"
+  },
+  {
+    "flag_date": "2026-08-22",
+    "hall_id": "tsurumi_aviva",
+    "flag_type": "old_event_day_retest",
+    "flag_name": "第4土曜・過去1/8プラス仮説の再棄却確認",
+    "pre_registered": true,
+    "source_url": "https://www.slorepo.com/hole/e382a2e38393e38390e9b6b4e8a68be5ba97code/"
+  },
+  {
+    "flag_date": "2026-07-17",
+    "hall_id": "tsurumi_maruhan",
+    "flag_type": "old_event_day_retest",
+    "flag_name": "7の日・0/19プラス回避仮説の確認",
+    "pre_registered": true,
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e9b6b4e8a68be5ba97code/"
+  },
+  {
+    "flag_date": "2026-07-25",
+    "hall_id": "tsurumi_maruhan",
+    "flag_type": "day25_retest",
+    "flag_name": "通常25日・周年除外レジームの確認",
+    "pre_registered": true,
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e9b6b4e8a68be5ba97code/"
+  },
+  {
+    "flag_date": "2026-08-07",
+    "hall_id": "tsurumi_maruhan",
+    "flag_type": "old_event_day_retest",
+    "flag_name": "7の日・月跨ぎ回避追試",
+    "pre_registered": true,
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e9b6b4e8a68be5ba97code/"
+  },
+  {
+    "flag_date": "2027-05-25",
+    "hall_id": "tsurumi_maruhan",
+    "flag_type": "anniversary",
+    "flag_name": "周年5/25・過去3年3/3プラスの再検証",
+    "pre_registered": true,
+    "source_url": "https://www.slorepo.com/hole/e3839ee383abe3838fe383b3e9b6b4e8a68be5ba97code/"
+  },
+  {
+    "flag_date": "2026-07-15",
+    "hall_id": "tsurumi_kintoki",
+    "flag_type": "old_event_day_retest",
+    "flag_name": "通常15日・弱日仮説の確認",
+    "pre_registered": true,
+    "source_url": "https://www.slorepo.com/hole/e98791e69982e9b6b4e8a68be5ba97code/"
+  },
+  {
+    "flag_date": "2026-07-19",
+    "hall_id": "tsurumi_kintoki",
+    "flag_type": "sunday_retest",
+    "flag_name": "日曜日・旧イベント仮説の再棄却確認",
+    "pre_registered": true,
+    "source_url": "https://www.slorepo.com/hole/e98791e69982e9b6b4e8a68be5ba97code/"
+  },
+  {
+    "flag_date": "2026-07-25",
+    "hall_id": "tsurumi_kintoki",
+    "flag_type": "day25_retest",
+    "flag_name": "25日・0/6プラス回避仮説の確認",
+    "pre_registered": true,
+    "source_url": "https://www.slorepo.com/hole/e98791e69982e9b6b4e8a68be5ba97code/"
+  },
+  {
+    "flag_date": "2026-08-05",
+    "hall_id": "tsurumi_kintoki",
+    "flag_type": "old_event_day_retest",
+    "flag_name": "通常5日・移動込みNO BET仮説の確認",
+    "pre_registered": true,
+    "source_url": "https://www.slorepo.com/hole/e98791e69982e9b6b4e8a68be5ba97code/"
+  },
+  {
+    "flag_date": "2027-04-15",
+    "hall_id": "tsurumi_kintoki",
+    "flag_type": "anniversary",
+    "flag_name": "周年4/15・過去3年1/3プラスの再検証",
+    "pre_registered": true,
+    "source_url": "https://www.slorepo.com/hole/e98791e69982e9b6b4e8a68be5ba97code/"
+  },
+  {
+    "flag_date": "2026-07-27",
+    "hall_id": "tsurumi_nanbusen_shitte",
+    "flag_type": "day27_retest",
+    "flag_name": "27日・5/6プラス仮説＋公開来店予定の分離追試",
+    "pre_registered": true,
+    "source_url": "https://www.p-world.co.jp/kanagawa/nanbusen-shitte.htm"
+  },
+  {
+    "flag_date": "2026-08-07",
+    "hall_id": "tsurumi_nanbusen_shitte",
+    "flag_type": "day7_rejection_retest",
+    "flag_name": "7日・不採用仮説の確認",
+    "pre_registered": true,
+    "source_url": "https://min-repo.com/tag/%E5%8D%97%E6%AD%A6%E7%B7%9A%E5%B0%BB%E6%89%8B%E9%A7%85%E5%89%8D%E5%BA%97/"
+  },
+  {
+    "flag_date": "2026-08-17",
+    "hall_id": "tsurumi_nanbusen_shitte",
+    "flag_type": "day17_rejection_retest",
+    "flag_name": "17日・不採用仮説の確認",
+    "pre_registered": true,
+    "source_url": "https://min-repo.com/tag/%E5%8D%97%E6%AD%A6%E7%B7%9A%E5%B0%BB%E6%89%8B%E9%A7%85%E5%89%8D%E5%BA%97/"
+  },
+  {
+    "flag_date": "2026-08-27",
+    "hall_id": "tsurumi_nanbusen_shitte",
+    "flag_type": "day27_retest",
+    "flag_name": "27日・2回目の再現性追試",
+    "pre_registered": true,
+    "source_url": "https://min-repo.com/tag/%E5%8D%97%E6%AD%A6%E7%B7%9A%E5%B0%BB%E6%89%8B%E9%A7%85%E5%89%8D%E5%BA%97/"
+  },
+  {
+    "flag_date": "2027-06-20",
+    "hall_id": "tsurumi_nanbusen_shitte",
+    "flag_type": "anniversary",
+    "flag_name": "周年6/20・過去1/3プラスの再検証",
+    "pre_registered": true,
+    "source_url": "https://min-repo.com/tag/%E5%8D%97%E6%AD%A6%E7%B7%9A%E5%B0%BB%E6%89%8B%E9%A7%85%E5%89%8D%E5%BA%97/"
+  },
+  {
+    "flag_date": "2026-07-25",
+    "hall_id": "kawasaki_access",
+    "flag_type": "day25_retest",
+    "flag_name": "25日・2026年1/6プラス失速仮説の確認",
+    "pre_registered": true,
+    "source_url": "https://min-repo.com/tag/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%B7%9D%E5%B4%8E%E5%BA%97/"
+  },
+  {
+    "flag_date": "2026-08-13",
+    "hall_id": "kawasaki_access",
+    "flag_type": "day13_retest",
+    "flag_name": "13日・2026年2/7プラス失速仮説の確認",
+    "pre_registered": true,
+    "source_url": "https://min-repo.com/tag/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%B7%9D%E5%B4%8E%E5%BA%97/"
+  },
+  {
+    "flag_date": "2026-08-25",
+    "hall_id": "kawasaki_access",
+    "flag_type": "day25_retest",
+    "flag_name": "25日・2回目のレジーム反転追試",
+    "pre_registered": true,
+    "source_url": "https://min-repo.com/tag/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%B7%9D%E5%B4%8E%E5%BA%97/"
+  },
+  {
+    "flag_date": "2026-11-13",
+    "hall_id": "kawasaki_access",
+    "flag_type": "anniversary",
+    "flag_name": "周年11/13・過去2/4プラスの再検証",
+    "pre_registered": true,
+    "source_url": "https://min-repo.com/tag/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%B7%9D%E5%B4%8E%E5%BA%97/"
+  },
+  {
+    "flag_date": "2026-07-17",
+    "hall_id": "center_minami_ziath",
+    "flag_type": "day7_media_retest",
+    "flag_name": "7系×媒体重複・4/19プラス仮説の再確認",
+    "pre_registered": true,
+    "source_url": "https://min-repo.com/tag/%E3%82%B8%E3%82%A2%E3%82%B9%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%E5%8D%97/"
+  },
+  {
+    "flag_date": "2026-07-21",
+    "hall_id": "center_minami_ziath",
+    "flag_type": "day21_retest",
+    "flag_name": "21日・3/6プラス平均+30.9枚の追試",
+    "pre_registered": true,
+    "source_url": "https://min-repo.com/tag/%E3%82%B8%E3%82%A2%E3%82%B9%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%E5%8D%97/"
+  },
+  {
+    "flag_date": "2026-08-11",
+    "hall_id": "center_minami_ziath",
+    "flag_type": "day11_retest",
+    "flag_name": "11日B候補・高振幅レジームの追試",
+    "pre_registered": true,
+    "source_url": "https://min-repo.com/tag/%E3%82%B8%E3%82%A2%E3%82%B9%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%E5%8D%97/"
+  },
+  {
+    "flag_date": "2026-08-21",
+    "hall_id": "center_minami_ziath",
+    "flag_type": "day21_retest",
+    "flag_name": "21日・2回目の再現性確認",
+    "pre_registered": true,
+    "source_url": "https://min-repo.com/tag/%E3%82%B8%E3%82%A2%E3%82%B9%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%E5%8D%97/"
+  },
+  {
+    "flag_date": "2027-05-03",
+    "hall_id": "center_minami_ziath",
+    "flag_type": "anniversary",
+    "flag_name": "周年5/3・単年+499枚の再現性検証",
+    "pre_registered": true,
+    "source_url": "https://www.p-world.co.jp/kanagawa/ziath-c.htm"
+  },
+  {
+    "flag_date": "2026-07-14",
+    "hall_id": "kawasaki_bellcity",
+    "flag_type": "anniversary",
+    "flag_name": "周年7月14日・確定値回収待ち",
+    "pre_registered": true,
+    "source_url": "https://www.slorepo.com/hole/e382b6e382b7e38386e382a3e38399e383abe382b7e38386e382a3e5b79de5b48ee5ba97code/"
+  },
+  {
+    "flag_date": "2026-07-18",
+    "hall_id": "kawasaki_bellcity",
+    "flag_type": "old_event",
+    "flag_name": "8のつく土曜・回避追試",
+    "pre_registered": true,
+    "source_url": "https://www.slorepo.com/hole/e382b6e382b7e38386e382a3e38399e383abe382b7e38386e382a3e5b79de5b48ee5ba97code/"
+  },
+  {
+    "flag_date": "2026-08-08",
+    "hall_id": "kawasaki_bellcity",
+    "flag_type": "old_event",
+    "flag_name": "8のつく土曜×長期休暇・回避追試",
+    "pre_registered": true,
+    "source_url": "https://www.slorepo.com/hole/e382b6e382b7e38386e382a3e38399e383abe382b7e38386e382a3e5b79de5b48ee5ba97code/"
+  },
+  {
+    "flag_date": "2026-08-18",
+    "hall_id": "kawasaki_bellcity",
+    "flag_type": "old_event",
+    "flag_name": "平日8の日・上昇レジーム追試",
+    "pre_registered": true,
+    "source_url": "https://www.slorepo.com/hole/e382b6e382b7e38386e382a3e38399e383abe382b7e38386e382a3e5b79de5b48ee5ba97code/"
+  },
+  {
+    "flag_date": "2026-08-28",
+    "hall_id": "kawasaki_bellcity",
+    "flag_type": "old_event",
+    "flag_name": "平日8の日・連続追試",
+    "pre_registered": true,
+    "source_url": "https://www.slorepo.com/hole/e382b6e382b7e38386e382a3e38399e383abe382b7e38386e382a3e5b79de5b48ee5ba97code/"
+  },
+  {
+    "flag_date": "2027-07-14",
+    "hall_id": "kawasaki_bellcity",
+    "flag_type": "anniversary",
+    "flag_name": "周年7月14日",
+    "pre_registered": true,
+    "source_url": "https://www.slorepo.com/hole/e382b6e382b7e38386e382a3e38399e383abe382b7e38386e382a3e5b79de5b48ee5ba97code/"
+  },
+  {
+    "flag_date": "2026-07-22",
+    "hall_id": "kashimada_asahi2",
+    "flag_type": "old_event",
+    "flag_name": "22日×クロロエンジェルS来店・全104台追試",
+    "pre_registered": true,
+    "source_url": "https://rx7038.com/?p=1171531"
+  },
+  {
+    "flag_date": "2026-07-28",
+    "hall_id": "kashimada_asahi2",
+    "flag_type": "old_event",
+    "flag_name": "通常28日×ALL STAR神・回避仮説追試",
+    "pre_registered": true,
+    "source_url": "https://rx7038.com/?p=1171531"
+  },
+  {
+    "flag_date": "2026-08-02",
+    "hall_id": "kashimada_asahi2",
+    "flag_type": "old_event",
+    "flag_name": "毎月2日・A候補追試",
+    "pre_registered": true,
+    "source_url": "https://min-repo.com/tag/%E3%82%A2%E3%82%B5%E3%83%922%E9%B9%BF%E5%B3%B6%E7%94%B0%E5%BA%97/"
+  },
+  {
+    "flag_date": "2026-08-12",
+    "hall_id": "kashimada_asahi2",
+    "flag_type": "old_event",
+    "flag_name": "毎月12日×お盆帯・見送り追試",
+    "pre_registered": true,
+    "source_url": "https://min-repo.com/tag/%E3%82%A2%E3%82%B5%E3%83%922%E9%B9%BF%E5%B3%B6%E7%94%B0%E5%BA%97/"
+  },
+  {
+    "flag_date": "2026-08-22",
+    "hall_id": "kashimada_asahi2",
+    "flag_type": "old_event",
+    "flag_name": "毎月22日・高振幅追試",
+    "pre_registered": true,
+    "source_url": "https://min-repo.com/tag/%E3%82%A2%E3%82%B5%E3%83%922%E9%B9%BF%E5%B3%B6%E7%94%B0%E5%BA%97/"
+  },
+  {
+    "flag_date": "2026-12-28",
+    "hall_id": "kashimada_asahi2",
+    "flag_type": "anniversary",
+    "flag_name": "周年12月28日",
+    "pre_registered": true,
+    "source_url": "https://p-town.dmm.com/shops/kanagawa/13304/jackpot"
+  },
+  {
+    "flag_date": "2026-07-18",
+    "hall_id": "tsurumi_kiccho_komaoka",
+    "flag_type": "media_visit",
+    "flag_name": "8の日×スロパチガール来店S・全750台追試",
+    "pre_registered": true,
+    "source_url": "https://777.slopachi-station.com/%E3%80%903%E6%9C%888%E6%97%A5-%E5%90%89%E5%85%86%E6%A8%AA%E6%B5%9C%E9%A7%92%E5%B2%A1%E5%BA%97%E3%80%91%E3%82%B9%E3%83%AD%E3%83%91%E3%83%81%E3%82%AC%E3%83%BC%E3%83%AB%E6%9D%A5%E5%BA%97s%EF%BC%81/"
+  },
+  {
+    "flag_date": "2026-07-25",
+    "hall_id": "tsurumi_kiccho_komaoka",
+    "flag_type": "old_event",
+    "flag_name": "5の日・全750台対照追試",
+    "pre_registered": true,
+    "source_url": "https://hall-navi.com/hole_view?hid=230007100000024330"
+  },
+  {
+    "flag_date": "2026-07-28",
+    "hall_id": "tsurumi_kiccho_komaoka",
+    "flag_type": "old_event",
+    "flag_name": "28日・全750台追試",
+    "pre_registered": true,
+    "source_url": "https://hall-navi.com/hole_view?hid=230007100000024330"
+  },
+  {
+    "flag_date": "2026-08-08",
+    "hall_id": "tsurumi_kiccho_komaoka",
+    "flag_type": "old_event",
+    "flag_name": "8月8日・年イチ候補を全750台で追試",
+    "pre_registered": true,
+    "source_url": "https://777.slopachi-station.com/shopposts/?shop_id=4093"
+  },
+  {
+    "flag_date": "2026-12-26",
+    "hall_id": "tsurumi_kiccho_komaoka",
+    "flag_type": "anniversary",
+    "flag_name": "周年12月26日・全750台追試",
+    "pre_registered": true,
+    "source_url": "https://hall-navi.com/hole_view?hid=230007100000024330"
+  },
+  {
+    "flag_date": "2026-07-19",
+    "hall_id": "tsurumi_kicona_chuo",
+    "flag_type": "old_event",
+    "flag_name": "9の日・全185台追試",
+    "pre_registered": true,
+    "source_url": "https://hall-navi.com/hole_view?hid=230005100000003761"
+  },
+  {
+    "flag_date": "2026-07-23",
+    "hall_id": "tsurumi_kicona_chuo",
+    "flag_type": "old_event",
+    "flag_name": "3の日・全185台追試",
+    "pre_registered": true,
+    "source_url": "https://hall-navi.com/hole_view?hid=230005100000003761"
+  },
+  {
+    "flag_date": "2026-07-29",
+    "hall_id": "tsurumi_kicona_chuo",
+    "flag_type": "old_event",
+    "flag_name": "29日・全185台追試",
+    "pre_registered": true,
+    "source_url": "https://hall-navi.com/hole_view?hid=230005100000003761"
+  },
+  {
+    "flag_date": "2026-08-03",
+    "hall_id": "tsurumi_kicona_chuo",
+    "flag_type": "old_event",
+    "flag_name": "通常3日・全185台追試",
+    "pre_registered": true,
+    "source_url": "https://hall-navi.com/hole_view?hid=230005100000003761"
+  },
+  {
+    "flag_date": "2027-04-27",
+    "hall_id": "tsurumi_kicona_chuo",
+    "flag_type": "anniversary",
+    "flag_name": "周年4月27日・全185台追試",
+    "pre_registered": true,
+    "source_url": "https://hall-navi.com/hole_view?hid=230005100000003761"
+  },
+  {
+    "flag_date": "2026-07-17",
+    "hall_id": "tsurumi_superseven_namamugi",
+    "flag_type": "old_event",
+    "flag_name": "7の日・全126台追試",
+    "pre_registered": true,
+    "source_url": "https://hall-navi.com/hole_view?hid=230005200000037260"
+  },
+  {
+    "flag_date": "2026-07-27",
+    "hall_id": "tsurumi_superseven_namamugi",
+    "flag_type": "old_event",
+    "flag_name": "27日・全126台追試",
+    "pre_registered": true,
+    "source_url": "https://hall-navi.com/hole_view?hid=230005200000037260"
+  },
+  {
+    "flag_date": "2026-08-07",
+    "hall_id": "tsurumi_superseven_namamugi",
+    "flag_type": "old_event",
+    "flag_name": "通常7日・全126台追試",
+    "pre_registered": true,
+    "source_url": "https://hall-navi.com/hole_view?hid=230005200000037260"
+  },
+  {
+    "flag_date": "2026-08-17",
+    "hall_id": "tsurumi_superseven_namamugi",
+    "flag_type": "old_event",
+    "flag_name": "17日・全126台追試",
+    "pre_registered": true,
+    "source_url": "https://hall-navi.com/hole_view?hid=230005200000037260"
+  },
+  {
+    "flag_date": "2027-07-07",
+    "hall_id": "tsurumi_superseven_namamugi",
+    "flag_type": "anniversary",
+    "flag_name": "周年7月7日・全126台追試",
+    "pre_registered": true,
+    "source_url": "https://p-town.dmm.com/shops/kanagawa/4374"
+  },
+  {
+    "flag_date": "2026-07-15",
+    "hall_id": "hirama_prest2",
+    "flag_type": "media",
+    "flag_name": "JG取材・全144台追試",
+    "pre_registered": true,
+    "source_url": "https://rx7038.com/?page_id=1088703"
+  },
+  {
+    "flag_date": "2026-07-17",
+    "hall_id": "hirama_prest2",
+    "flag_type": "old_event",
+    "flag_name": "17日×World・全144台追試",
+    "pre_registered": true,
+    "source_url": "https://rx7038.com/?page_id=1088703"
+  },
+  {
+    "flag_date": "2026-07-23",
+    "hall_id": "hirama_prest2",
+    "flag_type": "old_event",
+    "flag_name": "23日×World・全144台追試",
+    "pre_registered": true,
+    "source_url": "https://rx7038.com/?page_id=1088703"
+  },
+  {
+    "flag_date": "2026-07-25",
+    "hall_id": "hirama_prest2",
+    "flag_type": "media",
+    "flag_name": "JG取材・全144台追試",
+    "pre_registered": true,
+    "source_url": "https://rx7038.com/?page_id=1088703"
+  },
+  {
+    "flag_date": "2026-07-27",
+    "hall_id": "hirama_prest2",
+    "flag_type": "old_event",
+    "flag_name": "27日×World・全144台追試",
+    "pre_registered": true,
+    "source_url": "https://rx7038.com/?page_id=1088703"
+  },
+  {
+    "flag_date": "2026-12-08",
+    "hall_id": "hirama_prest2",
+    "flag_type": "anniversary",
+    "flag_name": "周年12月8日・全144台追試",
+    "pre_registered": true,
+    "source_url": "https://p-town.dmm.com/shops/kanagawa/4666"
+  }
+]

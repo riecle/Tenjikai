@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#09090b">
+<title>Slot Atlas — 狙い目カレンダー</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" href="icons/icon-192.png">
+<style>
+  :root{
+    color-scheme: dark;
+    --bg:#09090b; --card:#151518; --card-border:#27272a; --fg:#f4f4f5; --muted:#9a9aa2;
+    --s:#f7c948; --a:#5bb0f7; --b:#7bd88f; --c:#3a3a40; --nobet:transparent;
+    --ring:#f4f4f5;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg); color:var(--fg);
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;
+    padding:14px; padding-bottom:40px; max-width:640px; margin:0 auto;
+  }
+  h1{font-size:1.15rem; margin:4px 0 2px}
+  .sub{color:var(--muted); font-size:.82rem; margin:0 0 14px; line-height:1.5}
+  .banner{
+    background:#3a2a0a; border:1px solid #6b4d12; color:#f7d98a; border-radius:10px;
+    padding:10px 12px; font-size:.78rem; line-height:1.5; margin-bottom:14px;
+  }
+  .card{background:var(--card); border:1px solid var(--card-border); border-radius:12px; padding:10px}
+  .controls{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px}
+  select{
+    width:100%; background:var(--card); color:var(--fg); border:1px solid var(--card-border);
+    border-radius:10px; padding:9px 10px; font-size:.9rem;
+  }
+  .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:12px}
+  .stat{background:var(--card); border:1px solid var(--card-border); border-radius:12px; padding:10px; text-align:center}
+  .stat .label{font-size:.72rem; color:var(--muted)}
+  .stat .value{font-size:1.05rem; font-weight:600; margin-top:2px}
+  .weekdays{display:grid; grid-template-columns:repeat(7,1fr); gap:5px; margin-bottom:5px; text-align:center; color:var(--muted); font-size:.72rem}
+  .grid{display:grid; grid-template-columns:repeat(7,1fr); gap:5px; margin-bottom:14px}
+  .day{
+    aspect-ratio:1/1; border-radius:9px; border:1px solid var(--card-border); background:var(--card);
+    color:var(--fg); font-size:.85rem; display:flex; align-items:center; justify-content:center;
+    cursor:pointer; position:relative; padding:0;
+  }
+  .day:disabled{opacity:.25; cursor:default}
+  .day[data-rank="S"]{background:color-mix(in srgb, var(--s) 30%, var(--card)); border-color:color-mix(in srgb, var(--s) 60%, var(--card-border))}
+  .day[data-rank="A"]{background:color-mix(in srgb, var(--a) 26%, var(--card)); border-color:color-mix(in srgb, var(--a) 55%, var(--card-border))}
+  .day[data-rank="B"]{background:color-mix(in srgb, var(--b) 22%, var(--card)); border-color:color-mix(in srgb, var(--b) 50%, var(--card-border))}
+  .day[data-rank="C"]{background:var(--c)}
+  .day[aria-pressed="true"]{box-shadow:0 0 0 2px var(--ring) inset}
+  .legend{display:flex; flex-wrap:wrap; gap:10px; font-size:.75rem; color:var(--muted); margin-bottom:14px; align-items:center}
+  .legend span{display:inline-flex; align-items:center; gap:4px}
+  .key{width:11px; height:11px; border-radius:3px; border:1px solid var(--card-border); display:inline-block}
+  .key.s{background:color-mix(in srgb, var(--s) 30%, var(--card))}
+  .key.a{background:color-mix(in srgb, var(--a) 26%, var(--card))}
+  .key.b{background:color-mix(in srgb, var(--b) 22%, var(--card))}
+  .key.c{background:var(--c)}
+  .key.n{background:transparent}
+  .detail{margin-bottom:16px}
+  .detail .line1{display:flex; align-items:baseline; gap:8px; flex-wrap:wrap}
+  .badge{
+    font-size:.72rem; font-weight:700; padding:2px 8px; border-radius:999px; background:var(--card-border);
+  }
+  .detail strong{font-size:.95rem}
+  .detail .why{color:var(--muted); font-size:.82rem; margin-top:6px; line-height:1.6}
+  .detail .warn{color:#f0a35c; font-size:.76rem; margin-top:6px}
+  .footer{color:var(--muted); font-size:.72rem; line-height:1.7; text-align:center; margin-top:20px}
+  .footer a{color:var(--muted)}
+  .loading, .error{color:var(--muted); font-size:.85rem; text-align:center; padding:30px 0}
+</style>
+</head>
+<body>
+  <h1>🎯 Slot Atlas — 狙い目カレンダー</h1>
+  <p class="sub" id="subtitle">読み込み中…</p>
+  <div class="banner">
+    公開情報の統計的な傾向整理であり、結果を保証するものではありません。閲覧のみが目的で、実際の来店判断は自己責任でお願いします。
+  </div>
+
+  <div id="app">
+    <div class="loading">データを読み込んでいます…</div>
+  </div>
+
+  <div class="footer">
+    このページは検索エンジンに登録されていません。URLを知っている人だけが閲覧できます。<br>
+    Slot Atlas <span id="model-version"></span>
+  </div>
+
+<script>
+(function () {
+  "use strict";
+
+  var app = document.getElementById("app");
+  var subtitle = document.getElementById("subtitle");
+
+  Promise.all([
+    fetch("data/candidates.json").then(function (r) { return r.json(); }),
+    fetch("data/meta.json").then(function (r) { return r.json(); })
+  ]).then(function (results) {
+    render(results[0], results[1]);
+  }).catch(function (err) {
+    app.innerHTML = '<div class="error">データの読み込みに失敗しました（' + err + '）。data/candidates.json と data/meta.json が同じ場所にあるか確認してください。</div>';
+  });
+
+  function render(rows, meta) {
+    document.getElementById("model-version").textContent = meta.model_version || "";
+    subtitle.textContent =
+      meta.hall_count + "店舗を追跡・" + meta.date_range[0] + "〜" + meta.date_range[1] +
+      " / 最終更新 " + meta.as_of;
+
+    var rankValue = { "NO BET": 0, "C": 1, "B": 2, "A": 3, "S": 4 };
+    var byDate = new Map();
+    rows.forEach(function (row) {
+      if (!byDate.has(row.d)) byDate.set(row.d, []);
+      byDate.get(row.d).push(row);
+    });
+    var months = Array.from(new Set(rows.map(function (r) { return r.d.slice(0, 7); }))).sort();
+    var markets = Array.from(new Set(rows.map(function (r) { return r.m; }))).sort();
+
+    app.innerHTML =
+      '<div class="controls">' +
+      '  <label>月<select id="month"></select></label>' +
+      '  <label>市場<select id="market"><option value="all">全登録市場</option></select></label>' +
+      '</div>' +
+      '<div class="stats">' +
+      '  <div class="stat"><div class="label">S/A/B</div><div class="value" id="stat-playable">0日</div></div>' +
+      '  <div class="stat"><div class="label">見送り</div><div class="value" id="stat-skip">0日</div></div>' +
+      '  <div class="stat"><div class="label">最多候補</div><div class="value" id="stat-top">—</div></div>' +
+      '</div>' +
+      '<div class="weekdays"><span>月</span><span>火</span><span>水</span><span>木</span><span>金</span><span>土</span><span>日</span></div>' +
+      '<div class="grid" id="grid"></div>' +
+      '<div class="legend">' +
+      '  <span><i class="key s"></i>S</span><span><i class="key a"></i>A</span>' +
+      '  <span><i class="key b"></i>B</span><span><i class="key c"></i>C</span>' +
+      '  <span><i class="key n"></i>見送り</span>' +
+      '</div>' +
+      '<div class="card detail" id="detail"></div>';
+
+    var monthSelect = document.getElementById("month");
+    var marketSelect = document.getElementById("market");
+    var grid = document.getElementById("grid");
+    var detail = document.getElementById("detail");
+
+    markets.forEach(function (m) {
+      var o = document.createElement("option");
+      o.value = m; o.textContent = m;
+      marketSelect.appendChild(o);
+    });
+    months.forEach(function (m) {
+      var o = document.createElement("option");
+      o.value = m; o.textContent = m.replace("-", "年") + "月";
+      monthSelect.appendChild(o);
+    });
+    monthSelect.value = months[0];
+    var selectedDate = rows[0].d;
+
+    function candidates(date) {
+      var market = marketSelect.value;
+      var list = byDate.get(date) || [];
+      return market === "all" ? list : list.filter(function (r) { return r.m === market; });
+    }
+    function bestFor(date) {
+      var list = candidates(date).slice().sort(function (a, b) {
+        return (rankValue[b.r] - rankValue[a.r]) || (b.u - a.u) || (b.c - a.c);
+      });
+      return list[0];
+    }
+    function labelFor(row) {
+      return (row.r === "NO BET" || row.r === "C") ? ("見送り（相対首位: " + row.h + "）") : row.h;
+    }
+    function daysInMonth(month) {
+      var bits = month.split("-").map(Number);
+      return new Date(bits[0], bits[1], 0).getDate();
+    }
+    function iso(month, day) { return month + "-" + String(day).padStart(2, "0"); }
+
+    function renderDetail() {
+      var row = bestFor(selectedDate);
+      if (!row) { detail.textContent = "対象期間外"; return; }
+      var n = row.n === null ? "n未記載" : "n=" + row.n;
+      var risks = row.risk.length ? (" / リスク: " + row.risk.join("・")) : "";
+      var warnings = [row.stale, row.hz].filter(Boolean);
+      var travel = row.tm === null ? "移動未設定" : ("尾山台から約" + row.tm + "分・調整-" + row.tp);
+      detail.innerHTML =
+        '<div class="line1"><span class="badge">' + row.r + '</span><strong>' + selectedDate + " " + labelFor(row) + '</strong></div>' +
+        '<div class="why">' + row.why + " / 予測平均 " + (row.p >= 0 ? "+" : "") + row.p + "枚 / 判定余白 " +
+        (row.e >= 0 ? "+" : "") + row.e + " / " + travel + " / 効用 " + (row.u >= 0 ? "+" : "") + row.u +
+        " / " + n + " / 信頼度 " + Math.round(row.c * 100) + "%" + risks + '</div>' +
+        (warnings.length ? '<div class="warn">' + warnings.join(" / ") + '</div>' : "");
+    }
+
+    function renderGrid() {
+      var month = monthSelect.value;
+      var parts = month.split("-").map(Number);
+      var first = new Date(parts[0], parts[1] - 1, 1);
+      var leading = (first.getDay() + 6) % 7;
+      grid.innerHTML = "";
+      for (var i = 0; i < leading; i++) {
+        var empty = document.createElement("div");
+        grid.appendChild(empty);
+      }
+      var counts = new Map(); var playable = 0; var skip = 0;
+      var total = daysInMonth(month);
+      for (var day = 1; day <= total; day++) {
+        var date = iso(month, day);
+        var row = bestFor(date);
+        var btn = document.createElement("button");
+        btn.type = "button"; btn.className = "day"; btn.textContent = String(day);
+        if (row) {
+          btn.dataset.rank = row.r;
+          btn.setAttribute("aria-label", date + " " + row.r + " " + labelFor(row));
+          if (rankValue[row.r] >= 2) { playable++; counts.set(row.h, (counts.get(row.h) || 0) + 1); }
+          else { skip++; }
+        } else {
+          btn.disabled = true;
+          btn.setAttribute("aria-label", date + " 対象期間外");
+        }
+        btn.setAttribute("aria-pressed", date === selectedDate ? "true" : "false");
+        btn.addEventListener("click", function (d) {
+          return function () { selectedDate = d; renderGrid(); };
+        }(date));
+        grid.appendChild(btn);
+      }
+      document.getElementById("stat-playable").textContent = playable + "日";
+      document.getElementById("stat-skip").textContent = skip + "日";
+      var top = Array.from(counts.entries()).sort(function (a, b) { return b[1] - a[1]; })[0];
+      document.getElementById("stat-top").textContent = top ? top[0] : "—";
+      renderDetail();
+    }
+
+    monthSelect.addEventListener("change", function () { selectedDate = monthSelect.value + "-01"; renderGrid(); });
+    marketSelect.addEventListener("change", renderGrid);
+    renderGrid();
+  }
+})();
+</script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker.register("sw.js").catch(function () {});
+  });
+}
+</script>
+</body>
+</html>

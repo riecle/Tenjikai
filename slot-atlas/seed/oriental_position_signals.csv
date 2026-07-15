@@ -1,0 +1,9 @@
+hall_id,result_date,event_name,machine_key,machine_name,unit_numbers,unit_count,winning_units,avg_diff,avg_games,rate_scope,source_name,notes
+toyoko_oriental_jiyugaoka,2026-05-14,マグロ取材,valvrave2,Lパチスロ 革命機ヴァルヴレイヴ2,1163|1165|1166|1167|1168,5,4,5194,7252,rate_unresolved,hall_navi_report,"連番中心の5台塊。20円/5円の当時区分は未確認。"
+toyoko_oriental_jiyugaoka,2026-05-14,マグロ取材,monkey_turn_v,スマスロモンキーターンV,1028|1030|1031,3,3,3199,5133,rate_unresolved,hall_navi_report,"3台全勝。"
+toyoko_oriental_jiyugaoka,2026-05-14,マグロ取材,monster_hunter_rise,スマスロ モンスターハンターライズ,1022|1023|1025,3,2,1568,1915,rate_unresolved,hall_navi_report,"1018〜1031帯に複数機種の塊。"
+toyoko_oriental_jiyugaoka,2026-05-14,マグロ取材,biohazard_re3,スマスロ バイオハザードRE:3,1018|1020|1021,3,2,1309,4729,rate_unresolved,hall_navi_report,"1018〜1031帯に複数機種の塊。"
+toyoko_oriental_jiyugaoka,2026-05-14,マグロ取材,super_rio_ace2,スマスロスーパーリオエース2,870|871|872,3,2,1218,5061,rate_unresolved,hall_navi_report,"870番台の連番塊。"
+toyoko_oriental_jiyugaoka,2026-05-06,公開レポート,kabaneri_kaimon,スマスロ 甲鉄城のカバネリ 海門決戦,1032|1033|1035,3,3,5301,2631,rate_unresolved,hall_navi_report,"取材名は静的公開欄で未取得。3台全勝。"
+toyoko_oriental_jiyugaoka,2026-05-05,公開レポート,tokyo_ghoul,L 東京喰種,1007|1008|1010|1011,4,4,7618,4693,rate_unresolved,hall_navi_report,"4台全勝。5の日全体の平均+9とは分離し、単日塊の例として保存。"
+toyoko_oriental_jiyugaoka,2026-05-05,公開レポート,tekken6,スマスロ鉄拳6,873|875|876,3,2,6249,3491,rate_unresolved,hall_navi_report,"870番台の塊。5の日全体の平均+9とは分離。"
