@@ -411,7 +411,7 @@
       var html = '<div class="chain-info"><span class="chain-label">系列</span><span class="chain-tag">' + escapeHtml(hall.chain_id) + '</span>';
       if (hall.chain_patterns && hall.chain_patterns.length) {
         var promoted = hall.chain_patterns.filter(function (p) {
-          return p.confidence !== null && p.confidence !== undefined && p.confidence > 0;
+          return p.promoted === true && p.status === "detected";
         });
         if (promoted.length) {
           var types = promoted.map(function (p) { return p.type; });
@@ -459,16 +459,18 @@
       var html = '<h3>v1.2 末尾予測</h3><div class="tail-grid">';
       tails.forEach(function (t) {
         var score = t.score !== null && t.score !== undefined ? Number(t.score).toFixed(1) : "—";
+        var z = t.z_shrunk !== null && t.z_shrunk !== undefined ? Number(t.z_shrunk).toFixed(2) : "—";
         var expl = Array.isArray(t.explanation) ? t.explanation.join(" / ") : "";
-        var grade = "—";
-        if (t.score !== null && t.score !== undefined) {
-          var s = Number(t.score);
-          grade = s >= 80 ? "S" : s >= 60 ? "A" : s >= 40 ? "B" : s >= 20 ? "C" : "D";
-        }
+        var gradeKey = t.grade || "unknown";
+        var grade = gradeKey === "strong" ? "S" : gradeKey === "watch" ? "A" : "—";
+        var gradeLabel = gradeKey === "strong" ? "強" : gradeKey === "watch" ? "注目" : "未確定";
+        var conf = t.confidence !== null && t.confidence !== undefined ? pct(Number(t.confidence) * 100) : "—";
+        var nEff = t.n_eff !== null && t.n_eff !== undefined ? String(t.n_eff) : "—";
         html += '<div class="tail-tile" data-grade="' + grade + '">' +
           '<div class="tail-grade">' + grade + '</div>' +
           '<div class="tail-number">末尾' + escapeHtml(t.id) + '</div>' +
-          '<div class="tail-z">score=' + score + '</div>' +
+          '<div class="tail-z">z=' + escapeHtml(z) + ' / ' + escapeHtml(gradeLabel) + '</div>' +
+          '<div class="tail-diff">score=' + escapeHtml(score) + '・n=' + escapeHtml(nEff) + '・信頼度 ' + escapeHtml(conf) + '</div>' +
           (expl ? '<div class="tail-diff">' + escapeHtml(expl) + '</div>' : '');
         if (t.warnings && t.warnings.length) {
           html += '<div class="v12-warnings">' + t.warnings.map(function (w) { return escapeHtml(w); }).join(" / ") + '</div>';

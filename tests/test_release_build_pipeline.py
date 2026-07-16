@@ -73,5 +73,15 @@ class TestREL05_FrozenRunMetaComplete(unittest.TestCase):
             self.assertIn(field, data, f"missing {field} in frozen run")
 
 
+class TestREL06_FreezeCommandUsesPositionalDraft(unittest.TestCase):
+    def test_freeze_command(self):
+        from build_free_public_release import build_freeze_command
+        cmd = build_freeze_command("python3", Path("build/run_draft.json"), Path("atlas.db"))
+        self.assertIn("build/run_draft.json", cmd)
+        self.assertNotIn("--draft", cmd)
+        self.assertIn("--db", cmd)
+        self.assertEqual(cmd[cmd.index("--db") + 1], "atlas.db")
+
+
 if __name__ == "__main__":
     unittest.main()

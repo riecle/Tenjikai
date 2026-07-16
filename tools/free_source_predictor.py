@@ -822,44 +822,110 @@ def build_pattern_ledger(
 
 
 def load_db_tables(atlas_dir: pathlib.Path, *, include_unit: bool) -> dict[str, list[dict[str, Any]]]:
-    """slot_atlas.db から4テーブルを直読し、normalize契約のキー名で返す（本体DBが正）。"""
+    """Read optional DB tables without assuming every historical column exists.
+
+    Each logical table is loaded independently.  A missing optional column or
+    table must not discard successfully loaded machine/tail data from the same
+    DB.  Missing values remain ``None`` and are handled by the normalizers.
+    """
     db = atlas_dir / "slot_atlas.db"
     out: dict[str, list[dict[str, Any]]] = {}
     if not db.exists():
         return out
+
     con = sqlite3.connect(db)
     con.row_factory = sqlite3.Row
+
+    def table_exists(name: str) -> bool:
+        return bool(con.execute(
+            "SELECT 1 FROM sqlite_master WHERE type='table' AND name=?",
+            (name,),
+        ).fetchone())
+
+    def get(row: sqlite3.Row, *names: str, default: Any = None) -> Any:
+        keys = set(row.keys())
+        for name in names:
+            if name in keys:
+                return row[name]
+        return default
+
     try:
-        out["machine_days"] = [
-            {"hall_id": r["hall_id"], "date": r["result_date"], "machine_name": r["machine_name"],
-             "avg_diff": r["avg_diff"], "units": r["units"], "avg_games": r["avg_games"],
-             "special_selected": r["selected_flag"], "winning_units": r["winning_units"],
-             "total_units": r["total_units"]}
-            for r in con.execute("SELECT * FROM machine_days")]
-        out["tail_days"] = [
-            {"hall_id": r["hall_id"], "date": r["result_date"], "tail": r["tail_key"],
-             "avg_diff": r["avg_diff"], "winning_units": r["winning_units"],
-             "total_units": r["total_units"]}
-            for r in con.execute("SELECT * FROM tail_days")]
-        out["machine_scores"] = [
-            {"hall_id": r["hall_id"], "machine_name": r["machine_name"], "units": r["units"],
-             "score": r["composite_score"], "avg_diff": r["baseline_avg_diff"],
-             "special_selected": r["special_selected_n"], "source": r["source_name"],
-             "notes": r["notes"]}
-            for r in con.execute("SELECT * FROM machine_scores")]
-        out["position_signals"] = [
-            {"hall_id": r["hall_id"], "date": r["result_date"], "pattern_type": r["event_name"],
-             "detail": r["notes"], "machine_name": r["machine_name"], "avg_diff": r["avg_diff"]}
-            for r in con.execute("SELECT * FROM position_signals")]
-        if include_unit:
+        if table_exists("machine_days"):
+            rows = []
+            for r in con.execute("SELECT * FROM machine_days"):
+                units = get(r, "units", "total_units")
+                rows.append({
+                    "hall_id": get(r, "hall_id"),
+                    "date": get(r, "result_date", "business_date", "date"),
+                    "machine_name": get(r, "machine_name", "machine_key", "machine_id"),
+                    "avg_diff": get(r, "avg_diff", "diff"),
+                    "units": units,
+                    "avg_games": get(r, "avg_games", "games"),
+                    "special_selected": get(
+                        r, "selected_flag", "event_selected_label", default=0
+                    ),
+                    "winning_units": get(r, "winning_units"),
+                    "total_units": get(r, "total_units", default=units),
+                })
+            out["machine_days"] = rows
+
+        if table_exists("tail_days"):
+            rows = []
+            for r in con.execute("SELECT * FROM tail_days"):
+                units = get(r, "units", "total_units")
+                rows.append({
+                    "hall_id": get(r, "hall_id"),
+                    "date": get(r, "result_date", "business_date", "date"),
+                    "tail": get(r, "tail_key", "tail"),
+                    "avg_diff": get(r, "avg_diff", "diff"),
+                    "winning_units": get(r, "winning_units"),
+                    "total_units": get(r, "total_units", default=units),
+                    "avg_games": get(r, "avg_games", "games"),
+                })
+            out["tail_days"] = rows
+
+        if table_exists("machine_scores"):
+            out["machine_scores"] = [
+                {
+                    "hall_id": get(r, "hall_id"),
+                    "machine_name": get(r, "machine_name", "machine_key"),
+                    "units": get(r, "units"),
+                    "score": get(r, "composite_score", "score"),
+                    "avg_diff": get(r, "baseline_avg_diff", "avg_diff"),
+                    "special_selected": get(r, "special_selected_n", "special_selected"),
+                    "source": get(r, "source_name", default="db"),
+                    "notes": get(r, "notes", default=""),
+                }
+                for r in con.execute("SELECT * FROM machine_scores")
+            ]
+
+        if table_exists("position_signals"):
+            out["position_signals"] = [
+                {
+                    "hall_id": get(r, "hall_id"),
+                    "date": get(r, "result_date", "date"),
+                    "pattern_type": get(r, "event_name", "pattern_type", "type"),
+                    "detail": get(r, "notes", "detail", default=""),
+                    "machine_name": get(r, "machine_name"),
+                    "avg_diff": get(r, "avg_diff"),
+                }
+                for r in con.execute("SELECT * FROM position_signals")
+            ]
+
+        if include_unit and table_exists("unit_days"):
             out["unit_days"] = [
-                {"hall_id": r["hall_id"], "date": r["result_date"], "unit_no": r["unit_no"],
-                 "diff": r["diff"], "machine_name": r["machine_name"]}
-                for r in con.execute("SELECT * FROM unit_days")]
-    except sqlite3.OperationalError:
-        pass  # 古いDB（テーブル欠落）は無視してファイル探索に委ねる
+                {
+                    "hall_id": get(r, "hall_id"),
+                    "date": get(r, "result_date", "business_date", "date"),
+                    "unit_no": get(r, "unit_no"),
+                    "diff": get(r, "diff", "avg_diff"),
+                    "machine_name": get(r, "machine_name", "machine_id"),
+                }
+                for r in con.execute("SELECT * FROM unit_days")
+            ]
     finally:
         con.close()
+
     return {k: v for k, v in out.items() if v}
 
 

@@ -37,6 +37,9 @@ PERMUTATION_P_THRESHOLD = 0.05
 PERMUTATION_COUNT = 10000
 INTENSITY_CORR_THRESHOLD = -0.30
 DATE_ROLE_CONCENTRATION_THRESHOLD = 0.60
+DATE_ROLE_EFFECT_THRESHOLD = 0.50
+MIN_DATE_ROLE_DAYS_PER_HALL = 3
+MIN_DATE_ROLE_FAMILIES = 2
 
 CHAIN_PATTERNS: dict[str, list[str]] = {
     "maruhan": ["maruhan"],
@@ -405,88 +408,187 @@ def detect_date_role_split(
     chain_halls: list[str],
     cutoff_date: str,
 ) -> dict | None:
-    """Detect date_role_split: date series divided across chain halls.
+    """Detect date_role_split from *strength*, not event-registration counts.
 
-    Uses canonical_family_key (not event_family_id) so that semantically
-    identical families across halls are correctly unified.
+    For each canonical event family shared by at least two halls, daily hall
+    intensity is standardized against that hall's own historical distribution.
+    A family contributes evidence only when every compared hall has enough
+    observed days.  The detector then asks whether different canonical
+    families have reproducibly different winning halls.
+
+    This prevents the structural false positive where hall-specific
+    event_family_id values (or different registered rule counts) mechanically
+    produce concentration=1.0.
     """
-    canon_hall_counts: dict[str, dict[str, int]] = defaultdict(
-        lambda: defaultdict(int)
-    )
-    total_by_canon: dict[str, int] = defaultdict(int)
-
-    for hall_id in chain_halls:
-        rows = conn.execute(
-            """SELECT ef.canonical_family_key, COUNT(*)
-               FROM hall_days hd
-               JOIN event_families ef ON hd.event_family_id = ef.event_family_id
-               WHERE hd.hall_id = ? AND hd.result_date < ?
-                 AND hd.event_family_id IS NOT NULL
-                 AND ef.family_type != '通常'
-                 AND ef.canonical_family_key IS NOT NULL
-                 AND ef.canonical_family_key != 'normal'
-               GROUP BY ef.canonical_family_key""",
-            (hall_id, cutoff_date),
-        ).fetchall()
-
-        for canon_key, cnt in rows:
-            canon_hall_counts[canon_key][hall_id] += cnt
-            total_by_canon[canon_key] += cnt
-
-    if not canon_hall_counts:
+    eligible_halls = sorted(set(chain_halls))
+    if len(eligible_halls) < 2:
         return None
 
-    concentrations = []
-    for canon_key, hall_counts in canon_hall_counts.items():
-        total = total_by_canon[canon_key]
-        if total < 3:
+    # Hall-specific baseline: removes the chain hall's general strength level.
+    hall_baselines: dict[str, tuple[float, float]] = {}
+    for hall_id in eligible_halls:
+        vals = [
+            float(r[0]) for r in conn.execute(
+                """SELECT avg_diff FROM hall_days
+                   WHERE hall_id = ? AND result_date < ?
+                     AND avg_diff IS NOT NULL
+                   ORDER BY result_date""",
+                (hall_id, cutoff_date),
+            ).fetchall()
+        ]
+        if len(vals) < MIN_DATE_ROLE_DAYS_PER_HALL:
             continue
-        max_share = max(hall_counts.values()) / total
-        concentrations.append(max_share)
+        mean_v = statistics.mean(vals)
+        stdev_v = statistics.stdev(vals) if len(vals) >= 2 else 0.0
+        if stdev_v <= 0:
+            continue
+        hall_baselines[hall_id] = (mean_v, stdev_v)
 
-    if len(concentrations) < 2:
+    if len(hall_baselines) < 2:
         return None
 
-    mean_concentration = statistics.mean(concentrations)
-    n_families = len(concentrations)
-    expected_even = 1.0 / len(chain_halls)
+    # canonical_key -> hall -> daily normalized intensities.  Duplicate source
+    # rows for the same hall/date/family are averaged before entering evidence.
+    observations: dict[str, dict[str, list[float]]] = defaultdict(
+        lambda: defaultdict(list)
+    )
+    placeholders = ",".join("?" for _ in hall_baselines)
+    rows = conn.execute(
+        f"""SELECT hd.hall_id, hd.result_date, ef.canonical_family_key,
+                   AVG(hd.avg_diff) AS day_intensity
+            FROM hall_days hd
+            JOIN event_families ef
+              ON hd.event_family_id = ef.event_family_id
+            WHERE hd.hall_id IN ({placeholders})
+              AND hd.result_date < ?
+              AND hd.avg_diff IS NOT NULL
+              AND ef.family_type != '通常'
+              AND ef.canonical_family_key IS NOT NULL
+              AND ef.canonical_family_key NOT IN ('', 'normal', 'other')
+            GROUP BY hd.hall_id, hd.result_date, ef.canonical_family_key
+            ORDER BY ef.canonical_family_key, hd.hall_id, hd.result_date""",
+        (*hall_baselines.keys(), cutoff_date),
+    ).fetchall()
+
+    for hall_id, _date, canon_key, day_intensity in rows:
+        baseline = hall_baselines.get(hall_id)
+        if baseline is None or day_intensity is None:
+            continue
+        mean_v, stdev_v = baseline
+        observations[canon_key][hall_id].append(
+            (float(day_intensity) - mean_v) / stdev_v
+        )
+
+    family_results: list[dict] = []
+    for canon_key, hall_values in sorted(observations.items()):
+        compared = {
+            hall_id: vals
+            for hall_id, vals in hall_values.items()
+            if len(vals) >= MIN_DATE_ROLE_DAYS_PER_HALL
+        }
+        if len(compared) < 2:
+            continue
+
+        mean_scores = {
+            hall_id: statistics.mean(vals)
+            for hall_id, vals in compared.items()
+        }
+        ranked = sorted(mean_scores.items(), key=lambda item: item[1], reverse=True)
+        top_hall, top_score = ranked[0]
+        second_score = ranked[1][1]
+        effect = top_score - second_score
+
+        # Softmax converts standardized strength into a bounded concentration.
+        max_score = max(mean_scores.values())
+        exp_scores = {
+            h: math.exp(max(-20.0, min(20.0, score - max_score)))
+            for h, score in mean_scores.items()
+        }
+        denom = sum(exp_scores.values())
+        concentration = exp_scores[top_hall] / denom if denom else 0.0
+
+        family_results.append({
+            "canonical_family_key": canon_key,
+            "winner": top_hall,
+            "concentration": concentration,
+            "effect": effect,
+            "evidence_days": sum(len(v) for v in compared.values()),
+            "hall_scores": mean_scores,
+            "qualified": (
+                concentration >= DATE_ROLE_CONCENTRATION_THRESHOLD
+                and effect >= DATE_ROLE_EFFECT_THRESHOLD
+            ),
+        })
+
+    qualified = [f for f in family_results if f["qualified"]]
+    if len(family_results) < MIN_DATE_ROLE_FAMILIES:
+        return None
+
+    distinct_winners = sorted({f["winner"] for f in qualified})
+    mean_concentration = (
+        statistics.mean(f["concentration"] for f in qualified)
+        if qualified else 0.0
+    )
+    mean_effect = (
+        statistics.mean(f["effect"] for f in qualified)
+        if qualified else 0.0
+    )
+    evidence_days = sum(f["evidence_days"] for f in family_results)
 
     promoted = (
-        mean_concentration > DATE_ROLE_CONCENTRATION_THRESHOLD
-        and n_families >= 3
+        len(qualified) >= MIN_DATE_ROLE_FAMILIES
+        and len(distinct_winners) >= 2
+        and mean_concentration >= DATE_ROLE_CONCENTRATION_THRESHOLD
+        and mean_effect >= DATE_ROLE_EFFECT_THRESHOLD
+        and evidence_days >= MIN_COMMON_DAYS
     )
 
+    lift = (
+        mean_concentration / (1.0 / len(hall_baselines))
+        if hall_baselines else None
+    )
     confidence = _chain_confidence(
-        n_families * len(chain_halls),
+        evidence_days,
         0.05 if promoted else 0.5,
-        mean_concentration / expected_even if expected_even > 0 else 1.0,
+        lift if lift is not None else 1.0,
     )
 
+    winner_summary = ", ".join(
+        f"{f['canonical_family_key']}→{f['winner']}"
+        for f in qualified[:6]
+    )
     explanation = [
+        f"strength_based=true",
+        f"qualified_families={len(qualified)}/{len(family_results)}",
+        f"distinct_winners={len(distinct_winners)}",
         f"mean_concentration={mean_concentration:.3f}",
-        f"n_families={n_families}",
-        f"expected_even={expected_even:.3f}",
+        f"mean_effect={mean_effect:.3f}",
     ]
+    if winner_summary:
+        explanation.append(winner_summary)
     if promoted:
         explanation.insert(0, "promoted")
 
     warnings = []
-    if n_families < 5:
+    if len(family_results) < 3:
         warnings.append("少標本")
+    unqualified = len(family_results) - len(qualified)
+    if unqualified:
+        warnings.append(f"強度差未達family={unqualified}")
 
     return {
         "pattern_type": "date_role_split",
-        "halls": chain_halls,
-        "lift": round(mean_concentration / expected_even, 4) if expected_even > 0 else None,
+        "halls": sorted(hall_baselines),
+        "lift": round(lift, 4) if lift is not None else None,
         "p_value": None,
         "statistic": round(mean_concentration, 4),
-        "evidence_days": sum(total_by_canon.values()),
+        "evidence_days": evidence_days,
         "confidence": confidence,
         "promoted": promoted,
         "explanation": explanation,
         "warnings": warnings,
+        "family_results": family_results,
     }
-
 
 def detect_intensity_split(
     conn: sqlite3.Connection,

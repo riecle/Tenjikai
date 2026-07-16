@@ -151,10 +151,11 @@ def enrich_with_v12(
     try:
         for r in conn.execute(
             """SELECT chain_id, pattern_type, statistic, lift,
-                      confidence, explanation_json
+                      confidence, explanation_json, promoted, status,
+                      subject_key, warnings_json
                FROM chain_pattern_results_v2
                WHERE promoted = 1 AND status = 'detected'
-               ORDER BY chain_id, pattern_type"""
+               ORDER BY chain_id, pattern_type, subject_key"""
         ).fetchall():
             try:
                 expl = json.loads(r[5]) if r[5] else {}
@@ -163,12 +164,22 @@ def enrich_with_v12(
             summary = ""
             if isinstance(expl, dict):
                 summary = expl.get("summary", expl.get("note", ""))
+            elif isinstance(expl, list):
+                summary = " / ".join(str(x) for x in expl[:3])
+            try:
+                pattern_warnings = json.loads(r[9]) if r[9] else []
+            except (json.JSONDecodeError, TypeError):
+                pattern_warnings = []
             patterns_by_chain[r[0]].append({
                 "type": r[1],
-                "statistic": round(r[2], 3) if r[2] else None,
-                "lift": round(r[3], 2) if r[3] else None,
-                "confidence": round(r[4], 3) if r[4] else None,
+                "statistic": round(r[2], 3) if r[2] is not None else None,
+                "lift": round(r[3], 2) if r[3] is not None else None,
+                "confidence": round(r[4], 3) if r[4] is not None else None,
                 "summary": summary,
+                "promoted": bool(r[6]),
+                "status": r[7],
+                "subject_key": r[8],
+                "warnings": pattern_warnings,
             })
     except sqlite3.OperationalError:
         pass
@@ -217,7 +228,13 @@ def enrich_with_v12(
             elif etype == "tail":
                 v12_by_hall[hid][td]["tails"].append({
                     "id": pred["entity_id"],
-                    "score": pred["score"],
+                    "score": pred.get("score"),
+                    "rank": pred.get("rank"),
+                    "confidence": pred.get("confidence"),
+                    "z_shrunk": pred.get("z_shrunk"),
+                    "grade": pred.get("grade"),
+                    "n_eff": pred.get("n_eff"),
+                    "source": "v1_2_prediction",
                     "explanation": pred.get("explanation", []),
                     "warnings": pred.get("warnings", []),
                 })
@@ -240,20 +257,25 @@ def enrich_with_v12(
 
 
 def _auto_detect_frozen_run() -> pathlib.Path | None:
-    """Find the latest valid frozen run JSON in predictions/frozen/."""
+    """Find the latest valid frozen run by metadata, not filename ordering."""
     frozen_dir = ROOT / "predictions" / "frozen"
     if not frozen_dir.is_dir():
         return None
-    candidates = sorted(frozen_dir.glob("*.json"), reverse=True)
-    for c in candidates:
-        if c.suffix == ".json" and not c.name.endswith(".sha256"):
-            try:
-                data = json.loads(c.read_text(encoding="utf-8"))
-                if isinstance(data, dict) and "predictions" in data:
-                    return c
-            except (json.JSONDecodeError, OSError):
-                continue
-    return None
+    valid: list[tuple[str, str, pathlib.Path]] = []
+    for candidate in frozen_dir.glob("*.json"):
+        try:
+            data = json.loads(candidate.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            continue
+        if not isinstance(data, dict) or not isinstance(data.get("predictions"), list):
+            continue
+        built_at = str(data.get("built_at") or "")
+        run_id = str(data.get("prediction_run_id") or candidate.stem)
+        valid.append((built_at, run_id, candidate))
+    if not valid:
+        return None
+    valid.sort(key=lambda item: (item[0], item[1], item[2].name))
+    return valid[-1][2]
 
 
 def main() -> None:

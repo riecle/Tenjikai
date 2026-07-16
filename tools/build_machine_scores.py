@@ -88,11 +88,14 @@ def compute_machine_features(
             (hall_id, machine_key, cutoff_date),
         ).fetchall()
 
-    eligible = len(same_fam_rows)
-    hits = sum(1 for r in same_fam_rows if r[3] == 1)
+    # Unknown labels are not negatives.  Only explicit 0/1 rows contribute
+    # to hit rates, weekday rates, rotation history, or sample confidence.
+    known_rows = [r for r in same_fam_rows if r[3] in (0, 1)]
+    eligible = len(known_rows)
+    hits = sum(1 for r in known_rows if r[3] == 1)
     p_event = (hits + 1) / (eligible + 4)
 
-    selected_dates = [r[0] for r in same_fam_rows if r[3] == 1]
+    selected_dates = [r[0] for r in known_rows if r[3] == 1]
     if len(selected_dates) >= 2:
         gaps = []
         for i in range(1, len(selected_dates)):
@@ -122,8 +125,8 @@ def compute_machine_features(
         rotation = 0.0
 
     was_selected_last = 0
-    if same_fam_rows:
-        last_label = same_fam_rows[-1][3]
+    if known_rows:
+        last_label = known_rows[-1][3]
         was_selected_last = 1 if last_label == 1 else 0
 
     units_list = [r[4] for r in same_fam_rows if r[4] is not None]
@@ -146,7 +149,7 @@ def compute_machine_features(
         wd = None
 
     if wd is not None and eligible >= MIN_EVENTS_REFERENCE:
-        wd_matches = [r for r in same_fam_rows
+        wd_matches = [r for r in known_rows
                        if _weekday_of(r[0]) == wd]
         wd_hits = sum(1 for r in wd_matches if r[3] == 1)
         wd_total = len(wd_matches)

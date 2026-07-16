@@ -176,15 +176,14 @@ def compute_event_labels(conn: sqlite3.Connection) -> int:
             q_threshold = Q_MACHINE_ABS_THRESHOLD
 
         for mk, units, coverage, q, avg_diff, total_units in machines:
-            if avg_diff is None or units is None:
+            # Insufficient evidence is unknown, not a negative label.
+            if (avg_diff is None or units is None or coverage is None
+                    or q is None):
                 continue
 
             meets_units = units >= MIN_UNITS
-            meets_coverage = (coverage is not None and coverage >= MIN_COVERAGE)
-            meets_q = (
-                q is not None
-                and (q >= q_threshold or q >= Q_MACHINE_ABS_THRESHOLD)
-            )
+            meets_coverage = coverage >= MIN_COVERAGE
+            meets_q = (q >= q_threshold or q >= Q_MACHINE_ABS_THRESHOLD)
             meets_diff = avg_diff > 0
 
             label = 1 if (meets_units and meets_coverage
@@ -264,15 +263,16 @@ def compute_organic_labels(conn: sqlite3.Connection) -> int:
             )
             updated += 1
 
-            if not any_active or avg_diff is None or units is None:
+            if not any_active:
+                continue
+            # On an active organic day, missing evidence remains unknown.
+            if (avg_diff is None or units is None or coverage is None
+                    or q is None):
                 continue
 
             meets_units = units >= MIN_UNITS
-            meets_coverage = (coverage is not None and coverage >= MIN_COVERAGE)
-            meets_q = (
-                q is not None
-                and (q >= q_threshold or q >= Q_MACHINE_ABS_THRESHOLD)
-            )
+            meets_coverage = coverage >= MIN_COVERAGE
+            meets_q = (q >= q_threshold or q >= Q_MACHINE_ABS_THRESHOLD)
             meets_diff = avg_diff > 0
 
             label = 1 if (meets_units and meets_coverage

@@ -17,6 +17,7 @@ import argparse
 import json
 import os
 import subprocess
+import shutil
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -39,6 +40,14 @@ def run_step(label: str, cmd: list[str], cwd: Path | None = None) -> None:
         sys.exit(1)
     print(f"[OK] {label}")
 
+
+
+def build_freeze_command(py: str, draft_path: Path, db_path: Path) -> list[str]:
+    """Return the freeze command using the CLI's positional draft argument."""
+    return [
+        py, str(TOOLS / "freeze_run.py"), str(draft_path),
+        "--db", str(db_path),
+    ]
 
 def main() -> None:
     ap = argparse.ArgumentParser(
@@ -99,10 +108,7 @@ def main() -> None:
 
     # 8. Freeze run
     draft_path = ROOT / "build" / "run_draft.json"
-    run_step("freeze_run", [
-        py, str(TOOLS / "freeze_run.py"),
-        "--draft", str(draft_path),
-    ])
+    run_step("freeze_run", build_freeze_command(py, draft_path, db_path))
 
     # 9. Find the frozen run file
     frozen_dir = ROOT / "predictions" / "frozen"
@@ -123,14 +129,34 @@ def main() -> None:
     ]
     run_step("build_site_data", site_cmd)
 
-    # 11. Encrypt vault
+    # 11. Encrypt vault and verify by an independent decrypt pass.
     if not args.skip_encrypt:
         site_id = os.environ.get("SITE_ID")
         site_password = os.environ.get("SITE_PASSWORD")
         if site_id and site_password:
-            run_step("encrypt_vault", [
-                "node", str(TOOLS / "encrypt_vault.mjs"),
-            ])
+            vault_path = ROOT / "data" / "vault.json"
+            backup_path = ROOT / "build" / "vault.pre_release.backup.json"
+            backup_path.parent.mkdir(parents=True, exist_ok=True)
+            had_vault = vault_path.exists()
+            if had_vault:
+                shutil.copy2(vault_path, backup_path)
+            try:
+                run_step("encrypt_vault", [
+                    "node", str(TOOLS / "encrypt_vault.mjs"),
+                ])
+                run_step("decrypt_vault_verify", [
+                    "node", str(TOOLS / "decrypt_vault.mjs"),
+                ])
+            except SystemExit:
+                if had_vault and backup_path.exists():
+                    shutil.copy2(backup_path, vault_path)
+                    print("[ROLLBACK] restored previous data/vault.json")
+                elif vault_path.exists():
+                    vault_path.unlink()
+                raise
+            finally:
+                if backup_path.exists():
+                    backup_path.unlink()
         else:
             print("[SKIP] encrypt_vault: SITE_ID/SITE_PASSWORD not set")
     else:

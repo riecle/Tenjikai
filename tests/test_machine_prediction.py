@@ -116,7 +116,7 @@ class TestP1_05_Top5(unittest.TestCase):
 
             caps = {"machine_daily_available": True}
             preds = build_machine_predictions(
-                conn, "hall_cap", ["2026-07-20"], "2026-07-14", caps,
+                conn, "hall_cap", ["2026-07-17"], "2026-07-14", caps,
             )
 
             machine_preds = [
@@ -137,7 +137,7 @@ class TestP1_05_Top5(unittest.TestCase):
 
             caps = {"machine_daily_available": False}
             preds = build_machine_predictions(
-                conn, "hall_nocap", ["2026-07-20"], "2026-07-14", caps,
+                conn, "hall_nocap", ["2026-07-17"], "2026-07-14", caps,
             )
 
             self.assertEqual(len(preds), 1)
@@ -157,7 +157,7 @@ class TestP1_05_Top5(unittest.TestCase):
 
             caps = {"machine_daily_available": True}
             preds = build_machine_predictions(
-                conn, "hall_cap", ["2026-07-20"], "2026-07-14", caps,
+                conn, "hall_cap", ["2026-07-17"], "2026-07-14", caps,
             )
 
             machine_preds = [
@@ -180,7 +180,7 @@ class TestP1_06_ScoreRange(unittest.TestCase):
 
             caps = {"machine_daily_available": True}
             preds = build_machine_predictions(
-                conn, "hall_cap", ["2026-07-20"], "2026-07-14", caps,
+                conn, "hall_cap", ["2026-07-17"], "2026-07-14", caps,
             )
 
             for p in preds:
@@ -231,7 +231,7 @@ class TestP1_07_NoCalibratedProbability(unittest.TestCase):
 
             caps = {"machine_daily_available": True}
             preds = build_machine_predictions(
-                conn, "hall_cap", ["2026-07-20"], "2026-07-14", caps,
+                conn, "hall_cap", ["2026-07-17"], "2026-07-14", caps,
             )
 
             for p in preds:
@@ -312,7 +312,7 @@ class TestP1_08_PublishHorizon(unittest.TestCase):
 
             caps = {"machine_daily_available": True}
             preds = build_machine_predictions(
-                conn, "hall_cap", ["2026-07-20"], "2026-07-14", caps,
+                conn, "hall_cap", ["2026-07-17"], "2026-07-14", caps,
             )
             self.assertGreater(len(preds), 0)
             conn.close()
