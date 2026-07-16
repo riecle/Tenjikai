@@ -117,5 +117,29 @@ class TestROT05_SelectedGapMedianCorrect(unittest.TestCase):
         self.assertEqual(features["hit_days"], 3)
 
 
+class TestROT06_UnknownLabelsAreNotNegatives(unittest.TestCase):
+    def test_unknown_excluded_from_eligible(self):
+        conn = _setup_db()
+        conn.execute("INSERT INTO event_families VALUES ('ef1', 'h1', '7のつく日', '{}', NULL,NULL,0.9,'test','day_mod10:7')")
+        rows = [
+            ('2026-01-07', 1),
+            ('2026-01-17', 0),
+            ('2026-01-27', None),
+            ('2026-02-07', None),
+        ]
+        for date, label in rows:
+            conn.execute("INSERT INTO hall_days VALUES ('h1', ?,100,500,5000,'s','ef1',NULL)", (date,))
+            conn.execute(
+                "INSERT INTO machine_days VALUES ('h1', ?, 'mk1','M1',100,5000,5,NULL,'s',NULL,0.8,'computed',0.5,0.3,?,NULL,NULL)",
+                (date, label),
+            )
+        conn.commit()
+        features = compute_machine_features(conn, 'h1', 'mk1', 'ef1', '2026-03-07', '2026-03-01')
+        self.assertEqual(features['eligible_days'], 2)
+        self.assertEqual(features['hit_days'], 1)
+        self.assertAlmostEqual(features['p_event'], (1 + 1) / (2 + 4))
+        conn.close()
+
+
 if __name__ == "__main__":
     unittest.main()

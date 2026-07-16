@@ -27,3 +27,18 @@
 ## 注意
 
 同梱の既存 `data/vault.json` は暗号化済みのため変更していません。Slot Atlas本体を指定して `tools/build_site_data.py` と `tools/encrypt_vault.mjs` を実行すると、新しい配置予測入りvaultが生成されます。
+
+## 追加修正（FREE_PUBLIC_MVP v0.1 最終レビュー）
+
+- `date_role_split`をイベント登録件数ではなく、同一canonical familyの店舗別標準化出玉強度で判定
+- 系列パターンを`promoted=true / status=detected`の場合だけ表示
+- v1.2末尾の`grade / z_shrunk / n_eff / confidence`をPayload・UIへ保持
+- `freeze_run.py`の位置引数とDB登録を1コマンドreleaseへ正しく接続
+- 暗号化後の復号検証と失敗時vault rollback
+- feature hashをラベル・系列・capability・設定値まで拡張
+- NULLラベルを負例として数えない
+- 旧DBで`source_snapshots`がない場合のcapability生成互換性
+- optional列欠損で無料DB読込全体が失敗しないよう修正
+- frozen runの選択をファイル名順からmetadata順へ変更
+- デフォルトcutoffで最新完了日が除外される問題を修正
+- 合成Atlasによる1コマンドE2Eを完走

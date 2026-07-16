@@ -82,16 +82,21 @@ def compute_capabilities(conn: sqlite3.Connection,
             pass
 
         methods = set()
-        if _table_exists(conn, "raw_sources"):
-            srcs = conn.execute(
-                """SELECT DISTINCT rs.acquisition_method
-                   FROM raw_sources rs
-                   JOIN source_snapshots ss ON rs.raw_source_id = 'snap_' || ss.snapshot_id
-                   WHERE ss.hall_id = ?""",
-                (hall_id,),
-            ).fetchall()
-            for (m,) in srcs:
-                methods.add(m)
+        if (_table_exists(conn, "raw_sources")
+                and _table_exists(conn, "source_snapshots")):
+            try:
+                srcs = conn.execute(
+                    """SELECT DISTINCT rs.acquisition_method
+                       FROM raw_sources rs
+                       JOIN source_snapshots ss
+                         ON rs.raw_source_id = 'snap_' || ss.snapshot_id
+                       WHERE ss.hall_id = ?""",
+                    (hall_id,),
+                ).fetchall()
+                for (m,) in srcs:
+                    methods.add(m)
+            except sqlite3.OperationalError:
+                pass
         if not methods and hd > 0:
             methods.add("automated_public")
 

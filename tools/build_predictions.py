@@ -72,98 +72,211 @@ def compute_feature_cutoff(conn: sqlite3.Connection,
     ).fetchone()
     if not row or not row[0]:
         raise ValueError("no hall_days data found")
-    return row[0] + "T23:59:59+09:00"
+    # All feature queries use result_date < cutoff_date.  Default to the next
+    # day so the latest completed business date is included rather than
+    # silently dropped from the snapshot.
+    from datetime import date as dt_date, timedelta
+    next_day = dt_date.fromisoformat(row[0]) + timedelta(days=1)
+    return next_day.isoformat() + "T00:00:00+09:00"
 
 
 def build_features(conn: sqlite3.Connection,
-                    cutoff_date: str) -> list[dict]:
-    """Extract features from all input tables, filtered by cutoff.
+                    cutoff_date: str) -> dict:
+    """Build a deterministic manifest of every input used by predictions.
 
-    Returns a deterministically-ordered list of feature dicts.
-    The canonical hash covers hall_days, machine_days, tail_days,
-    event_families, and hall_capabilities.
+    Raw-source and feature hashes have distinct roles.  This manifest covers
+    normalized/derived data and model configuration so label, threshold, chain,
+    or capability changes always change feature_snapshot_hash.
     """
-    manifest: dict[str, list] = {}
+    from build_machine_scores import (
+        MACHINE_TOP_N, MACHINE_PUBLISH_DAYS_MAX, CONFIDENCE_SAMPLE_K,
+        FRESHNESS_TAU_DAYS, MIN_EVENTS_REFERENCE, W_P_EVENT, W_ROTATION,
+        W_SIZE_FIT, W_WEEKDAY_FIT, W_RECENT_DEMAND, W_CHAIN_SIGNAL,
+        W_LAST_SELECTED_PENALTY,
+    )
+    from build_tail_zscores import (
+        SHRINKAGE_K, Z_CLIP_LO, Z_CLIP_HI, SE_EPSILON,
+        Z_STRONG_THRESHOLD, Z_WATCH_THRESHOLD,
+    )
+    from build_machine_labels import (
+        MIN_UNITS, MIN_COVERAGE, SELECTED_TOP_QUANTILE,
+        Q_MACHINE_ABS_THRESHOLD, ORGANIC_AVG_DIFF_MIN,
+        ORGANIC_POSITIVE_RATE_MIN,
+    )
 
-    rows = conn.execute(
+    manifest: dict[str, object] = {}
+
+    def query_rows(sql: str, params: tuple = ()) -> list[tuple]:
+        try:
+            return conn.execute(sql, params).fetchall()
+        except sqlite3.OperationalError:
+            return []
+
+    def table_manifest(
+        table: str,
+        desired_columns: list[str],
+        *,
+        date_column: str | None = None,
+    ) -> list[dict]:
+        """Extract available desired columns without assuming one schema version."""
+        try:
+            available = {
+                row[1] for row in conn.execute(f"PRAGMA table_info({table})")
+            }
+        except sqlite3.OperationalError:
+            return []
+        columns = [c for c in desired_columns if c in available]
+        if not columns:
+            return []
+        where = ""
+        params: tuple = ()
+        if date_column and date_column in available:
+            where = f" WHERE {date_column} < ?"
+            params = (cutoff_date,)
+        order_candidates = [
+            c for c in ("hall_id", date_column, "machine_key", "tail_key",
+                        "event_family_id", "subject_key", "as_of")
+            if c and c in columns
+        ]
+        order = f" ORDER BY {', '.join(order_candidates)}" if order_candidates else ""
+        sql = f"SELECT {', '.join(columns)} FROM {table}{where}{order}"
+        rows = query_rows(sql, params)
+        return [dict(zip(columns, row)) for row in rows]
+
+    rows = query_rows(
         """SELECT hall_id, result_date, avg_diff, total_diff, avg_games,
                   source_name, event_family_id
-           FROM hall_days
-           WHERE result_date < ?
-           ORDER BY hall_id, result_date, source_name""",
+           FROM hall_days WHERE result_date < ?
+           ORDER BY hall_id, result_date, source_name, event_family_id""",
         (cutoff_date,),
-    ).fetchall()
+    )
     manifest["hall_days"] = [
         {"hall_id": r[0], "result_date": r[1], "avg_diff": r[2],
          "total_diff": r[3], "avg_games": r[4], "source_name": r[5],
-         "event_family_id": r[6]}
-        for r in rows
+         "event_family_id": r[6]} for r in rows
     ]
 
-    try:
-        md_rows = conn.execute(
-            """SELECT hall_id, result_date, machine_key, avg_diff, avg_games, units
-               FROM machine_days
-               WHERE result_date < ?
-               ORDER BY hall_id, result_date, machine_key""",
-            (cutoff_date,),
-        ).fetchall()
-        manifest["machine_days"] = [
-            {"hall_id": r[0], "result_date": r[1], "machine_key": r[2],
-             "avg_diff": r[3], "avg_games": r[4], "units": r[5]}
-            for r in md_rows
-        ]
-    except sqlite3.OperationalError:
-        manifest["machine_days"] = []
+    manifest["machine_days"] = table_manifest(
+        "machine_days",
+        [
+            "hall_id", "result_date", "machine_key", "machine_name",
+            "avg_diff", "avg_games", "units", "total_units", "coverage",
+            "positive_rate", "q_machine", "event_selected_label",
+            "organic_active_day", "organic_selected_label", "label_status",
+            "winning_units", "selected_flag", "source_name", "snapshot_id",
+        ],
+        date_column="result_date",
+    )
 
-    try:
-        td_rows = conn.execute(
-            """SELECT hall_id, result_date, tail_key, avg_diff
-               FROM tail_days
-               WHERE result_date < ?
-               ORDER BY hall_id, result_date, tail_key""",
-            (cutoff_date,),
-        ).fetchall()
-        manifest["tail_days"] = [
-            {"hall_id": r[0], "result_date": r[1], "tail_key": r[2],
-             "avg_diff": r[3]}
-            for r in td_rows
-        ]
-    except sqlite3.OperationalError:
-        manifest["tail_days"] = []
+    manifest["tail_days"] = table_manifest(
+        "tail_days",
+        [
+            "hall_id", "result_date", "tail_key", "avg_diff",
+            "positive_rate", "avg_games", "units", "observed_units",
+            "coverage", "source_name", "snapshot_id",
+        ],
+        date_column="result_date",
+    )
 
-    try:
-        ef_rows = conn.execute(
-            """SELECT event_family_id, hall_id, family_type,
-                      canonical_family_key
-               FROM event_families
-               ORDER BY event_family_id""",
-        ).fetchall()
-        manifest["event_families"] = [
-            {"event_family_id": r[0], "hall_id": r[1], "family_type": r[2],
-             "canonical_family_key": r[3]}
-            for r in ef_rows
-        ]
-    except sqlite3.OperationalError:
-        manifest["event_families"] = []
+    ef_rows = query_rows(
+        """SELECT event_family_id, hall_id, family_type, rule_json,
+                  valid_from, valid_to, confidence, source,
+                  canonical_family_key
+           FROM event_families
+           ORDER BY event_family_id"""
+    )
+    manifest["event_families"] = [
+        {"event_family_id": r[0], "hall_id": r[1], "family_type": r[2],
+         "rule_json": r[3], "valid_from": r[4], "valid_to": r[5],
+         "confidence": r[6], "source": r[7],
+         "canonical_family_key": r[8]} for r in ef_rows
+    ]
 
-    try:
-        hc_rows = conn.execute(
-            """SELECT hall_id, as_of, hall_daily_available,
-                      machine_daily_available, tail_daily_available
-               FROM hall_capabilities
-               ORDER BY hall_id, as_of""",
-        ).fetchall()
-        manifest["hall_capabilities"] = [
-            {"hall_id": r[0], "as_of": r[1], "hall_daily": r[2],
-             "machine_daily": r[3], "tail_daily": r[4]}
-            for r in hc_rows
-        ]
-    except sqlite3.OperationalError:
-        manifest["hall_capabilities"] = []
+    hc_rows = query_rows(
+        """SELECT hall_id, as_of, hall_daily_available,
+                  machine_daily_available, tail_daily_available,
+                  unit_daily_available, counter_metrics_available,
+                  layout_available, reset_policy_available,
+                  acquisition_methods_json, warnings_json
+           FROM hall_capabilities ORDER BY hall_id, as_of"""
+    )
+    manifest["hall_capabilities"] = [
+        {"hall_id": r[0], "as_of": r[1], "hall_daily": r[2],
+         "machine_daily": r[3], "tail_daily": r[4], "unit_daily": r[5],
+         "counter_metrics": r[6], "layout": r[7], "reset_policy": r[8],
+         "acquisition_methods": r[9], "warnings": r[10]}
+        for r in hc_rows
+    ]
 
+    cp_rows = query_rows(
+        """SELECT chain_id, event_family_id, pattern_type, subject_key,
+                  valid_from, valid_to, statistic, lift, p_value,
+                  evidence_days, confidence, promoted, status,
+                  explanation_json, warnings_json
+           FROM chain_pattern_results_v2
+           WHERE valid_from < ?
+           ORDER BY chain_id, event_family_id, pattern_type,
+                    subject_key, valid_from""",
+        (cutoff_date,),
+    )
+    manifest["chain_pattern_results"] = [
+        {"chain_id": r[0], "event_family_id": r[1], "pattern_type": r[2],
+         "subject_key": r[3], "valid_from": r[4], "valid_to": r[5],
+         "statistic": r[6], "lift": r[7], "p_value": r[8],
+         "evidence_days": r[9], "confidence": r[10],
+         "promoted": r[11], "status": r[12],
+         "explanation_json": r[13], "warnings_json": r[14]}
+        for r in cp_rows
+    ]
+
+    # Persist the gate's effective output in the snapshot as well as its raw
+    # source columns.  This catches code/threshold changes that alter eligibility.
+    gates = []
+    for (hall_id,) in query_rows("SELECT hall_id FROM halls WHERE active = 1 ORDER BY hall_id"):
+        try:
+            gates.append(compute_organic_model_gate(conn, hall_id))
+        except sqlite3.OperationalError:
+            continue
+    manifest["organic_model_gates"] = gates
+
+    manifest["model_config"] = {
+        "machine": {
+            "top_n": MACHINE_TOP_N,
+            "publish_days_max": MACHINE_PUBLISH_DAYS_MAX,
+            "confidence_sample_k": CONFIDENCE_SAMPLE_K,
+            "freshness_tau_days": FRESHNESS_TAU_DAYS,
+            "min_events_reference": MIN_EVENTS_REFERENCE,
+            "weights": {
+                "p_event": W_P_EVENT, "rotation": W_ROTATION,
+                "size_fit": W_SIZE_FIT, "weekday_fit": W_WEEKDAY_FIT,
+                "recent_demand": W_RECENT_DEMAND,
+                "chain_signal": W_CHAIN_SIGNAL,
+                "last_selected_penalty": W_LAST_SELECTED_PENALTY,
+            },
+        },
+        "labels": {
+            "min_units": MIN_UNITS, "min_coverage": MIN_COVERAGE,
+            "selected_top_quantile": SELECTED_TOP_QUANTILE,
+            "q_machine_abs_threshold": Q_MACHINE_ABS_THRESHOLD,
+            "organic_avg_diff_min": ORGANIC_AVG_DIFF_MIN,
+            "organic_positive_rate_min": ORGANIC_POSITIVE_RATE_MIN,
+            "organic_min_valid_days": 20,
+            "organic_activation_rate_min": 0.20,
+        },
+        "tail": {
+            "shrinkage_k": SHRINKAGE_K, "z_clip_lo": Z_CLIP_LO,
+            "z_clip_hi": Z_CLIP_HI, "se_epsilon": SE_EPSILON,
+            "strong_threshold": Z_STRONG_THRESHOLD,
+            "watch_threshold": Z_WATCH_THRESHOLD,
+        },
+        "chain": {
+            "min_common_days": 8,
+            "date_role_concentration_threshold": 0.60,
+            "date_role_effect_threshold": 0.50,
+        },
+        "distribution": {"unit_distribution_policy": "local_only"},
+    }
     return manifest
-
 
 def load_hall_capabilities(conn: sqlite3.Connection) -> dict[str, dict]:
     """Determine per-hall capability flags from data presence."""
@@ -274,10 +387,15 @@ def build_draft(
     feature_hash = canonical_hash(feature_manifest)
 
     seed_dir = atlas_dir / "seed"
-    src_hash = (
-        source_snapshot_hash(seed_dir) if seed_dir.is_dir()
-        else canonical_hash({"db": str(db_path)})
-    )
+    if seed_dir.is_dir():
+        src_hash = source_snapshot_hash(seed_dir)
+    else:
+        import hashlib
+        h = hashlib.sha256()
+        with db_path.open("rb") as db_file:
+            for chunk in iter(lambda: db_file.read(1024 * 1024), b""):
+                h.update(chunk)
+        src_hash = h.hexdigest()
 
     preds = load_existing_predictions(conn, target_dates)
     caps = load_hall_capabilities(conn)

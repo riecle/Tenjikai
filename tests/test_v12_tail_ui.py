@@ -28,6 +28,9 @@ class TestUIT03_V12TailsHasGradeAndScore(unittest.TestCase):
         self.assertIn("tail-grade", snippet)
         self.assertIn("score=", snippet)
         self.assertIn("tail-number", snippet)
+        self.assertIn("t.grade", snippet)
+        self.assertIn("t.z_shrunk", snippet)
+        self.assertNotIn("s >= 80", snippet)
 
 
 class TestUIT04_V12TailsFallsBackToLegacy(unittest.TestCase):
