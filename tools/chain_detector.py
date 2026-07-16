@@ -798,7 +798,7 @@ def persist_chain_results(
     event_family_id: str | None,
     results: list[dict],
     valid_from: str,
-    valid_to: str,
+    valid_to: str | None,
 ) -> int:
     """Store chain pattern results to v2 table. Returns rows inserted."""
     inserted = 0
@@ -884,7 +884,7 @@ def build_all_chain_patterns(
         if results:
             stored = persist_chain_results(
                 conn, chain_id, None, results,
-                cutoff_date, "9999-12-31",
+                cutoff_date, "",
             )
             total_stored += stored
 
@@ -897,9 +897,21 @@ def main() -> None:
         description="Detect chain patterns (4-type)"
     )
     ap.add_argument("--db", required=True, help="Path to slot_atlas.db")
-    ap.add_argument("--cutoff", default="9999-12-31",
-                     help="Feature cutoff date")
+    ap.add_argument("--cutoff", default=None,
+                     help="Feature cutoff date (required for release)")
+    ap.add_argument("--allow-all-history-for-test", action="store_true",
+                     help="Allow running without cutoff (dev/test only)")
     args = ap.parse_args()
+
+    if args.cutoff is None and not args.allow_all_history_for_test:
+        print(
+            "error: --cutoff is required (use --allow-all-history-for-test "
+            "to run without cutoff in dev/test mode)",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    cutoff = args.cutoff if args.cutoff is not None else "9999-12-31"
 
     db = Path(args.db)
     if not db.exists():
@@ -907,7 +919,7 @@ def main() -> None:
         sys.exit(1)
 
     conn = sqlite3.connect(str(db))
-    counts = build_all_chain_patterns(conn, args.cutoff)
+    counts = build_all_chain_patterns(conn, cutoff)
     conn.close()
 
     print("chain patterns detected:")

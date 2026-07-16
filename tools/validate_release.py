@@ -27,7 +27,7 @@ FORBIDDEN_FIELDS = {"unit_no", "candidate_band", "Qhat_unit",
                     "q_unit_observed", "entry_no"}
 
 
-def validate_plain(plain_path: Path) -> list[str]:
+def validate_plain(plain_path: Path, expected_cutoff: str | None = None) -> list[str]:
     """Validate a plaintext payload. Returns list of errors."""
     errors = []
 
@@ -67,6 +67,12 @@ def validate_plain(plain_path: Path) -> list[str]:
             for field in ["prediction_run_id", "feature_cutoff_at"]:
                 if not rm.get(field):
                     errors.append(f"run_meta.{field} is empty")
+            if expected_cutoff and rm.get("feature_cutoff_at") != expected_cutoff:
+                errors.append(
+                    f"run_meta.feature_cutoff_at mismatch: "
+                    f"expected {expected_cutoff!r}, "
+                    f"got {rm.get('feature_cutoff_at')!r}"
+                )
 
         # Check for forbidden unit data
         halls = fs.get("halls", {})
@@ -108,6 +114,11 @@ def validate_frozen_run(frozen_path: Path) -> list[str]:
         if field not in data:
             errors.append(f"missing '{field}' in frozen run")
 
+    if "resolved_cutoff_source" not in data:
+        errors.append("missing 'resolved_cutoff_source' in frozen run")
+    if "target_dates" not in data:
+        errors.append("missing 'target_dates' in frozen run")
+
     preds = data.get("predictions", [])
     if not preds:
         errors.append("no predictions in frozen run")
@@ -134,12 +145,18 @@ def main() -> None:
                      help="Path to plaintext payload")
     ap.add_argument("--frozen-dir", default=str(ROOT / "predictions" / "frozen"),
                      help="Path to frozen runs directory")
+    ap.add_argument("--cutoff",
+                     help="Expected resolved cutoff (validates match)")
+    ap.add_argument("--atlas-db",
+                     help="Path to slot_atlas.db for E2E validation")
+    ap.add_argument("--fail-on-skip", action="store_true",
+                     help="Treat skips as failures")
     args = ap.parse_args()
 
     all_errors = []
 
     plain_path = Path(args.plain)
-    plain_errors = validate_plain(plain_path)
+    plain_errors = validate_plain(plain_path, expected_cutoff=args.cutoff)
     all_errors.extend(plain_errors)
 
     frozen_dir = Path(args.frozen_dir)

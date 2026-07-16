@@ -19,11 +19,32 @@ import os
 import subprocess
 import shutil
 import sys
-from datetime import datetime, timezone
+from datetime import date as dt_date, datetime, timedelta, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 TOOLS = ROOT / "tools"
+
+
+def resolve_cutoff(cutoff_arg: str | None, target_dates_arg: str | None) -> str:
+    """Resolve the feature cutoff datetime.
+
+    If cutoff_arg is provided, return it directly.
+    If target_dates_arg is provided, return (earliest target - 1 day)
+    at 23:59:59+09:00.
+    If neither is given, raise ValueError.
+    """
+    if cutoff_arg:
+        return cutoff_arg
+    if target_dates_arg:
+        dates = [
+            dt_date.fromisoformat(d.strip())
+            for d in target_dates_arg.split(",")
+        ]
+        earliest = min(dates)
+        cutoff_date = earliest - timedelta(days=1)
+        return cutoff_date.isoformat() + "T23:59:59+09:00"
+    raise ValueError("Either --cutoff or --target-dates must be specified")
 
 
 def run_step(label: str, cmd: list[str], cwd: Path | None = None) -> None:
@@ -69,6 +90,28 @@ def main() -> None:
         print(f"error: {db_path} not found", file=sys.stderr)
         sys.exit(1)
 
+    # --- Resolve cutoff ---
+    target_dates: list[str] = []
+    if args.target_dates:
+        target_dates = [d.strip() for d in args.target_dates.split(",") if d.strip()]
+
+    if args.cutoff:
+        resolved_cutoff = args.cutoff
+        resolved_cutoff_source = "cli"
+    elif target_dates:
+        earliest = min(dt_date.fromisoformat(d) for d in target_dates)
+        resolved_cutoff = (earliest - timedelta(days=1)).isoformat() + "T23:59:59+09:00"
+        resolved_cutoff_source = "target_date"
+    else:
+        print(
+            "error: Release requires --cutoff or --target-dates "
+            "to determine resolved_cutoff",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    print(f"[INFO] resolved_cutoff: {resolved_cutoff} (source: {resolved_cutoff_source})")
+
     run_id = args.run_id or "run_" + datetime.now().strftime("%Y%m%d_%H%M%S")
     py = sys.executable
 
@@ -88,9 +131,10 @@ def main() -> None:
     run_step("build_capabilities", [py, str(TOOLS / "build_capabilities.py"), "--db", str(db_path)])
 
     # 6. Chain detection
-    chain_cmd = [py, str(TOOLS / "chain_detector.py"), "--db", str(db_path)]
-    if args.cutoff:
-        chain_cmd.extend(["--cutoff", args.cutoff])
+    chain_cmd = [
+        py, str(TOOLS / "chain_detector.py"), "--db", str(db_path),
+        "--cutoff", resolved_cutoff,
+    ]
     run_step("chain_detector", chain_cmd)
 
     # 7. Build predictions
@@ -99,11 +143,10 @@ def main() -> None:
         "--atlas-dir", str(atlas_dir),
         "--run-id", run_id,
         "--output", str(ROOT / "build" / "run_draft.json"),
+        "--cutoff", resolved_cutoff,
     ]
-    if args.cutoff:
-        pred_cmd.extend(["--cutoff", args.cutoff])
-    if args.target_dates:
-        pred_cmd.extend(["--target-dates", args.target_dates])
+    if target_dates:
+        pred_cmd.extend(["--target-dates", ",".join(target_dates)])
     run_step("build_predictions", pred_cmd)
 
     # 8. Freeze run
@@ -126,6 +169,7 @@ def main() -> None:
         py, str(TOOLS / "build_site_data.py"),
         "--atlas-dir", str(atlas_dir),
         "--frozen-run", str(frozen_path),
+        "--cutoff", resolved_cutoff,
     ]
     run_step("build_site_data", site_cmd)
 
@@ -171,14 +215,22 @@ def main() -> None:
         n_rows = len(data.get("rows", []))
         print(f"\n{'='*60}")
         print("[VERIFY] Release build complete")
-        print(f"  run_id:   {run_meta.get('prediction_run_id', 'N/A')}")
-        print(f"  cutoff:   {run_meta.get('feature_cutoff_at', 'N/A')}")
-        print(f"  halls:    {n_halls}")
-        print(f"  rows:     {n_rows}")
-        print(f"  frozen:   {frozen_path}")
+        print(f"  run_id:              {run_meta.get('prediction_run_id', 'N/A')}")
+        print(f"  cutoff:              {run_meta.get('feature_cutoff_at', 'N/A')}")
+        print(f"  resolved_cutoff_src: {resolved_cutoff_source}")
+        print(f"  target_dates:        {target_dates or 'N/A'}")
+        print(f"  halls:               {n_halls}")
+        print(f"  rows:                {n_rows}")
+        print(f"  frozen:              {frozen_path}")
         print(f"{'='*60}")
     else:
         print("[WARN] build/plain.json not found — cannot verify")
+
+    # 13. Plaintext cleanup — remove intermediate build artifacts
+    for cleanup_file in (ROOT / "build" / "plain.json", ROOT / "build" / "run_draft.json"):
+        if cleanup_file.exists():
+            cleanup_file.unlink()
+            print(f"[CLEANUP] deleted {cleanup_file}")
 
 
 if __name__ == "__main__":
