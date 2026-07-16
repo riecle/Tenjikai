@@ -122,6 +122,14 @@ PHASE1A_COLUMNS = [
     "ALTER TABLE machine_days ADD COLUMN label_status TEXT DEFAULT 'unknown'",
 ]
 
+PHASE1B_COLUMNS = [
+    "ALTER TABLE machine_days ADD COLUMN positive_rate REAL",
+    "ALTER TABLE machine_days ADD COLUMN q_machine REAL",
+    "ALTER TABLE machine_days ADD COLUMN event_selected_label INTEGER",
+    "ALTER TABLE machine_days ADD COLUMN organic_active_day INTEGER",
+    "ALTER TABLE machine_days ADD COLUMN organic_selected_label INTEGER",
+]
+
 
 def migrate(db_path: str | Path) -> list[str]:
     """Run all migrations. Returns list of actions taken."""
@@ -132,6 +140,7 @@ def migrate(db_path: str | Path) -> list[str]:
     all_sql = (
         PHASE0_TABLES + PHASE0_INDEXES
         + PHASE1A_TABLES + PHASE1A_INDEXES + PHASE1A_COLUMNS
+        + PHASE1B_COLUMNS
     )
     for sql in all_sql:
         try:
