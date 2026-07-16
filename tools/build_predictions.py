@@ -214,10 +214,11 @@ def build_features(conn: sqlite3.Connection,
                   evidence_days, confidence, promoted, status,
                   explanation_json, warnings_json
            FROM chain_pattern_results_v2
-           WHERE valid_from < ?
+           WHERE valid_from <= ?
+             AND (valid_to IS NULL OR valid_to > ?)
            ORDER BY chain_id, event_family_id, pattern_type,
                     subject_key, valid_from""",
-        (cutoff_date,),
+        (cutoff_date, cutoff_date),
     )
     manifest["chain_pattern_results"] = [
         {"chain_id": r[0], "event_family_id": r[1], "pattern_type": r[2],
@@ -444,6 +445,8 @@ def build_draft(
         "prediction_run_id": run_id,
         "built_at": now,
         "feature_cutoff_at": cutoff_at,
+        "resolved_cutoff_source": "cli" if cutoff else "computed",
+        "target_dates": target_dates or [],
         "model_version": model_ver,
         "config_version": "v1.2",
         "source_snapshot_hash": src_hash,
