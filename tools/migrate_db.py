@@ -157,6 +157,47 @@ PHASE1_5_INDEXES = [
     "CREATE INDEX IF NOT EXISTS idx_halls_chain ON halls(chain_id)",
 ]
 
+PHASE1_75_TABLES = [
+    """CREATE TABLE IF NOT EXISTS unit_outcomes (
+        hall_id TEXT NOT NULL,
+        business_date TEXT NOT NULL,
+        unit_no TEXT NOT NULL,
+        q_diff REAL,
+        q_counter REAL,
+        q_activity REAL,
+        q_unit_observed REAL,
+        evidence_status TEXT NOT NULL,
+        high_proxy INTEGER,
+        games_reliability REAL,
+        comparison_group TEXT,
+        warnings_json TEXT NOT NULL DEFAULT '[]',
+        PRIMARY KEY(hall_id, business_date, unit_no)
+    )""",
+    """CREATE TABLE IF NOT EXISTS layouts (
+        hall_id TEXT NOT NULL,
+        layout_version TEXT NOT NULL,
+        effective_from TEXT NOT NULL,
+        effective_to TEXT,
+        unit_no TEXT NOT NULL,
+        island_id TEXT,
+        position_in_island INTEGER,
+        left_neighbor TEXT,
+        right_neighbor TEXT,
+        is_corner INTEGER,
+        corner_distance INTEGER,
+        is_aisle_side INTEGER,
+        visibility_class TEXT,
+        acquisition_method TEXT NOT NULL,
+        source_raw_id TEXT,
+        PRIMARY KEY(hall_id, layout_version, unit_no)
+    )""",
+]
+
+PHASE1_75_INDEXES = [
+    "CREATE INDEX IF NOT EXISTS idx_unit_outcomes_hall ON unit_outcomes(hall_id, business_date)",
+    "CREATE INDEX IF NOT EXISTS idx_layouts_hall ON layouts(hall_id)",
+]
+
 
 def migrate(db_path: str | Path) -> list[str]:
     """Run all migrations. Returns list of actions taken."""
@@ -169,6 +210,7 @@ def migrate(db_path: str | Path) -> list[str]:
         + PHASE1A_TABLES + PHASE1A_INDEXES + PHASE1A_COLUMNS
         + PHASE1B_COLUMNS
         + PHASE1_5_TABLES + PHASE1_5_COLUMNS + PHASE1_5_INDEXES
+        + PHASE1_75_TABLES + PHASE1_75_INDEXES
     )
     for sql in all_sql:
         try:
