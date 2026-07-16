@@ -29,6 +29,8 @@ from prediction_utils import (
     canonical_json,
     source_snapshot_hash,
 )
+from build_machine_scores import build_machine_predictions
+from build_tail_zscores import build_tail_predictions
 
 RANK_ORDER = {"S": 1, "A": 2, "B": 3, "C": 4, "NO BET": 5}
 
@@ -220,6 +222,18 @@ def build_draft(
     for p in preds:
         hall_cap = caps.get(p["hall_id"], {})
         p["capabilities"] = hall_cap
+
+    if target_dates:
+        for hall_id, hall_cap in caps.items():
+            machine_preds = build_machine_predictions(
+                conn, hall_id, target_dates, cutoff_date, hall_cap,
+            )
+            preds.extend(machine_preds)
+
+            tail_preds = build_tail_predictions(
+                conn, hall_id, target_dates, cutoff_date, hall_cap,
+            )
+            preds.extend(tail_preds)
 
     model_ver = load_model_version(atlas_dir)
 
