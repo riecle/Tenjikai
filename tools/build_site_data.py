@@ -28,6 +28,8 @@ import csv
 import json
 import pathlib
 import re
+import sqlite3
+from collections import defaultdict
 
 from free_source_predictor import build_free_source_payload
 
@@ -104,6 +106,138 @@ def load_base_payload(path: pathlib.Path) -> dict:
     return payload
 
 
+def enrich_with_v12(
+    free_source: dict,
+    atlas_dir: pathlib.Path,
+    frozen_run_path: pathlib.Path | None,
+) -> None:
+    """Add v1.2 capabilities, chain patterns, and predictions to free_source."""
+    db_path = atlas_dir / "slot_atlas.db"
+    if not db_path.exists():
+        return
+
+    conn = sqlite3.connect(str(db_path))
+    halls_payload = free_source.get("halls", {})
+
+    for hall_id in halls_payload:
+        caps = {}
+        for tbl, key in [
+            ("hall_days", "hall_daily"),
+            ("machine_days", "machine_daily"),
+            ("tail_days", "tail_daily"),
+            ("unit_days", "unit_daily"),
+        ]:
+            try:
+                count = conn.execute(
+                    f"SELECT COUNT(*) FROM {tbl} WHERE hall_id = ?",
+                    (hall_id,),
+                ).fetchone()[0]
+                caps[key] = count > 0
+            except sqlite3.OperationalError:
+                caps[key] = False
+        halls_payload[hall_id]["capabilities"] = caps
+
+    chain_map: dict[str, str] = {}
+    try:
+        for r in conn.execute(
+            "SELECT hall_id, chain_id FROM halls "
+            "WHERE chain_id IS NOT NULL AND chain_id != ''"
+        ).fetchall():
+            chain_map[r[0]] = r[1]
+    except sqlite3.OperationalError:
+        pass
+
+    patterns_by_chain: dict[str, list] = defaultdict(list)
+    try:
+        for r in conn.execute(
+            """SELECT chain_id, pattern_type, statistic, lift,
+                      confidence, explanation_json
+               FROM chain_pattern_results
+               ORDER BY chain_id, pattern_type"""
+        ).fetchall():
+            try:
+                expl = json.loads(r[5]) if r[5] else {}
+            except (json.JSONDecodeError, TypeError):
+                expl = {}
+            summary = ""
+            if isinstance(expl, dict):
+                summary = expl.get("summary", expl.get("note", ""))
+            patterns_by_chain[r[0]].append({
+                "type": r[1],
+                "statistic": round(r[2], 3) if r[2] else None,
+                "lift": round(r[3], 2) if r[3] else None,
+                "confidence": round(r[4], 3) if r[4] else None,
+                "summary": summary,
+            })
+    except sqlite3.OperationalError:
+        pass
+
+    for hall_id, hall_data in halls_payload.items():
+        cid = chain_map.get(hall_id)
+        if cid:
+            hall_data["chain_id"] = cid
+            hall_data["chain_patterns"] = patterns_by_chain.get(cid, [])
+
+    if frozen_run_path and frozen_run_path.exists():
+        with open(frozen_run_path, encoding="utf-8") as f:
+            run_data = json.load(f)
+
+        free_source["run_meta"] = {
+            "prediction_run_id": run_data.get("prediction_run_id"),
+            "feature_cutoff_at": run_data.get("feature_cutoff_at"),
+            "model_version": run_data.get("model_version"),
+            "config_version": run_data.get("config_version"),
+            "built_at": run_data.get("built_at"),
+        }
+
+        v12_by_hall: dict[str, dict[str, dict]] = defaultdict(
+            lambda: defaultdict(lambda: {"machines": [], "tails": []})
+        )
+        for pred in run_data.get("predictions", []):
+            etype = pred.get("entity_type", "")
+            if etype == "hall":
+                continue
+            hid = pred.get("hall_id")
+            td = pred.get("target_date")
+            if not hid or not td:
+                continue
+
+            if etype in ("machine_event", "machine_organic"):
+                v12_by_hall[hid][td]["machines"].append({
+                    "id": pred["entity_id"],
+                    "name": pred.get("machine_name", pred["entity_id"]),
+                    "score": pred["score"],
+                    "rank": pred["rank"],
+                    "confidence": pred["confidence"],
+                    "type": etype,
+                    "explanation": pred.get("explanation", []),
+                    "warnings": pred.get("warnings", []),
+                })
+            elif etype == "tail":
+                v12_by_hall[hid][td]["tails"].append({
+                    "id": pred["entity_id"],
+                    "score": pred["score"],
+                    "explanation": pred.get("explanation", []),
+                    "warnings": pred.get("warnings", []),
+                })
+
+        for hid, dates_data in v12_by_hall.items():
+            if hid in halls_payload:
+                v12 = {}
+                for td, day_data in dates_data.items():
+                    entry = {}
+                    if day_data["machines"]:
+                        entry["machines"] = day_data["machines"]
+                    if day_data["tails"]:
+                        entry["tails"] = day_data["tails"]
+                    if entry:
+                        v12[td] = entry
+                if v12:
+                    halls_payload[hid]["v1_2"] = v12
+
+    conn.close()
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--atlas-dir", default="../slot-atlas",
@@ -112,6 +246,8 @@ def main() -> None:
                          help="Reuse an already decrypted Tenjikai payload instead of rebuilding forecast rows")
     parser.add_argument("--no-free-source", action="store_true",
                          help="Skip optional machine/tail/position/unit analysis")
+    parser.add_argument("--frozen-run",
+                         help="Path to a frozen prediction run JSON for v1.2 data enrichment")
     args = parser.parse_args()
     atlas_dir = pathlib.Path(args.atlas_dir).resolve()
 
@@ -133,6 +269,8 @@ def main() -> None:
     # include_unit=False は恒久ポリシー（有料ソース由来はローカル限定・vault非掲載）
     free_source = None if args.no_free_source else build_free_source_payload(atlas_dir, rows, include_unit=False)
     if free_source is not None:
+        frozen_path = pathlib.Path(args.frozen_run) if args.frozen_run else None
+        enrich_with_v12(free_source, atlas_dir, frozen_path)
         meta["free_source_table_counts"] = free_source.get("table_counts", {})
         meta["free_source_full_halls"] = sum(
             1 for hall in free_source.get("halls", {}).values() if hall.get("layer") == "FULL"
