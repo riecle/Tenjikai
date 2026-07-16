@@ -393,6 +393,61 @@
       return parts.length ? parts.join(" → ") : "店×日の判定を優先し、配置型は現地1時間の答え合わせに使う";
     }
 
+    function renderCapFlags(caps) {
+      if (!caps) return "";
+      var flags = [
+        { key: "hall_daily", label: "日次" },
+        { key: "machine_daily", label: "機種" },
+        { key: "tail_daily", label: "末尾" },
+        { key: "unit_daily", label: "台番" },
+      ];
+      return '<div class="cap-flags">' + flags.map(function (f) {
+        return '<span class="cap-flag ' + (caps[f.key] ? "cap-on" : "cap-off") + '">' + f.label + '</span>';
+      }).join("") + '</div>';
+    }
+
+    function renderChainInfo(hall) {
+      if (!hall.chain_id) return "";
+      var html = '<div class="chain-info"><span class="chain-label">系列</span><span class="chain-tag">' + escapeHtml(hall.chain_id) + '</span>';
+      if (hall.chain_patterns && hall.chain_patterns.length) {
+        var types = hall.chain_patterns.map(function (p) { return p.type; });
+        var uniqueTypes = types.filter(function (t, i) { return types.indexOf(t) === i; });
+        html += uniqueTypes.map(function (t) {
+          var label = { joint_machine: "共通機種", machine_split: "機種分担", date_role_split: "日程分担", intensity_split: "強弱交互" }[t] || t;
+          return '<span class="chain-pattern-chip">' + escapeHtml(label) + '</span>';
+        }).join("");
+      }
+      return html + '</div>';
+    }
+
+    function renderV12Machines(v12day) {
+      if (!v12day || !v12day.machines || !v12day.machines.length) return "";
+      var machines = v12day.machines;
+      var noData = machines.length === 1 && machines[0].id === "_no_data";
+      if (noData) return "";
+
+      var entityType = machines[0].type || "machine_event";
+      var typeLabel = entityType === "machine_organic" ? "organic" : "event";
+      var html = '<h3>v1.2 機種予測 <span class="entity-type-tag type-' + typeLabel + '">' + escapeHtml(typeLabel) + '</span></h3>';
+      html += '<div class="machine-list">';
+      machines.forEach(function (m, index) {
+        var score = Number(m.score || 0);
+        var bucket = Math.max(5, Math.min(100, Math.round(score / 5) * 5));
+        var conf = m.confidence !== null && m.confidence !== undefined ? pct(m.confidence * 100) : "—";
+        var expl = Array.isArray(m.explanation) ? m.explanation.join(" → ") : "";
+        html += '<div class="machine-row">' +
+          '<div class="machine-rank">' + (m.rank || index + 1) + '</div>' +
+          '<div class="machine-body"><div class="machine-head"><strong>' + escapeHtml(m.name) + '</strong><span>' + score.toFixed(1) + '</span></div>' +
+          '<div class="bar"><i class="w-' + bucket + '"></i></div>' +
+          '<div class="machine-meta"><span class="machine-note">' + escapeHtml(expl) + '</span><span class="v12-confidence">信頼度 ' + conf + '</span></div>';
+        if (m.warnings && m.warnings.length) {
+          html += '<div class="v12-warnings">' + m.warnings.map(function (w) { return escapeHtml(w); }).join(" / ") + '</div>';
+        }
+        html += '</div></div>';
+      });
+      return html + '</div>';
+    }
+
     function renderFreeSource(row) {
       if (!freeSource || !freeSource.halls) {
         return '<div class="analysis-block"><div class="analysis-head"><strong>無料ソース配置予測</strong><span class="layer layer-none">未搭載</span></div>' +
@@ -411,11 +466,17 @@
         '<div class="analysis-head"><div><strong>無料ソース配置予測</strong><span class="family-chip">' + escapeHtml(actualFamily) + '</span></div>' +
         '<span class="layer layer-' + safeClass(hall.layer) + '">' + escapeHtml(hall.layer) + '</span></div>';
 
+      html += renderCapFlags(hall.capabilities);
+      html += renderChainInfo(hall);
+
+      var v12day = hall.v1_2 && hall.v1_2[selectedDate];
+
       if (hall.layer === "NONE") {
         html += '<div class="empty-note">機種日次・末尾日次・参考スコアのいずれも未接続です。</div>';
       } else if (!familyData && hall.layer === "SUMMARY") {
-        html += '<div class="source-warning">SUMMARY：結果後ハイライト由来を含み得る参考格付けです。着席前確率ではありません。</div>' +
-          '<h3>機種参考格付け</h3>' + renderMachines(hall.summary_machines || [], true);
+        html += '<div class="source-warning">SUMMARY：結果後ハイライト由来を含み得る参考格付けです。着席前確率ではありません。</div>';
+        html += renderV12Machines(v12day);
+        html += '<h3>機種参考格付け</h3>' + renderMachines(hall.summary_machines || [], true);
       } else if (familyData) {
         var machine = familyData.machine;
         var tails = familyData.tails || [];
@@ -427,14 +488,18 @@
             metric("機種選抜", machine.rotation_label || "—", machine.repeat_rate === null || machine.repeat_rate === undefined ? "系列不足" : "再登場率" + pct(machine.repeat_rate, 1)) +
             metric("末尾本命", bestTail ? "末尾" + bestTail.tail : "—", bestTail && Number.isFinite(Number(bestTail.z)) ? "z=" + signed(Number(bestTail.z).toFixed(2)) : "データなし") +
             '</div>' +
-            '<div class="strategy"><b>実戦ルート</b><span>' + escapeHtml(strategyText(machine, tails, patterns)) + '</span></div>' +
-            '<h3>機種候補 <small>候補度（未校正）</small></h3>' + renderMachines(machine.machines || [], false) +
+            '<div class="strategy"><b>実戦ルート</b><span>' + escapeHtml(strategyText(machine, tails, patterns)) + '</span></div>';
+          html += renderV12Machines(v12day);
+          html += '<h3>機種候補 <small>候補度（未校正）</small></h3>' + renderMachines(machine.machines || [], false) +
             '<h3>末尾候補</h3>' + renderTails(tails) + renderPatterns(patterns);
         } else {
-          html += '<div class="source-warning">SUMMARY：機種日次の同族系列が不足しています。</div>' +
-            '<h3>機種参考格付け</h3>' + renderMachines(hall.summary_machines || [], true) +
+          html += '<div class="source-warning">SUMMARY：機種日次の同族系列が不足しています。</div>';
+          html += renderV12Machines(v12day);
+          html += '<h3>機種参考格付け</h3>' + renderMachines(hall.summary_machines || [], true) +
             (tails.length ? '<h3>末尾候補</h3>' + renderTails(tails) : "") + renderPatterns(patterns);
         }
+      } else {
+        html += renderV12Machines(v12day);
       }
 
       if (hall.warnings && hall.warnings.length) {
@@ -442,10 +507,14 @@
           return '<div>・' + escapeHtml(warning) + '</div>';
         }).join("") + '</div>';
       }
+      var runMeta = freeSource.run_meta;
       html += '<div class="data-counts">machine_days ' + escapeHtml(counts.machine_days || 0) +
         ' / tail_days ' + escapeHtml(counts.tail_days || 0) +
         ' / unit_days ' + escapeHtml(counts.unit_days || 0) +
-        ' / position_signals ' + escapeHtml(counts.position_signals || 0) + '</div>';
+        ' / position_signals ' + escapeHtml(counts.position_signals || 0) +
+        (runMeta ? ' / run ' + escapeHtml(runMeta.prediction_run_id || "") +
+          ' / cutoff ' + escapeHtml((runMeta.feature_cutoff_at || "").slice(0, 10)) : "") +
+        '</div>';
       return html + '</div>';
     }
 

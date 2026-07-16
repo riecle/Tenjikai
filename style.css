@@ -172,6 +172,28 @@ select{
 .pattern-item.status-signal{border-color:#62501e}.pattern-item.status-signal .pattern-head span{background:#362b12;color:#f5d887}
 .pattern-item.status-field{border-color:#314a68}.pattern-item.status-field .pattern-head span{background:#17283b;color:#9dcaf4}
 
+/* capability flags */
+.cap-flags{display:flex;gap:5px;margin-bottom:8px;flex-wrap:wrap}
+.cap-flag{font-size:.6rem;font-weight:700;letter-spacing:.03em;padding:2px 7px;border-radius:999px;border:1px solid var(--card-border)}
+.cap-on{background:#17331f;color:#a7f3b7;border-color:#315d3d}
+.cap-off{background:#202024;color:#52525a;border-color:#2e2e33}
+
+/* chain info */
+.chain-info{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:9px}
+.chain-label{font-size:.62rem;color:var(--muted)}
+.chain-tag{font-size:.66rem;font-weight:700;padding:2px 8px;border-radius:999px;background:#17283b;color:#9dcaf4;border:1px solid #314a68}
+.chain-pattern-chip{font-size:.58rem;padding:1px 6px;border-radius:999px;background:#362b12;color:#f5d887;border:1px solid #62501e}
+
+/* v1.2 entity type tags */
+.entity-type-tag{font-size:.6rem;font-weight:700;padding:1px 7px;border-radius:999px;vertical-align:middle;margin-left:4px}
+.type-event{background:#362b12;color:#f5d887;border:1px solid #62501e}
+.type-organic{background:#17331f;color:#a7f3b7;border:1px solid #315d3d}
+
+/* v1.2 machine extras */
+.machine-meta{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.v12-confidence{font-size:.62rem;color:var(--muted);white-space:nowrap}
+.v12-warnings{font-size:.62rem;color:var(--danger);line-height:1.4;margin-top:2px}
+
 @media(max-width:520px){
   .candidate-option{display:grid;gap:4px}.candidate-meta{padding-left:35px}
   .signal-metrics{grid-template-columns:1fr 1fr}.signal-metric:last-child{grid-column:1/-1}

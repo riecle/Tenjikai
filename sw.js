@@ -4,7 +4,7 @@
    復号はブラウザ内でのみ行われ、パスワードはどこにも送信・保存されない。 */
 "use strict";
 
-const CACHE = "slot-atlas-0.11.29-2026-07-16-swfix";
+const CACHE = "slot-atlas-0.11.29-2026-07-15";
 
 // The app shell is small and must all be present for the page to render at
 // all, so its install step is atomic (addAll fails install if any one 404s).

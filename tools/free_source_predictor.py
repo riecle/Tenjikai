@@ -994,6 +994,5 @@ def build_free_source_payload(atlas_dir: pathlib.Path, candidate_rows: Sequence[
             "tail_days": ["hall_id", "date", "tail", "avg_diff or z"],
             "machine_scores": ["hall_id", "machine_name", "score or avg_diff"],
             "position_signals": ["hall_id", "date?", "pattern_type", "detail?"],
-            "unit_days": ["hall_id", "date", "unit_no", "diff", "machine_name?"],
         },
     }
