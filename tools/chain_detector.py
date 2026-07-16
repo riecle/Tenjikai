@@ -407,36 +407,38 @@ def detect_date_role_split(
 ) -> dict | None:
     """Detect date_role_split: date series divided across chain halls.
 
-    Builds event_family x hall intensity matrix and checks if
-    specific event families concentrate at specific halls.
+    Uses canonical_family_key (not event_family_id) so that semantically
+    identical families across halls are correctly unified.
     """
-    family_hall_counts: dict[str, dict[str, int]] = defaultdict(
+    canon_hall_counts: dict[str, dict[str, int]] = defaultdict(
         lambda: defaultdict(int)
     )
-    total_by_family: dict[str, int] = defaultdict(int)
+    total_by_canon: dict[str, int] = defaultdict(int)
 
     for hall_id in chain_halls:
         rows = conn.execute(
-            """SELECT hd.event_family_id, COUNT(*)
+            """SELECT ef.canonical_family_key, COUNT(*)
                FROM hall_days hd
                JOIN event_families ef ON hd.event_family_id = ef.event_family_id
                WHERE hd.hall_id = ? AND hd.result_date < ?
                  AND hd.event_family_id IS NOT NULL
                  AND ef.family_type != '通常'
-               GROUP BY hd.event_family_id""",
+                 AND ef.canonical_family_key IS NOT NULL
+                 AND ef.canonical_family_key != 'normal'
+               GROUP BY ef.canonical_family_key""",
             (hall_id, cutoff_date),
         ).fetchall()
 
-        for fam_id, cnt in rows:
-            family_hall_counts[fam_id][hall_id] += cnt
-            total_by_family[fam_id] += cnt
+        for canon_key, cnt in rows:
+            canon_hall_counts[canon_key][hall_id] += cnt
+            total_by_canon[canon_key] += cnt
 
-    if not family_hall_counts:
+    if not canon_hall_counts:
         return None
 
     concentrations = []
-    for fam_id, hall_counts in family_hall_counts.items():
-        total = total_by_family[fam_id]
+    for canon_key, hall_counts in canon_hall_counts.items():
+        total = total_by_canon[canon_key]
         if total < 3:
             continue
         max_share = max(hall_counts.values()) / total
@@ -478,7 +480,7 @@ def detect_date_role_split(
         "lift": round(mean_concentration / expected_even, 4) if expected_even > 0 else None,
         "p_value": None,
         "statistic": round(mean_concentration, 4),
-        "evidence_days": sum(total_by_family.values()),
+        "evidence_days": sum(total_by_canon.values()),
         "confidence": confidence,
         "promoted": promoted,
         "explanation": explanation,
@@ -640,14 +642,25 @@ def compute_chain_signal(
     try:
         results = conn.execute(
             """SELECT pattern_type, lift, p_value, confidence
-               FROM chain_pattern_results
+               FROM chain_pattern_results_v2
                WHERE chain_id = ?
                  AND valid_from < ?
+                 AND promoted = 1
                  AND confidence > 0""",
             (chain_id, cutoff_date),
         ).fetchall()
     except sqlite3.OperationalError:
-        return 0.0
+        try:
+            results = conn.execute(
+                """SELECT pattern_type, lift, p_value, confidence
+                   FROM chain_pattern_results
+                   WHERE chain_id = ?
+                     AND valid_from < ?
+                     AND confidence > 0""",
+                (chain_id, cutoff_date),
+            ).fetchall()
+        except sqlite3.OperationalError:
+            return 0.0
 
     if not results:
         return 0.0
@@ -665,6 +678,18 @@ def compute_chain_signal(
     return max(-2.0, min(2.0, signal))
 
 
+def _make_subject_key(result: dict) -> str:
+    """Generate subject_key for pair identification."""
+    halls = result.get("halls", [])
+    ptype = result.get("pattern_type", "")
+    if ptype == "date_role_split":
+        return "chain:all"
+    if len(halls) == 2:
+        pair = sorted(halls)
+        return f"pair:{pair[0]}|{pair[1]}"
+    return "chain:all"
+
+
 def persist_chain_results(
     conn: sqlite3.Connection,
     chain_id: str,
@@ -673,20 +698,25 @@ def persist_chain_results(
     valid_from: str,
     valid_to: str,
 ) -> int:
-    """Store chain pattern results. Returns rows inserted."""
+    """Store chain pattern results to v2 table. Returns rows inserted."""
     inserted = 0
     fam_key = event_family_id or ""
     for r in results:
+        subject_key = _make_subject_key(r)
+        promoted = 1 if r.get("promoted") else 0
+        status = "detected" if promoted else "not_detected"
         conn.execute(
-            """INSERT OR REPLACE INTO chain_pattern_results
-               (chain_id, event_family_id, pattern_type, valid_from,
-                valid_to, statistic, lift, p_value, evidence_days,
-                confidence, explanation_json, warnings_json)
-               VALUES (?,?,?,?,?,?,?,?,?,?,?,?)""",
+            """INSERT OR REPLACE INTO chain_pattern_results_v2
+               (chain_id, event_family_id, pattern_type, subject_key,
+                valid_from, valid_to, statistic, lift, p_value,
+                evidence_days, confidence, promoted, status,
+                explanation_json, warnings_json)
+               VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
             (
                 chain_id,
                 fam_key,
                 r["pattern_type"],
+                subject_key,
                 valid_from,
                 valid_to,
                 r.get("statistic"),
@@ -694,6 +724,8 @@ def persist_chain_results(
                 r.get("p_value"),
                 r.get("evidence_days"),
                 r.get("confidence"),
+                promoted,
+                status,
                 json.dumps(r.get("explanation", []), ensure_ascii=False),
                 json.dumps(r.get("warnings", []), ensure_ascii=False),
             ),

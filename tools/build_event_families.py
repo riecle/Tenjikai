@@ -94,6 +94,74 @@ def family_type_from_match_json(match: dict) -> str:
     return "その他"
 
 
+def canonical_family_key_from_match(match: dict) -> str:
+    """Generate a hall-independent canonical key for cross-chain comparison.
+
+    Examples: day_mod10:7, zoro_date, monthly_day:21, anniversary:7/7
+    """
+    if not match or match == {} or match.get("always"):
+        return "normal"
+
+    if match.get("month_equals_day"):
+        return "month_eq_day"
+
+    if match.get("is_repdigit_day"):
+        return "zoro_date"
+
+    if match.get("month_end"):
+        return "month_end"
+
+    rokuyo = match.get("rokuyo")
+    if rokuyo:
+        return f"rokuyo:{rokuyo}"
+
+    event_name = match.get("event_name")
+    if event_name:
+        return f"event:{event_name}"
+
+    event_tag = match.get("event_tag")
+    if event_tag:
+        return f"tag:{event_tag}"
+
+    if match.get("event_overlay_count_gte"):
+        return f"overlay_gte:{match['event_overlay_count_gte']}"
+
+    weekday = match.get("weekday")
+    nth = match.get("nth_weekday")
+    if nth is not None and weekday is not None:
+        return f"nth_weekday:{nth}_{weekday}"
+
+    if weekday is not None and "day" not in match and "day_in" not in match:
+        return f"weekday:{weekday}"
+
+    day_mod10 = match.get("day_mod10")
+    if day_mod10 is not None:
+        return f"day_mod10:{day_mod10}"
+
+    day_in = match.get("day_in")
+    if day_in and isinstance(day_in, list):
+        month = match.get("month")
+        mods = {d % 10 for d in day_in}
+        if len(mods) == 1 and month is None:
+            return f"day_mod10:{mods.pop()}"
+        if set(day_in) == {11, 22}:
+            return "zoro_date"
+        sorted_days = sorted(day_in)
+        prefix = f"m{month}_" if month is not None else ""
+        return f"day_group:{prefix}{','.join(str(d) for d in sorted_days)}"
+
+    day = match.get("day")
+    if day is not None:
+        month = match.get("month")
+        if month is not None:
+            return f"anniversary:{month}/{day}"
+        if day in (11, 22):
+            return "zoro_date"
+        return f"day_mod10:{day % 10}"
+
+    return "other"
+
+
 def make_family_id(hall_id: str, family_type: str, rule_json: str) -> str:
     """Generate a stable event_family_id."""
     import hashlib
@@ -210,20 +278,44 @@ def build_families(conn: sqlite3.Connection) -> tuple[int, int]:
         if fam_id in existing_families:
             continue
 
+        canon_key = canonical_family_key_from_match(match)
         conn.execute(
             """INSERT OR IGNORE INTO event_families
                (event_family_id, hall_id, family_type, rule_json,
-                confidence, source)
-               VALUES (?,?,?,?,?,?)""",
+                confidence, source, canonical_family_key)
+               VALUES (?,?,?,?,?,?,?)""",
             (fam_id, hall_id, ftype, canon_rule, confidence,
-             "evidence_rules"),
+             "evidence_rules", canon_key),
         )
         families_inserted += 1
 
+    _backfill_canonical_keys(conn)
     conn.commit()
 
     backfilled = _backfill_hall_days(conn, seen, rules)
     return families_inserted, backfilled
+
+
+def _backfill_canonical_keys(conn: sqlite3.Connection) -> int:
+    """Fill canonical_family_key for existing families that lack it."""
+    rows = conn.execute(
+        """SELECT event_family_id, rule_json
+           FROM event_families
+           WHERE canonical_family_key IS NULL"""
+    ).fetchall()
+    updated = 0
+    for fam_id, rule_json_str in rows:
+        try:
+            match = json.loads(rule_json_str) if rule_json_str else {}
+        except json.JSONDecodeError:
+            match = {}
+        canon_key = canonical_family_key_from_match(match)
+        conn.execute(
+            "UPDATE event_families SET canonical_family_key = ? WHERE event_family_id = ?",
+            (canon_key, fam_id),
+        )
+        updated += 1
+    return updated
 
 
 def _backfill_hall_days(

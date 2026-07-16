@@ -79,8 +79,11 @@ def compute_machine_features(
             """SELECT md.result_date, md.avg_diff, md.avg_games,
                       md.organic_selected_label, md.units
                FROM machine_days md
+               LEFT JOIN hall_days hd ON md.hall_id = hd.hall_id
+                    AND md.result_date = hd.result_date
                WHERE md.hall_id = ? AND md.machine_key = ?
                  AND md.result_date < ?
+                 AND (hd.event_family_id IS NULL OR hd.event_family_id = '')
                ORDER BY md.result_date""",
             (hall_id, machine_key, cutoff_date),
         ).fetchall()
@@ -89,12 +92,12 @@ def compute_machine_features(
     hits = sum(1 for r in same_fam_rows if r[3] == 1)
     p_event = (hits + 1) / (eligible + 4)
 
-    dates_present = [r[0] for r in same_fam_rows]
-    if len(dates_present) >= 2:
+    selected_dates = [r[0] for r in same_fam_rows if r[3] == 1]
+    if len(selected_dates) >= 2:
         gaps = []
-        for i in range(1, len(dates_present)):
-            d1 = _date_to_ordinal(dates_present[i - 1])
-            d2 = _date_to_ordinal(dates_present[i])
+        for i in range(1, len(selected_dates)):
+            d1 = _date_to_ordinal(selected_dates[i - 1])
+            d2 = _date_to_ordinal(selected_dates[i])
             if d1 is not None and d2 is not None:
                 gaps.append(d2 - d1)
 
@@ -103,9 +106,9 @@ def compute_machine_features(
             mad = statistics.median(
                 [abs(g - median_gap) for g in gaps]
             ) or 1.0
-            last_date = dates_present[-1]
+            last_selected = selected_dates[-1]
             target_ord = _date_to_ordinal(target_date)
-            last_ord = _date_to_ordinal(last_date)
+            last_ord = _date_to_ordinal(last_selected)
             if target_ord and last_ord:
                 days_since = target_ord - last_ord
                 rotation = _clip(

@@ -152,7 +152,8 @@ def enrich_with_v12(
         for r in conn.execute(
             """SELECT chain_id, pattern_type, statistic, lift,
                       confidence, explanation_json
-               FROM chain_pattern_results
+               FROM chain_pattern_results_v2
+               WHERE promoted = 1 AND status = 'detected'
                ORDER BY chain_id, pattern_type"""
         ).fetchall():
             try:
@@ -238,6 +239,23 @@ def enrich_with_v12(
     conn.close()
 
 
+def _auto_detect_frozen_run() -> pathlib.Path | None:
+    """Find the latest valid frozen run JSON in predictions/frozen/."""
+    frozen_dir = ROOT / "predictions" / "frozen"
+    if not frozen_dir.is_dir():
+        return None
+    candidates = sorted(frozen_dir.glob("*.json"), reverse=True)
+    for c in candidates:
+        if c.suffix == ".json" and not c.name.endswith(".sha256"):
+            try:
+                data = json.loads(c.read_text(encoding="utf-8"))
+                if isinstance(data, dict) and "predictions" in data:
+                    return c
+            except (json.JSONDecodeError, OSError):
+                continue
+    return None
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--atlas-dir", default="../slot-atlas",
@@ -269,7 +287,7 @@ def main() -> None:
     # include_unit=False は恒久ポリシー（有料ソース由来はローカル限定・vault非掲載）
     free_source = None if args.no_free_source else build_free_source_payload(atlas_dir, rows, include_unit=False)
     if free_source is not None:
-        frozen_path = pathlib.Path(args.frozen_run) if args.frozen_run else None
+        frozen_path = pathlib.Path(args.frozen_run) if args.frozen_run else _auto_detect_frozen_run()
         enrich_with_v12(free_source, atlas_dir, frozen_path)
         meta["free_source_table_counts"] = free_source.get("table_counts", {})
         meta["free_source_full_halls"] = sum(

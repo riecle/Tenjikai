@@ -421,13 +421,15 @@ class TestC04_NoDoubleCounting(unittest.TestCase):
             assign_chain_ids(conn)
 
             conn.execute(
-                """INSERT INTO chain_pattern_results
-                   (chain_id, event_family_id, pattern_type, valid_from,
-                    valid_to, statistic, lift, p_value, evidence_days,
-                    confidence, explanation_json, warnings_json)
-                   VALUES ('maruhan', NULL, 'joint_machine', '2026-06-01',
-                           '9999-12-31', 0.5, 3.0, 0.01, 20,
-                           0.8, '["test"]', '[]')"""
+                """INSERT OR IGNORE INTO chain_pattern_results_v2
+                   (chain_id, event_family_id, pattern_type, subject_key,
+                    valid_from, valid_to, statistic, lift, p_value,
+                    evidence_days, confidence, promoted, status,
+                    explanation_json, warnings_json)
+                   VALUES ('maruhan', '', 'joint_machine', 'pair:maruhan_a|maruhan_b',
+                           '2026-06-01', '9999-12-31', 0.5, 3.0, 0.01,
+                           20, 0.8, 1, 'detected',
+                           '["test"]', '[]')"""
             )
             conn.commit()
 
@@ -589,11 +591,13 @@ class TestPersistChainResults(unittest.TestCase):
 
             results = [{
                 "pattern_type": "joint_machine",
+                "halls": ["maruhan_a", "maruhan_b"],
                 "lift": 2.5,
                 "p_value": 0.02,
                 "statistic": 0.3,
                 "evidence_days": 15,
                 "confidence": 0.75,
+                "promoted": True,
                 "explanation": ["test explanation"],
                 "warnings": [],
             }]
@@ -606,7 +610,7 @@ class TestPersistChainResults(unittest.TestCase):
 
             row = conn.execute(
                 """SELECT lift, p_value, confidence
-                   FROM chain_pattern_results
+                   FROM chain_pattern_results_v2
                    WHERE chain_id = 'maruhan'
                      AND pattern_type = 'joint_machine'"""
             ).fetchone()
@@ -623,11 +627,13 @@ class TestPersistChainResults(unittest.TestCase):
 
             results = [{
                 "pattern_type": "joint_machine",
+                "halls": ["maruhan_a", "maruhan_b"],
                 "lift": 2.5,
                 "p_value": 0.02,
                 "statistic": 0.3,
                 "evidence_days": 15,
                 "confidence": 0.75,
+                "promoted": True,
                 "explanation": ["v1"],
                 "warnings": [],
             }]
@@ -643,14 +649,14 @@ class TestPersistChainResults(unittest.TestCase):
             )
 
             count = conn.execute(
-                """SELECT COUNT(*) FROM chain_pattern_results
+                """SELECT COUNT(*) FROM chain_pattern_results_v2
                    WHERE chain_id = 'maruhan'
                      AND pattern_type = 'joint_machine'"""
             ).fetchone()[0]
             self.assertEqual(count, 1)
 
             row = conn.execute(
-                """SELECT confidence FROM chain_pattern_results
+                """SELECT confidence FROM chain_pattern_results_v2
                    WHERE chain_id = 'maruhan'
                      AND pattern_type = 'joint_machine'"""
             ).fetchone()

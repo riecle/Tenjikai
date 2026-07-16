@@ -31,6 +31,7 @@ from prediction_utils import (
 )
 from build_machine_scores import build_machine_predictions
 from build_tail_zscores import build_tail_predictions
+from build_machine_labels import compute_organic_model_gate
 
 RANK_ORDER = {"S": 1, "A": 2, "B": 3, "C": 4, "NO BET": 5}
 
@@ -76,30 +77,92 @@ def compute_feature_cutoff(conn: sqlite3.Connection,
 
 def build_features(conn: sqlite3.Connection,
                     cutoff_date: str) -> list[dict]:
-    """Extract features from hall_days, filtered by cutoff.
+    """Extract features from all input tables, filtered by cutoff.
 
     Returns a deterministically-ordered list of feature dicts.
+    The canonical hash covers hall_days, machine_days, tail_days,
+    event_families, and hall_capabilities.
     """
+    manifest: dict[str, list] = {}
+
     rows = conn.execute(
         """SELECT hall_id, result_date, avg_diff, total_diff, avg_games,
-                  source_name
+                  source_name, event_family_id
            FROM hall_days
            WHERE result_date < ?
            ORDER BY hall_id, result_date, source_name""",
         (cutoff_date,),
     ).fetchall()
+    manifest["hall_days"] = [
+        {"hall_id": r[0], "result_date": r[1], "avg_diff": r[2],
+         "total_diff": r[3], "avg_games": r[4], "source_name": r[5],
+         "event_family_id": r[6]}
+        for r in rows
+    ]
 
-    features = []
-    for r in rows:
-        features.append({
-            "hall_id": r[0],
-            "result_date": r[1],
-            "avg_diff": r[2],
-            "total_diff": r[3],
-            "avg_games": r[4],
-            "source_name": r[5],
-        })
-    return features
+    try:
+        md_rows = conn.execute(
+            """SELECT hall_id, result_date, machine_key, avg_diff, avg_games, units
+               FROM machine_days
+               WHERE result_date < ?
+               ORDER BY hall_id, result_date, machine_key""",
+            (cutoff_date,),
+        ).fetchall()
+        manifest["machine_days"] = [
+            {"hall_id": r[0], "result_date": r[1], "machine_key": r[2],
+             "avg_diff": r[3], "avg_games": r[4], "units": r[5]}
+            for r in md_rows
+        ]
+    except sqlite3.OperationalError:
+        manifest["machine_days"] = []
+
+    try:
+        td_rows = conn.execute(
+            """SELECT hall_id, result_date, tail_key, avg_diff
+               FROM tail_days
+               WHERE result_date < ?
+               ORDER BY hall_id, result_date, tail_key""",
+            (cutoff_date,),
+        ).fetchall()
+        manifest["tail_days"] = [
+            {"hall_id": r[0], "result_date": r[1], "tail_key": r[2],
+             "avg_diff": r[3]}
+            for r in td_rows
+        ]
+    except sqlite3.OperationalError:
+        manifest["tail_days"] = []
+
+    try:
+        ef_rows = conn.execute(
+            """SELECT event_family_id, hall_id, family_type,
+                      canonical_family_key
+               FROM event_families
+               ORDER BY event_family_id""",
+        ).fetchall()
+        manifest["event_families"] = [
+            {"event_family_id": r[0], "hall_id": r[1], "family_type": r[2],
+             "canonical_family_key": r[3]}
+            for r in ef_rows
+        ]
+    except sqlite3.OperationalError:
+        manifest["event_families"] = []
+
+    try:
+        hc_rows = conn.execute(
+            """SELECT hall_id, as_of, hall_daily_available,
+                      machine_daily_available, tail_daily_available
+               FROM hall_capabilities
+               ORDER BY hall_id, as_of""",
+        ).fetchall()
+        manifest["hall_capabilities"] = [
+            {"hall_id": r[0], "as_of": r[1], "hall_daily": r[2],
+             "machine_daily": r[3], "tail_daily": r[4]}
+            for r in hc_rows
+        ]
+    except sqlite3.OperationalError:
+        manifest["hall_capabilities"] = []
+
+    return manifest
 
 
 def load_hall_capabilities(conn: sqlite3.Connection) -> dict[str, dict]:
@@ -207,8 +270,8 @@ def build_draft(
     cutoff_at = compute_feature_cutoff(conn, cutoff)
     cutoff_date = cutoff_at[:10]
 
-    features = build_features(conn, cutoff_date)
-    feature_hash = canonical_hash(features)
+    feature_manifest = build_features(conn, cutoff_date)
+    feature_hash = canonical_hash(feature_manifest)
 
     seed_dir = atlas_dir / "seed"
     src_hash = (
@@ -223,12 +286,30 @@ def build_draft(
         hall_cap = caps.get(p["hall_id"], {})
         p["capabilities"] = hall_cap
 
+    organic_gates: dict[str, dict] = {}
     if target_dates:
         for hall_id, hall_cap in caps.items():
             machine_preds = build_machine_predictions(
                 conn, hall_id, target_dates, cutoff_date, hall_cap,
             )
-            preds.extend(machine_preds)
+            filtered_preds = []
+            for mp in machine_preds:
+                if mp.get("entity_type") == "machine_organic":
+                    if hall_id not in organic_gates:
+                        organic_gates[hall_id] = compute_organic_model_gate(
+                            conn, hall_id,
+                        )
+                    gate = organic_gates[hall_id]
+                    if not gate["model_active"]:
+                        mp["warnings"].append(
+                            f"organic_gate未通過(有効日{gate['valid_normal_days']}"
+                            f"/活性率{gate['activation_rate']:.2f})"
+                        )
+                        mp["score"] = None
+                        mp["rank"] = None
+                        continue
+                filtered_preds.append(mp)
+            preds.extend(filtered_preds)
 
             tail_preds = build_tail_predictions(
                 conn, hall_id, target_dates, cutoff_date, hall_cap,

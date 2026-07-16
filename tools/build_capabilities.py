@@ -53,11 +53,14 @@ def compute_capabilities(conn: sqlite3.Connection,
         ud = _count_for_hall(conn, "unit_days", hall_id)
 
         counter = 0
-        if _table_exists(conn, "machine_days"):
+        if _table_exists(conn, "unit_days"):
             try:
                 counter = conn.execute(
-                    """SELECT COUNT(*) FROM machine_days
-                       WHERE hall_id = ? AND avg_games IS NOT NULL""",
+                    """SELECT COUNT(*) FROM unit_days
+                       WHERE hall_id = ?
+                         AND (bb_count IS NOT NULL
+                              OR rb_count IS NOT NULL
+                              OR at_count IS NOT NULL)""",
                     (hall_id,),
                 ).fetchone()[0]
             except sqlite3.OperationalError:
