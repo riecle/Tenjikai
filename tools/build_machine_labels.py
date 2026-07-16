@@ -26,39 +26,46 @@ MIN_UNITS = 2
 MIN_COVERAGE = 0.60
 
 
-def _compute_derived_columns(conn: sqlite3.Connection) -> int:
+def _compute_derived_columns(conn: sqlite3.Connection, cutoff_date: str | None = None) -> int:
     """Backfill positive_rate and coverage from existing columns."""
     updated = 0
 
+    date_filter = " AND result_date < ?" if cutoff_date else ""
+    params = (cutoff_date,) if cutoff_date else ()
     cur = conn.execute(
-        """UPDATE machine_days
+        f"""UPDATE machine_days
            SET positive_rate = CAST(winning_units AS REAL) / total_units
            WHERE total_units IS NOT NULL AND total_units > 0
-             AND positive_rate IS NULL"""
+             AND positive_rate IS NULL{date_filter}""",
+        params,
     )
     updated += cur.rowcount
 
     cur = conn.execute(
-        """UPDATE machine_days
+        f"""UPDATE machine_days
            SET coverage = CAST(total_units AS REAL) / units
            WHERE units IS NOT NULL AND units > 0
-             AND coverage IS NULL"""
+             AND coverage IS NULL{date_filter}""",
+        params,
     )
     updated += cur.rowcount
 
     return updated
 
 
-def _compute_q_machine(conn: sqlite3.Connection) -> int:
+def _compute_q_machine(conn: sqlite3.Connection, cutoff_date: str | None = None) -> int:
     """Compute Q_machine as a within-day z-score of avg_diff.
 
     Q_machine = (avg_diff - day_mean) / max(day_std, 1.0)
     This makes Q_machine >= 1.0 mean "one SD above day mean".
     """
+    date_filter = " AND result_date < ?" if cutoff_date else ""
+    params = (cutoff_date,) if cutoff_date else ()
     days = conn.execute(
-        """SELECT DISTINCT hall_id, result_date
+        f"""SELECT DISTINCT hall_id, result_date
            FROM machine_days
-           WHERE avg_diff IS NOT NULL AND q_machine IS NULL"""
+           WHERE avg_diff IS NOT NULL AND q_machine IS NULL{date_filter}""",
+        params,
     ).fetchall()
 
     updated = 0
@@ -134,7 +141,7 @@ def _is_event_day(
     return row[0] != "通常"
 
 
-def compute_event_labels(conn: sqlite3.Connection) -> int:
+def compute_event_labels(conn: sqlite3.Connection, cutoff_date: str | None = None) -> int:
     """Assign event_selected_label on event-family days.
 
     Criteria (all must be met for label=1):
@@ -145,10 +152,13 @@ def compute_event_labels(conn: sqlite3.Connection) -> int:
 
     Missing data → NULL (unknown), never 0.
     """
+    date_filter = " AND md.result_date < ?" if cutoff_date else ""
+    params = (cutoff_date,) if cutoff_date else ()
     days = conn.execute(
-        """SELECT DISTINCT md.hall_id, md.result_date
+        f"""SELECT DISTINCT md.hall_id, md.result_date
            FROM machine_days md
-           WHERE md.event_selected_label IS NULL"""
+           WHERE md.event_selected_label IS NULL{date_filter}""",
+        params,
     ).fetchall()
 
     updated = 0
@@ -200,7 +210,7 @@ def compute_event_labels(conn: sqlite3.Connection) -> int:
     return updated
 
 
-def compute_organic_labels(conn: sqlite3.Connection) -> int:
+def compute_organic_labels(conn: sqlite3.Connection, cutoff_date: str | None = None) -> int:
     """Assign organic_active_day and organic_selected_label.
 
     organic_active_day = 1 if ANY machine on that (non-event) day meets:
@@ -212,10 +222,13 @@ def compute_organic_labels(conn: sqlite3.Connection) -> int:
     organic_selected_label uses same criteria as event_selected_label
     but only on organic_active_day=1 days.
     """
+    date_filter = " AND result_date < ?" if cutoff_date else ""
+    params = (cutoff_date,) if cutoff_date else ()
     days = conn.execute(
-        """SELECT DISTINCT hall_id, result_date
+        f"""SELECT DISTINCT hall_id, result_date
            FROM machine_days
-           WHERE organic_active_day IS NULL"""
+           WHERE organic_active_day IS NULL{date_filter}""",
+        params,
     ).fetchall()
 
     updated = 0
@@ -293,21 +306,24 @@ def compute_organic_model_gate(
     hall_id: str,
     min_valid_days: int = 20,
     min_activation_rate: float = 0.20,
+    cutoff_date: str | None = None,
 ) -> dict:
     """Check if organic model should be active for a hall.
 
     Returns dict with gate status and stats.
     """
+    date_filter = " AND result_date < ?" if cutoff_date else ""
+    params = (hall_id, cutoff_date) if cutoff_date else (hall_id,)
     normal_days = conn.execute(
-        """SELECT COUNT(DISTINCT result_date) FROM machine_days
-           WHERE hall_id = ? AND organic_active_day IS NOT NULL""",
-        (hall_id,),
+        f"""SELECT COUNT(DISTINCT result_date) FROM machine_days
+           WHERE hall_id = ? AND organic_active_day IS NOT NULL{date_filter}""",
+        params,
     ).fetchone()[0]
 
     active_days = conn.execute(
-        """SELECT COUNT(DISTINCT result_date) FROM machine_days
-           WHERE hall_id = ? AND organic_active_day = 1""",
-        (hall_id,),
+        f"""SELECT COUNT(DISTINCT result_date) FROM machine_days
+           WHERE hall_id = ? AND organic_active_day = 1{date_filter}""",
+        params,
     ).fetchone()[0]
 
     activation_rate = (
@@ -328,12 +344,12 @@ def compute_organic_model_gate(
     }
 
 
-def build_all_labels(conn: sqlite3.Connection) -> dict[str, int]:
+def build_all_labels(conn: sqlite3.Connection, cutoff_date: str | None = None) -> dict[str, int]:
     """Run the full label pipeline. Returns counts."""
-    derived = _compute_derived_columns(conn)
-    q_computed = _compute_q_machine(conn)
-    event_labels = compute_event_labels(conn)
-    organic_labels = compute_organic_labels(conn)
+    derived = _compute_derived_columns(conn, cutoff_date)
+    q_computed = _compute_q_machine(conn, cutoff_date)
+    event_labels = compute_event_labels(conn, cutoff_date)
+    organic_labels = compute_organic_labels(conn, cutoff_date)
     conn.commit()
 
     return {
@@ -349,6 +365,7 @@ def main() -> None:
         description="Compute machine labels (event/organic)"
     )
     ap.add_argument("--db", required=True, help="Path to slot_atlas.db")
+    ap.add_argument("--cutoff", help="Only label rows before this ISO cutoff")
     args = ap.parse_args()
 
     db = Path(args.db)
@@ -357,7 +374,8 @@ def main() -> None:
         sys.exit(1)
 
     conn = sqlite3.connect(str(db))
-    counts = build_all_labels(conn)
+    cutoff_date = args.cutoff[:10] if args.cutoff else None
+    counts = build_all_labels(conn, cutoff_date)
     conn.close()
 
     print("machine labels computed:")

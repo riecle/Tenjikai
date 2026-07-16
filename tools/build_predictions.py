@@ -55,16 +55,10 @@ def compute_feature_cutoff(conn: sqlite3.Connection,
     Otherwise, derive from the latest result_date in hall_days.
     """
     if explicit:
-        cutoff_date = explicit[:10]
-        leak = conn.execute(
-            "SELECT COUNT(*) FROM hall_days WHERE result_date >= ?",
-            (cutoff_date,),
-        ).fetchone()[0]
-        if leak:
-            raise ValueError(
-                f"future leakage: {leak} hall_days rows at or after "
-                f"cutoff {cutoff_date}"
-            )
+        # Future rows may exist in the database when reproducing a historical
+        # run.  Leakage prevention belongs in every feature query via
+        # result_date < cutoff, not in a global "future rows must not exist"
+        # assertion.
         return explicit
 
     row = conn.execute(
@@ -193,12 +187,22 @@ def build_features(conn: sqlite3.Connection,
     ]
 
     hc_rows = query_rows(
-        """SELECT hall_id, as_of, hall_daily_available,
-                  machine_daily_available, tail_daily_available,
-                  unit_daily_available, counter_metrics_available,
-                  layout_available, reset_policy_available,
-                  acquisition_methods_json, warnings_json
-           FROM hall_capabilities ORDER BY hall_id, as_of"""
+        """SELECT hc.hall_id, hc.as_of, hc.hall_daily_available,
+                  hc.machine_daily_available, hc.tail_daily_available,
+                  hc.unit_daily_available, hc.counter_metrics_available,
+                  hc.layout_available, hc.reset_policy_available,
+                  hc.acquisition_methods_json, hc.warnings_json
+           FROM hall_capabilities hc
+           JOIN (
+               SELECT hall_id, MAX(as_of) AS max_as_of
+               FROM hall_capabilities
+               WHERE substr(as_of, 1, 10) <= ?
+               GROUP BY hall_id
+           ) latest
+             ON latest.hall_id = hc.hall_id
+            AND latest.max_as_of = hc.as_of
+           ORDER BY hc.hall_id""",
+        (cutoff_date,),
     )
     manifest["hall_capabilities"] = [
         {"hall_id": r[0], "as_of": r[1], "hall_daily": r[2],
@@ -235,7 +239,7 @@ def build_features(conn: sqlite3.Connection,
     gates = []
     for (hall_id,) in query_rows("SELECT hall_id FROM halls WHERE active = 1 ORDER BY hall_id"):
         try:
-            gates.append(compute_organic_model_gate(conn, hall_id))
+            gates.append(compute_organic_model_gate(conn, hall_id, cutoff_date=cutoff_date))
         except sqlite3.OperationalError:
             continue
     manifest["organic_model_gates"] = gates
@@ -279,32 +283,66 @@ def build_features(conn: sqlite3.Connection,
     }
     return manifest
 
-def load_hall_capabilities(conn: sqlite3.Connection) -> dict[str, dict]:
-    """Determine per-hall capability flags from data presence."""
+def load_hall_capabilities(
+    conn: sqlite3.Connection,
+    cutoff_date: str,
+) -> dict[str, dict]:
+    """Determine capability flags using only data available before cutoff."""
     caps: dict[str, dict] = {}
-    for (hid,) in conn.execute("SELECT hall_id FROM halls WHERE active = 1"):
-        hd = conn.execute(
-            "SELECT COUNT(*) FROM hall_days WHERE hall_id = ?", (hid,)
-        ).fetchone()[0]
-        md = conn.execute(
-            "SELECT COUNT(*) FROM machine_days WHERE hall_id = ?", (hid,)
-        ).fetchone()[0]
-        td = conn.execute(
-            "SELECT COUNT(*) FROM tail_days WHERE hall_id = ?", (hid,)
-        ).fetchone()[0]
-        ud = 0
+
+    def count_before(table: str, hall_id: str) -> int:
         try:
-            ud = conn.execute(
-                "SELECT COUNT(*) FROM unit_days WHERE hall_id = ?", (hid,)
+            cols = {r[1] for r in conn.execute(f"PRAGMA table_info({table})")}
+            date_col = next(
+                (c for c in ("result_date", "business_date") if c in cols),
+                None,
+            )
+            if date_col:
+                return conn.execute(
+                    f"SELECT COUNT(*) FROM {table} WHERE hall_id = ? AND {date_col} < ?",
+                    (hall_id, cutoff_date),
+                ).fetchone()[0]
+            return conn.execute(
+                f"SELECT COUNT(*) FROM {table} WHERE hall_id = ?",
+                (hall_id,),
             ).fetchone()[0]
         except sqlite3.OperationalError:
-            pass
+            return 0
+
+    for (hid,) in conn.execute("SELECT hall_id FROM halls WHERE active = 1"):
+        hd = count_before("hall_days", hid)
+        md = count_before("machine_days", hid)
+        td = count_before("tail_days", hid)
+        ud = count_before("unit_days", hid)
+
+        counter = False
+        try:
+            cols = {r[1] for r in conn.execute("PRAGMA table_info(unit_days)")}
+            date_col = next(
+                (c for c in ("result_date", "business_date") if c in cols),
+                None,
+            )
+            counter_cols = [
+                c for c in ("bb_count", "rb_count", "at_count", "cz_count", "initial_hit_count")
+                if c in cols
+            ]
+            if counter_cols:
+                evidence = " OR ".join(f"{c} IS NOT NULL" for c in counter_cols)
+                date_filter = f" AND {date_col} < ?" if date_col else ""
+                params = (hid, cutoff_date) if date_col else (hid,)
+                counter = conn.execute(
+                    f"SELECT COUNT(*) FROM unit_days WHERE hall_id = ? AND ({evidence}){date_filter}",
+                    params,
+                ).fetchone()[0] > 0
+        except sqlite3.OperationalError:
+            counter = False
 
         caps[hid] = {
             "hall_daily_available": hd > 0,
             "machine_daily_available": md > 0,
             "tail_daily_available": td > 0,
             "unit_daily_available": ud > 0,
+            "counter_metrics_available": counter,
         }
     return caps
 
@@ -373,6 +411,7 @@ def build_draft(
     cutoff: str | None,
     target_dates: list[str] | None,
     source_mode: str,
+    cutoff_source: str | None = None,
 ) -> dict:
     db_path = atlas_dir / "slot_atlas.db"
     if not db_path.exists():
@@ -399,7 +438,7 @@ def build_draft(
         src_hash = h.hexdigest()
 
     preds = load_existing_predictions(conn, target_dates)
-    caps = load_hall_capabilities(conn)
+    caps = load_hall_capabilities(conn, cutoff_date)
 
     for p in preds:
         hall_cap = caps.get(p["hall_id"], {})
@@ -416,7 +455,7 @@ def build_draft(
                 if mp.get("entity_type") == "machine_organic":
                     if hall_id not in organic_gates:
                         organic_gates[hall_id] = compute_organic_model_gate(
-                            conn, hall_id,
+                            conn, hall_id, cutoff_date=cutoff_date,
                         )
                     gate = organic_gates[hall_id]
                     if not gate["model_active"]:
@@ -445,7 +484,7 @@ def build_draft(
         "prediction_run_id": run_id,
         "built_at": now,
         "feature_cutoff_at": cutoff_at,
-        "resolved_cutoff_source": "cli" if cutoff else "computed",
+        "resolved_cutoff_source": cutoff_source or ("cli" if cutoff else "computed"),
         "target_dates": target_dates or [],
         "model_version": model_ver,
         "config_version": "v1.2",
@@ -468,6 +507,8 @@ def main() -> None:
                      help="Feature cutoff datetime (ISO 8601)")
     ap.add_argument("--target-dates",
                      help="Comma-separated target dates (YYYY-MM-DD)")
+    ap.add_argument("--cutoff-source", choices=["cli", "target_date", "config", "computed"],
+                     help="How the resolved cutoff was determined")
     ap.add_argument("--source-mode", default="free_public",
                      choices=["free_public"],
                      help="Data source mode")
@@ -489,7 +530,7 @@ def main() -> None:
 
     try:
         draft = build_draft(atlas, run_id, args.cutoff, targets,
-                             args.source_mode)
+                             args.source_mode, args.cutoff_source)
     except (ValueError, FileNotFoundError) as e:
         print(f"error: {e}", file=sys.stderr)
         sys.exit(1)

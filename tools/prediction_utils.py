@@ -4,6 +4,7 @@ Stdlib-only. No third-party dependencies.
 """
 from __future__ import annotations
 
+import datetime as _dt
 import hashlib
 import json
 import math
@@ -69,6 +70,15 @@ def validate_draft(draft: dict) -> list[str]:
     for key in required_meta:
         if key not in draft:
             errors.append(f"missing required field: {key}")
+
+    if "built_at" in draft and "feature_cutoff_at" in draft:
+        try:
+            if (_dt.datetime.fromisoformat(str(draft["feature_cutoff_at"]))
+                    > _dt.datetime.fromisoformat(str(draft["built_at"]))):
+                errors.append(
+                    "feature_cutoff_at is after built_at (freeze invariant: cutoff <= built)")
+        except ValueError:
+            errors.append("built_at/feature_cutoff_at not ISO-8601 parseable")
 
     if "predictions" not in draft:
         errors.append("missing predictions array")

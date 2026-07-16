@@ -129,10 +129,21 @@ def enrich_with_v12(
             ("unit_days", "unit_daily"),
         ]:
             try:
-                count = conn.execute(
-                    f"SELECT COUNT(*) FROM {tbl} WHERE hall_id = ?",
-                    (hall_id,),
-                ).fetchone()[0]
+                columns = {r[1] for r in conn.execute(f"PRAGMA table_info({tbl})")}
+                date_col = next(
+                    (c for c in ("result_date", "business_date") if c in columns),
+                    None,
+                )
+                if cutoff and date_col:
+                    count = conn.execute(
+                        f"SELECT COUNT(*) FROM {tbl} WHERE hall_id = ? AND {date_col} < ?",
+                        (hall_id, cutoff[:10]),
+                    ).fetchone()[0]
+                else:
+                    count = conn.execute(
+                        f"SELECT COUNT(*) FROM {tbl} WHERE hall_id = ?",
+                        (hall_id,),
+                    ).fetchone()[0]
                 caps[key] = count > 0
             except sqlite3.OperationalError:
                 caps[key] = False
@@ -322,7 +333,12 @@ def main() -> None:
         payload = {"meta": meta, "rows": rows}
 
     # include_unit=False は恒久ポリシー（有料ソース由来はローカル限定・vault非掲載）
-    free_source = None if args.no_free_source else build_free_source_payload(atlas_dir, rows, include_unit=False)
+    free_source = None if args.no_free_source else build_free_source_payload(
+        atlas_dir,
+        rows,
+        include_unit=False,
+        cutoff_date=args.cutoff[:10] if args.cutoff else None,
+    )
     if free_source is not None:
         frozen_path = pathlib.Path(args.frozen_run) if args.frozen_run else _auto_detect_frozen_run()
         enrich_with_v12(free_source, atlas_dir, frozen_path, cutoff=args.cutoff)

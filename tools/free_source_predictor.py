@@ -929,7 +929,13 @@ def load_db_tables(atlas_dir: pathlib.Path, *, include_unit: bool) -> dict[str, 
     return {k: v for k, v in out.items() if v}
 
 
-def build_free_source_payload(atlas_dir: pathlib.Path, candidate_rows: Sequence[Mapping[str, Any]], *, include_unit: bool = False) -> dict[str, Any]:
+def build_free_source_payload(
+    atlas_dir: pathlib.Path,
+    candidate_rows: Sequence[Mapping[str, Any]],
+    *,
+    include_unit: bool = False,
+    cutoff_date: str | None = None,
+) -> dict[str, Any]:
     raw_tables: dict[str, list[dict[str, Any]]] = {}
     source_files: dict[str, list[str]] = {}
     for logical in TABLE_STEMS:
@@ -948,6 +954,20 @@ def build_free_source_payload(atlas_dir: pathlib.Path, candidate_rows: Sequence[
     machine_scores = dedupe_rows(normalize_machine_scores(raw_tables["machine_scores"]), ("hall_id", "machine", "source"))
     position_signals = dedupe_rows(normalize_position_signals(raw_tables["position_signals"]), ("hall_id", "date", "type", "detail"))
     unit_days = dedupe_rows(normalize_unit_days(raw_tables["unit_days"]), ("hall_id", "date", "unit_num"))
+
+    if cutoff_date:
+        def before_cutoff(row: Mapping[str, Any]) -> bool:
+            value = row.get("date")
+            return bool(value and str(value) < cutoff_date)
+
+        machine_days = [row for row in machine_days if before_cutoff(row)]
+        tail_days = [row for row in tail_days if before_cutoff(row)]
+        position_signals = [row for row in position_signals if before_cutoff(row)]
+        unit_days = [row for row in unit_days if before_cutoff(row)]
+        # machine_scores is an undated aggregate in the legacy schema and may
+        # include observations after a historical cutoff.  Do not use it in a
+        # cutoff-bound release unless a future dated contract is introduced.
+        machine_scores = []
 
     candidate_halls = {str(row.get("id") or row.get("hall_id") or "") for row in candidate_rows}
     candidate_halls.discard("")

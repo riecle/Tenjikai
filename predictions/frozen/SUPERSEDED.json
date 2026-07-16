@@ -1,0 +1,11 @@
+[
+  {
+    "prediction_run_id": "bootstrap_free_public_20260719",
+    "status": "superseded",
+    "superseded_by": "bootstrap_free_public_20260714_corrected",
+    "reason": "built_at(2026-07-16)より未来のfeature_cutoff_at(2026-07-19)が設定されていた",
+    "archived_at": "2026-07-16T22:55:32+00:00",
+    "original_sha256": "ad51d7a33af63e8f2457730db89f692a31168202ebf6ff56e7841edc217d4cb5",
+    "archive_path": "archive/superseded/bootstrap_free_public_20260719.json"
+  }
+]
