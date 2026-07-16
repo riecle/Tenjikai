@@ -45,6 +45,83 @@ PHASE0_INDEXES = [
     "CREATE INDEX IF NOT EXISTS idx_prediction_runs_status ON prediction_runs(status)",
 ]
 
+PHASE1A_TABLES = [
+    """CREATE TABLE IF NOT EXISTS raw_sources (
+        raw_source_id TEXT PRIMARY KEY,
+        source_type TEXT NOT NULL,
+        acquisition_method TEXT NOT NULL,
+        source_locator TEXT NOT NULL,
+        fetched_at TEXT NOT NULL,
+        content_hash TEXT NOT NULL,
+        parser_version TEXT,
+        raw_path TEXT NOT NULL,
+        parse_status TEXT NOT NULL,
+        error_message TEXT,
+        parent_raw_source_id TEXT,
+        UNIQUE(source_type, source_locator, content_hash)
+    )""",
+    """CREATE TABLE IF NOT EXISTS machines (
+        machine_id TEXT PRIMARY KEY,
+        canonical_name TEXT NOT NULL,
+        machine_version TEXT,
+        category TEXT,
+        introduced_at TEXT
+    )""",
+    """CREATE TABLE IF NOT EXISTS hall_aliases (
+        source_type TEXT NOT NULL,
+        source_name TEXT NOT NULL,
+        hall_id TEXT NOT NULL,
+        valid_from TEXT,
+        valid_to TEXT,
+        PRIMARY KEY(source_type, source_name, valid_from)
+    )""",
+    """CREATE TABLE IF NOT EXISTS machine_aliases (
+        source_type TEXT NOT NULL,
+        source_name TEXT NOT NULL,
+        machine_id TEXT NOT NULL,
+        valid_from TEXT,
+        valid_to TEXT,
+        PRIMARY KEY(source_type, source_name, valid_from)
+    )""",
+    """CREATE TABLE IF NOT EXISTS event_families (
+        event_family_id TEXT PRIMARY KEY,
+        hall_id TEXT,
+        family_type TEXT NOT NULL,
+        rule_json TEXT NOT NULL,
+        valid_from TEXT,
+        valid_to TEXT,
+        confidence REAL,
+        source TEXT
+    )""",
+    """CREATE TABLE IF NOT EXISTS hall_capabilities (
+        hall_id TEXT NOT NULL,
+        as_of TEXT NOT NULL,
+        hall_daily_available INTEGER NOT NULL,
+        machine_daily_available INTEGER NOT NULL,
+        tail_daily_available INTEGER NOT NULL,
+        unit_daily_available INTEGER NOT NULL,
+        counter_metrics_available INTEGER NOT NULL,
+        layout_available INTEGER NOT NULL,
+        reset_policy_available INTEGER NOT NULL,
+        acquisition_methods_json TEXT NOT NULL,
+        warnings_json TEXT NOT NULL,
+        PRIMARY KEY(hall_id, as_of)
+    )""",
+]
+
+PHASE1A_INDEXES = [
+    "CREATE INDEX IF NOT EXISTS idx_event_families_hall ON event_families(hall_id)",
+    "CREATE INDEX IF NOT EXISTS idx_hall_capabilities_hall ON hall_capabilities(hall_id)",
+    "CREATE INDEX IF NOT EXISTS idx_raw_sources_type ON raw_sources(source_type)",
+    "CREATE INDEX IF NOT EXISTS idx_machines_name ON machines(canonical_name)",
+]
+
+PHASE1A_COLUMNS = [
+    "ALTER TABLE hall_days ADD COLUMN event_family_id TEXT",
+    "ALTER TABLE machine_days ADD COLUMN coverage REAL",
+    "ALTER TABLE machine_days ADD COLUMN label_status TEXT DEFAULT 'unknown'",
+]
+
 
 def migrate(db_path: str | Path) -> list[str]:
     """Run all migrations. Returns list of actions taken."""
@@ -52,7 +129,11 @@ def migrate(db_path: str | Path) -> list[str]:
     conn.execute("PRAGMA journal_mode=WAL")
     actions: list[str] = []
 
-    for sql in PHASE0_TABLES + PHASE0_INDEXES:
+    all_sql = (
+        PHASE0_TABLES + PHASE0_INDEXES
+        + PHASE1A_TABLES + PHASE1A_INDEXES + PHASE1A_COLUMNS
+    )
+    for sql in all_sql:
         try:
             conn.execute(sql)
             token = sql.split("(")[0].strip()
