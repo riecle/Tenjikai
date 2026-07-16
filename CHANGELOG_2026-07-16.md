@@ -42,3 +42,12 @@
 - frozen runの選択をファイル名順からmetadata順へ変更
 - デフォルトcutoffで最新完了日が除外される問題を修正
 - 合成Atlasによる1コマンドE2Eを完走
+
+## v0.1.2 final sync（2026-07-17）
+
+- 旧bootstrap runを上書きせずsupersededとしてarchive保存
+- `bootstrap_free_public_20260714_corrected`をcanonical凍結
+- corrected runのrun ID / cutoff / SHAへ暗号化vaultを同期
+- vault内の機種10件・末尾10件とcorrected runの内容一致を検証
+- リリースレポートとNOTICEを実測値へ更新
+- 平文・キャッシュを除外した正規化ZIPを生成

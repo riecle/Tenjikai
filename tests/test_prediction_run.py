@@ -260,9 +260,9 @@ class TestP0_06_OutcomeSeparation(unittest.TestCase):
 
 
 class TestP0_07_FutureLeakage(unittest.TestCase):
-    """Features using data at or after cutoff must fail the build."""
+    """Future rows may exist, but every feature query must exclude them."""
 
-    def test_cutoff_rejects_future_data(self):
+    def test_cutoff_allows_future_rows_in_database(self):
         with tempfile.TemporaryDirectory() as td:
             db = Path(td) / "test.db"
             conn = make_test_db(db)
@@ -272,9 +272,13 @@ class TestP0_07_FutureLeakage(unittest.TestCase):
             )
             conn.commit()
 
-            with self.assertRaises(ValueError) as ctx:
-                compute_feature_cutoff(conn, "2026-07-18T23:59:59+09:00")
-            self.assertIn("future leakage", str(ctx.exception))
+            cutoff = compute_feature_cutoff(conn, "2026-07-18T23:59:59+09:00")
+            self.assertEqual(cutoff, "2026-07-18T23:59:59+09:00")
+            manifest = build_features(conn, "2026-07-18")
+            self.assertNotIn(
+                "2026-07-20",
+                {row["result_date"] for row in manifest["hall_days"]},
+            )
             conn.close()
 
     def test_cutoff_allows_older_data(self):

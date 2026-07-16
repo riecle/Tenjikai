@@ -27,9 +27,26 @@ def _table_exists(conn: sqlite3.Connection, name: str) -> bool:
     ).fetchone())
 
 
-def _count_for_hall(conn: sqlite3.Connection, table: str,
-                    hall_id: str) -> int:
+def _date_column(conn: sqlite3.Connection, table: str) -> str | None:
     try:
+        cols = {r[1] for r in conn.execute(f"PRAGMA table_info({table})")}
+    except sqlite3.OperationalError:
+        return None
+    for candidate in ("result_date", "business_date", "effective_from", "valid_from"):
+        if candidate in cols:
+            return candidate
+    return None
+
+
+def _count_for_hall(conn: sqlite3.Connection, table: str,
+                    hall_id: str, cutoff_date: str | None = None) -> int:
+    try:
+        date_col = _date_column(conn, table)
+        if cutoff_date and date_col:
+            return conn.execute(
+                f"SELECT COUNT(*) FROM {table} WHERE hall_id = ? AND {date_col} < ?",
+                (hall_id, cutoff_date),
+            ).fetchone()[0]
         return conn.execute(
             f"SELECT COUNT(*) FROM {table} WHERE hall_id = ?",
             (hall_id,),
@@ -39,36 +56,46 @@ def _count_for_hall(conn: sqlite3.Connection, table: str,
 
 
 def compute_capabilities(conn: sqlite3.Connection,
-                         as_of: str) -> list[dict]:
+                         as_of: str,
+                         cutoff_date: str | None = None) -> list[dict]:
     """Compute capability flags for all active halls."""
+    if cutoff_date is None and as_of:
+        cutoff_date = as_of[:10]
     halls = conn.execute(
         "SELECT hall_id FROM halls WHERE active = 1 ORDER BY hall_id"
     ).fetchall()
 
     results = []
     for (hall_id,) in halls:
-        hd = _count_for_hall(conn, "hall_days", hall_id)
-        md = _count_for_hall(conn, "machine_days", hall_id)
-        td = _count_for_hall(conn, "tail_days", hall_id)
-        ud = _count_for_hall(conn, "unit_days", hall_id)
+        hd = _count_for_hall(conn, "hall_days", hall_id, cutoff_date)
+        md = _count_for_hall(conn, "machine_days", hall_id, cutoff_date)
+        td = _count_for_hall(conn, "tail_days", hall_id, cutoff_date)
+        ud = _count_for_hall(conn, "unit_days", hall_id, cutoff_date)
 
         counter = 0
         if _table_exists(conn, "unit_days"):
             try:
-                counter = conn.execute(
-                    """SELECT COUNT(*) FROM unit_days
-                       WHERE hall_id = ?
-                         AND (bb_count IS NOT NULL
-                              OR rb_count IS NOT NULL
-                              OR at_count IS NOT NULL)""",
-                    (hall_id,),
-                ).fetchone()[0]
+                columns = {r[1] for r in conn.execute("PRAGMA table_info(unit_days)")}
+                counter_columns = [
+                    c for c in ("bb_count", "rb_count", "at_count", "cz_count", "initial_hit_count")
+                    if c in columns
+                ]
+                if counter_columns:
+                    date_col = _date_column(conn, "unit_days")
+                    date_filter = f" AND {date_col} < ?" if cutoff_date and date_col else ""
+                    params = (hall_id, cutoff_date) if date_filter else (hall_id,)
+                    evidence_sql = " OR ".join(f"{c} IS NOT NULL" for c in counter_columns)
+                    counter = conn.execute(
+                        f"SELECT COUNT(*) FROM unit_days WHERE hall_id = ? "
+                        f"AND ({evidence_sql}){date_filter}",
+                        params,
+                    ).fetchone()[0]
             except sqlite3.OperationalError:
                 pass
 
         layout = 0
         if _table_exists(conn, "layouts"):
-            layout = _count_for_hall(conn, "layouts", hall_id)
+            layout = _count_for_hall(conn, "layouts", hall_id, cutoff_date)
 
         reset_policy = 0
         try:
@@ -176,7 +203,8 @@ def main() -> None:
     )
 
     conn = sqlite3.connect(str(db))
-    caps = compute_capabilities(conn, as_of)
+    cutoff_date = args.as_of[:10] if args.as_of else None
+    caps = compute_capabilities(conn, as_of, cutoff_date)
     n = persist_capabilities(conn, caps)
     conn.close()
 

@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import datetime as _dt
 import sqlite3
 import sys
 from pathlib import Path
@@ -58,6 +59,15 @@ def insert_run(db_path: Path, draft: dict, payload_hash: str) -> None:
         conn.close()
         raise ValueError(
             f"run {draft['prediction_run_id']} is already {row[0]}"
+        )
+
+    _built = _dt.datetime.fromisoformat(draft["built_at"])
+    _cut = _dt.datetime.fromisoformat(draft["feature_cutoff_at"])
+    if _cut > _built:
+        conn.close()
+        raise ValueError(
+            f"feature_cutoff_at ({draft['feature_cutoff_at']}) is after built_at "
+            f"({draft['built_at']}): freeze invariant (cutoff <= built) violated"
         )
 
     conn.execute(

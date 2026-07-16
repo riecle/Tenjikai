@@ -76,7 +76,7 @@ def main() -> None:
     )
     ap.add_argument("--atlas-dir", required=True,
                      help="Path to slot-atlas directory")
-    ap.add_argument("--target-dates",
+    ap.add_argument("--target-dates", required=True,
                      help="Comma-separated target dates (YYYY-MM-DD)")
     ap.add_argument("--run-id", help="Prediction run ID (auto-generated if omitted)")
     ap.add_argument("--cutoff", help="Feature cutoff datetime (ISO 8601)")
@@ -125,10 +125,16 @@ def main() -> None:
     run_step("build_event_families", [py, str(TOOLS / "build_event_families.py"), "--db", str(db_path)])
 
     # 4. Build machine labels
-    run_step("build_machine_labels", [py, str(TOOLS / "build_machine_labels.py"), "--db", str(db_path)])
+    run_step("build_machine_labels", [
+        py, str(TOOLS / "build_machine_labels.py"),
+        "--db", str(db_path), "--cutoff", resolved_cutoff,
+    ])
 
     # 5. Build capabilities
-    run_step("build_capabilities", [py, str(TOOLS / "build_capabilities.py"), "--db", str(db_path)])
+    run_step("build_capabilities", [
+        py, str(TOOLS / "build_capabilities.py"),
+        "--db", str(db_path), "--as-of", resolved_cutoff,
+    ])
 
     # 6. Chain detection
     chain_cmd = [
@@ -144,6 +150,7 @@ def main() -> None:
         "--run-id", run_id,
         "--output", str(ROOT / "build" / "run_draft.json"),
         "--cutoff", resolved_cutoff,
+        "--cutoff-source", resolved_cutoff_source,
     ]
     if target_dates:
         pred_cmd.extend(["--target-dates", ",".join(target_dates)])
@@ -202,12 +209,31 @@ def main() -> None:
                 if backup_path.exists():
                     backup_path.unlink()
         else:
-            print("[SKIP] encrypt_vault: SITE_ID/SITE_PASSWORD not set")
+            print(
+                "error: SITE_ID and SITE_PASSWORD are required for a formal release; "
+                "use --skip-encrypt only for a non-release test build",
+                file=sys.stderr,
+            )
+            sys.exit(1)
     else:
-        print("[SKIP] encrypt_vault: --skip-encrypt")
+        print("[SKIP] encrypt_vault: --skip-encrypt (non-release test build)")
 
-    # 12. Verify
+    # 12. Validate the exact release artifacts before plaintext cleanup.
     plain_path = ROOT / "build" / "plain.json"
+    validate_cmd = [
+        py, str(TOOLS / "validate_release.py"),
+        "--plain", str(plain_path),
+        "--frozen-run", str(frozen_path),
+        "--cutoff", resolved_cutoff,
+        "--atlas-db", str(db_path),
+    ]
+    if not args.skip_encrypt:
+        validate_cmd.append("--fail-on-skip")
+    else:
+        validate_cmd.append("--skip-test-suite")
+    run_step("validate_release", validate_cmd)
+
+    # 13. Verify
     if plain_path.exists():
         data = json.loads(plain_path.read_text(encoding="utf-8"))
         run_meta = data.get("free_source", {}).get("run_meta", {})
@@ -226,7 +252,7 @@ def main() -> None:
     else:
         print("[WARN] build/plain.json not found — cannot verify")
 
-    # 13. Plaintext cleanup — remove intermediate build artifacts
+    # 14. Plaintext cleanup — remove intermediate build artifacts
     for cleanup_file in (ROOT / "build" / "plain.json", ROOT / "build" / "run_draft.json"):
         if cleanup_file.exists():
             cleanup_file.unlink()
