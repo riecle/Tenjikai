@@ -130,6 +130,33 @@ PHASE1B_COLUMNS = [
     "ALTER TABLE machine_days ADD COLUMN organic_selected_label INTEGER",
 ]
 
+PHASE1_5_TABLES = [
+    """CREATE TABLE IF NOT EXISTS chain_pattern_results (
+        chain_id TEXT NOT NULL,
+        event_family_id TEXT,
+        pattern_type TEXT NOT NULL,
+        valid_from TEXT NOT NULL,
+        valid_to TEXT NOT NULL,
+        statistic REAL,
+        lift REAL,
+        p_value REAL,
+        evidence_days INTEGER,
+        confidence REAL,
+        explanation_json TEXT NOT NULL,
+        warnings_json TEXT NOT NULL,
+        PRIMARY KEY(chain_id, event_family_id, pattern_type, valid_from)
+    )""",
+]
+
+PHASE1_5_COLUMNS = [
+    "ALTER TABLE halls ADD COLUMN chain_id TEXT",
+]
+
+PHASE1_5_INDEXES = [
+    "CREATE INDEX IF NOT EXISTS idx_chain_pattern_chain ON chain_pattern_results(chain_id)",
+    "CREATE INDEX IF NOT EXISTS idx_halls_chain ON halls(chain_id)",
+]
+
 
 def migrate(db_path: str | Path) -> list[str]:
     """Run all migrations. Returns list of actions taken."""
@@ -141,6 +168,7 @@ def migrate(db_path: str | Path) -> list[str]:
         PHASE0_TABLES + PHASE0_INDEXES
         + PHASE1A_TABLES + PHASE1A_INDEXES + PHASE1A_COLUMNS
         + PHASE1B_COLUMNS
+        + PHASE1_5_TABLES + PHASE1_5_COLUMNS + PHASE1_5_INDEXES
     )
     for sql in all_sql:
         try:

@@ -173,7 +173,13 @@ def compute_machine_features(
     else:
         recent_demand = 0.0
 
-    chain_signal = 0.0
+    try:
+        from chain_detector import compute_chain_signal
+        chain_signal = compute_chain_signal(
+            conn, hall_id, machine_key, cutoff_date,
+        )
+    except (ImportError, sqlite3.OperationalError):
+        chain_signal = 0.0
 
     return {
         "p_event": p_event,
