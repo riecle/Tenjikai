@@ -884,7 +884,7 @@ def build_all_chain_patterns(
         if results:
             stored = persist_chain_results(
                 conn, chain_id, None, results,
-                cutoff_date, None,
+                cutoff_date, "",
             )
             total_stored += stored
 

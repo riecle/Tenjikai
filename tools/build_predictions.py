@@ -215,7 +215,7 @@ def build_features(conn: sqlite3.Connection,
                   explanation_json, warnings_json
            FROM chain_pattern_results_v2
            WHERE valid_from <= ?
-             AND (valid_to IS NULL OR valid_to > ?)
+             AND (valid_to IS NULL OR valid_to = '' OR valid_to > ?)
            ORDER BY chain_id, event_family_id, pattern_type,
                     subject_key, valid_from""",
         (cutoff_date, cutoff_date),

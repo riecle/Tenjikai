@@ -110,6 +110,7 @@ def enrich_with_v12(
     free_source: dict,
     atlas_dir: pathlib.Path,
     frozen_run_path: pathlib.Path | None,
+    cutoff: str | None = None,
 ) -> None:
     """Add v1.2 capabilities, chain patterns, and predictions to free_source."""
     db_path = atlas_dir / "slot_atlas.db"
@@ -149,14 +150,26 @@ def enrich_with_v12(
 
     patterns_by_chain: dict[str, list] = defaultdict(list)
     try:
-        for r in conn.execute(
-            """SELECT chain_id, pattern_type, statistic, lift,
+        if cutoff:
+            cutoff_date = cutoff[:10]
+            _cp_query = """SELECT chain_id, pattern_type, statistic, lift,
+                      confidence, explanation_json, promoted, status,
+                      subject_key, warnings_json
+               FROM chain_pattern_results_v2
+               WHERE promoted = 1 AND status = 'detected'
+                 AND valid_from <= ?
+                 AND (valid_to IS NULL OR valid_to = '' OR valid_to > ?)
+               ORDER BY chain_id, pattern_type, subject_key"""
+            _cp_params: tuple = (cutoff_date, cutoff_date)
+        else:
+            _cp_query = """SELECT chain_id, pattern_type, statistic, lift,
                       confidence, explanation_json, promoted, status,
                       subject_key, warnings_json
                FROM chain_pattern_results_v2
                WHERE promoted = 1 AND status = 'detected'
                ORDER BY chain_id, pattern_type, subject_key"""
-        ).fetchall():
+            _cp_params = ()
+        for r in conn.execute(_cp_query, _cp_params).fetchall():
             try:
                 expl = json.loads(r[5]) if r[5] else {}
             except (json.JSONDecodeError, TypeError):
@@ -288,6 +301,8 @@ def main() -> None:
                          help="Skip optional machine/tail/position/unit analysis")
     parser.add_argument("--frozen-run",
                          help="Path to a frozen prediction run JSON for v1.2 data enrichment")
+    parser.add_argument("--cutoff",
+                         help="Feature cutoff datetime for chain pattern filtering")
     args = parser.parse_args()
     atlas_dir = pathlib.Path(args.atlas_dir).resolve()
 
@@ -310,7 +325,7 @@ def main() -> None:
     free_source = None if args.no_free_source else build_free_source_payload(atlas_dir, rows, include_unit=False)
     if free_source is not None:
         frozen_path = pathlib.Path(args.frozen_run) if args.frozen_run else _auto_detect_frozen_run()
-        enrich_with_v12(free_source, atlas_dir, frozen_path)
+        enrich_with_v12(free_source, atlas_dir, frozen_path, cutoff=args.cutoff)
         meta["free_source_table_counts"] = free_source.get("table_counts", {})
         meta["free_source_full_halls"] = sum(
             1 for hall in free_source.get("halls", {}).values() if hall.get("layer") == "FULL"

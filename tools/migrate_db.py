@@ -176,7 +176,7 @@ FIX_V01_TABLES = [
         pattern_type TEXT NOT NULL,
         subject_key TEXT NOT NULL DEFAULT '',
         valid_from TEXT NOT NULL,
-        valid_to TEXT NOT NULL,
+        valid_to TEXT NOT NULL DEFAULT '',
         statistic REAL,
         lift REAL,
         p_value REAL,
