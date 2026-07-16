@@ -157,6 +157,45 @@ PHASE1_5_INDEXES = [
     "CREATE INDEX IF NOT EXISTS idx_halls_chain ON halls(chain_id)",
 ]
 
+# --- v0.1 FIX migrations ---
+
+FIX_V01_COLUMNS = [
+    # A1: canonical_family_key for cross-chain comparison
+    "ALTER TABLE event_families ADD COLUMN canonical_family_key TEXT",
+    # A2: promoted/status for chain pattern visibility
+    "ALTER TABLE chain_pattern_results ADD COLUMN promoted INTEGER DEFAULT 0",
+    "ALTER TABLE chain_pattern_results ADD COLUMN status TEXT DEFAULT 'unknown'",
+    "ALTER TABLE chain_pattern_results ADD COLUMN subject_key TEXT DEFAULT ''",
+]
+
+FIX_V01_TABLES = [
+    # A3: chain_pattern_results_v2 with subject_key in PK
+    """CREATE TABLE IF NOT EXISTS chain_pattern_results_v2 (
+        chain_id TEXT NOT NULL,
+        event_family_id TEXT NOT NULL DEFAULT '',
+        pattern_type TEXT NOT NULL,
+        subject_key TEXT NOT NULL DEFAULT '',
+        valid_from TEXT NOT NULL,
+        valid_to TEXT NOT NULL,
+        statistic REAL,
+        lift REAL,
+        p_value REAL,
+        evidence_days INTEGER,
+        confidence REAL,
+        promoted INTEGER NOT NULL DEFAULT 0,
+        status TEXT NOT NULL DEFAULT 'unknown',
+        explanation_json TEXT NOT NULL,
+        warnings_json TEXT NOT NULL,
+        PRIMARY KEY(chain_id, event_family_id, pattern_type, subject_key, valid_from)
+    )""",
+]
+
+FIX_V01_INDEXES = [
+    "CREATE INDEX IF NOT EXISTS idx_chain_pattern_v2_chain ON chain_pattern_results_v2(chain_id)",
+    "CREATE INDEX IF NOT EXISTS idx_chain_pattern_v2_promoted ON chain_pattern_results_v2(promoted)",
+    "CREATE INDEX IF NOT EXISTS idx_event_families_canonical ON event_families(canonical_family_key)",
+]
+
 PHASE1_75_TABLES = [
     """CREATE TABLE IF NOT EXISTS unit_outcomes (
         hall_id TEXT NOT NULL,
@@ -211,6 +250,7 @@ def migrate(db_path: str | Path) -> list[str]:
         + PHASE1B_COLUMNS
         + PHASE1_5_TABLES + PHASE1_5_COLUMNS + PHASE1_5_INDEXES
         + PHASE1_75_TABLES + PHASE1_75_INDEXES
+        + FIX_V01_COLUMNS + FIX_V01_TABLES + FIX_V01_INDEXES
     )
     for sql in all_sql:
         try:

@@ -42,6 +42,7 @@ def make_test_db(path: Path) -> sqlite3.Connection:
             hall_id TEXT, result_date TEXT, avg_diff REAL,
             total_diff REAL, avg_games REAL,
             source_name TEXT DEFAULT 'test',
+            event_family_id TEXT,
             PRIMARY KEY(hall_id, result_date, source_name)
         );
         CREATE TABLE machine_days (
@@ -71,11 +72,11 @@ def make_test_db(path: Path) -> sqlite3.Connection:
             ('hall_b','Hall B','tokyo',1,1,0,20,NULL,NULL);
 
         INSERT INTO hall_days VALUES
-            ('hall_a','2026-07-10',500,5000,8000,'src1'),
-            ('hall_a','2026-07-11',300,3000,7500,'src1'),
-            ('hall_a','2026-07-15',450,4500,8200,'src1'),
-            ('hall_b','2026-07-10',200,2000,6000,'src1'),
-            ('hall_b','2026-07-12',100,1000,5500,'src1');
+            ('hall_a','2026-07-10',500,5000,8000,'src1',NULL),
+            ('hall_a','2026-07-11',300,3000,7500,'src1',NULL),
+            ('hall_a','2026-07-15',450,4500,8200,'src1',NULL),
+            ('hall_b','2026-07-10',200,2000,6000,'src1',NULL),
+            ('hall_b','2026-07-12',100,1000,5500,'src1',NULL);
 
         INSERT INTO model_runs VALUES (1,'test-0.1','2026-07-15T12:00:00');
 
@@ -266,8 +267,8 @@ class TestP0_07_FutureLeakage(unittest.TestCase):
             db = Path(td) / "test.db"
             conn = make_test_db(db)
             conn.execute(
-                "INSERT INTO hall_days VALUES (?,?,?,?,?,?)",
-                ("hall_a", "2026-07-20", 999, 9990, 9000, "future"),
+                "INSERT INTO hall_days VALUES (?,?,?,?,?,?,?)",
+                ("hall_a", "2026-07-20", 999, 9990, 9000, "future", None),
             )
             conn.commit()
 
@@ -285,8 +286,8 @@ class TestP0_07_FutureLeakage(unittest.TestCase):
             )
             self.assertEqual(cutoff, "2026-07-16T23:59:59+09:00")
 
-            features = build_features(conn, "2026-07-16")
-            dates = {f["result_date"] for f in features}
+            manifest = build_features(conn, "2026-07-16")
+            dates = {f["result_date"] for f in manifest["hall_days"]}
             for d in dates:
                 self.assertLess(d, "2026-07-16")
             conn.close()
