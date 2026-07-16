@@ -48,7 +48,11 @@ https://riecle.github.io/Tenjikai/
 | `data/vault.json` | 暗号化済みの365日×全店データ（PBKDF2 + AES-GCM） |
 | `manifest.webmanifest` / `sw.js` / `icons/` | PWA設定・オフラインキャッシュ |
 | `robots.txt` | 検索エンジンのクロールを全面拒否 |
-| `tools/build_site_data.py` | 手元の slot-atlas プロジェクトから平文JSONを生成（`build/plain.json`、コミットしない） |
+| `tools/build_site_data.py` | 手元の slot-atlas からカレンダー＋無料ソース配置予測の平文JSONを生成 |
+| `tools/free_source_predictor.py` | machine_days / tail_days / unit_days等からFULL・SUMMARY・NONEと15型台帳を生成 |
+| `README_無料ソース予測.md` | 入力ファイル・列契約・判定仕様 |
+| `tests/test_free_source_predictor.py` | FULL / SUMMARY / NONE、ローテ、末尾zの回帰テスト |
+| `CHANGELOG_2026-07-16.md` | 今回の変更点と注意事項 |
 | `tools/encrypt_vault.mjs` | 平文JSONをID・パスワードで暗号化して `data/vault.json` を生成 |
 | `.github/workflows/pages.yml` | GitHub Pages への自動デプロイ |
 
@@ -66,10 +70,24 @@ git add data/vault.json
 git commit -m "update data"
 ```
 
+現在の暗号化vaultに入っている365日予測を保持したまま、機種・末尾・台番分析だけを追加する場合:
+
+```bash
+SITE_ID=... SITE_PASSWORD=... node tools/decrypt_vault.mjs
+python3 tools/build_site_data.py \
+  --atlas-dir /path/to/slot-atlas \
+  --base-plain build/plain.json
+SITE_ID=... SITE_PASSWORD=... node tools/encrypt_vault.mjs
+```
+
+`build/plain.json` は平文なのでgitには追加しないでください（`.gitignore` 済み）。共有PCでは再暗号化後に削除してください。
+
+`machine_days`、`tail_days`、`machine_scores`、`position_signals`、`unit_days` がSlot Atlas側にあれば自動検出し、機種・末尾・配置型を同じ暗号化payloadへ追加します。詳しい列契約は [`README_無料ソース予測.md`](README_無料ソース予測.md) を参照してください。
+
 ## パスワードを変更する
 
 `tools/encrypt_vault.mjs` を新しい `SITE_PASSWORD` で実行し直し、`data/vault.json` をコミットするだけです。
-コードの変更は不要です。
+コードの変更は不要です。通常のデータ更新では既存のKDF saltを再利用するため、ID・パスワードが同じなら端末のログイン状態を維持できます。salt自体も更新したい場合は `ROTATE_KDF_SALT=1` を付けて実行してください。
 
 ## 公開範囲についての注意
 

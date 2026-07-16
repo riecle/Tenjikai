@@ -24,6 +24,25 @@ function toB64(buf) {
   return Buffer.from(buf).toString("base64");
 }
 
+function fromB64(text) {
+  return new Uint8Array(Buffer.from(text, "base64"));
+}
+
+async function chooseSalt() {
+  if (process.env.ROTATE_KDF_SALT === "1") {
+    return { salt: webcrypto.getRandomValues(new Uint8Array(16)), reused: false };
+  }
+  try {
+    const existing = JSON.parse(await readFile(VAULT_PATH, "utf8"));
+    if (existing.v === 1 && existing.kdf === "PBKDF2-SHA256" && existing.salt) {
+      return { salt: fromB64(existing.salt), reused: true };
+    }
+  } catch (_) {
+    // First build or an unreadable old vault: create a new salt.
+  }
+  return { salt: webcrypto.getRandomValues(new Uint8Array(16)), reused: false };
+}
+
 async function deriveKey(id, password, salt, usage) {
   const enc = new TextEncoder();
   const keyMaterial = await webcrypto.subtle.importKey(
@@ -45,7 +64,8 @@ async function main() {
 
   const plain = await readFile(PLAIN_PATH, "utf8");
   const enc = new TextEncoder();
-  const salt = webcrypto.getRandomValues(new Uint8Array(16));
+  const saltChoice = await chooseSalt();
+  const salt = saltChoice.salt;
   const iv = webcrypto.getRandomValues(new Uint8Array(12));
 
   const encryptKey = await deriveKey(id, password, salt, "encrypt");
@@ -72,6 +92,9 @@ async function main() {
   await mkdir(path.dirname(VAULT_PATH), { recursive: true });
   await writeFile(VAULT_PATH, JSON.stringify(vault), "utf8");
   console.log(`wrote ${VAULT_PATH} (${JSON.stringify(vault).length.toLocaleString()} bytes), self-check passed`);
+  console.log(saltChoice.reused
+    ? "reused existing KDF salt (cached login key remains valid when credentials are unchanged)"
+    : "created new KDF salt");
 }
 
 main();

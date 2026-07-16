@@ -4,7 +4,7 @@
    復号はブラウザ内でのみ行われ、パスワードはどこにも送信・保存されない。 */
 "use strict";
 
-const CACHE = "slot-atlas-v2";
+const CACHE = "slot-atlas-0.11.29-2026-07-15";
 
 const ASSETS = [
   "./",
@@ -53,7 +53,24 @@ self.addEventListener("fetch", (e) => {
     return;
   }
 
-  if (new URL(req.url).origin !== self.location.origin) return;
+  const url = new URL(req.url);
+  if (url.origin !== self.location.origin) return;
+
+  // The encrypted payload changes more frequently than the app shell. Always
+  // try the network first so a data-only deployment does not remain hidden by
+  // an old service-worker cache; fall back to the last usable vault offline.
+  if (url.pathname.endsWith("/data/vault.json")) {
+    e.respondWith(
+      fetch(req, { cache: "no-store" })
+        .then(res => {
+          const copy = res.clone();
+          caches.open(CACHE).then(c => c.put(req, copy)).catch(() => {});
+          return res;
+        })
+        .catch(() => caches.match(req))
+    );
+    return;
+  }
 
   e.respondWith(
     caches.match(req).then(cached => {
